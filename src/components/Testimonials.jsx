@@ -32,9 +32,9 @@ const Testimonials = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {testimonials.map((t, i) => (
-            <div key={i} className="bg-gray-50 p-8 rounded-lg shadow-sm reveal-up" style={{ transitionDelay: `${80 + i * 80}ms` }}>
+            <div key={i} className="bg-gray-50 p-6 sm:p-7 rounded-lg shadow-sm reveal-up" style={{ transitionDelay: `${80 + i * 80}ms` }}>
               <div className="text-gray-700 italic mb-6">“{t.quote}”</div>
               <div className="font-semibold text-gray-900">{t.name}</div>
               <div className="text-gray-500 text-sm">{t.role}</div>

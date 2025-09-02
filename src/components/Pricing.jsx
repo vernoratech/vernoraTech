@@ -53,7 +53,7 @@ const Pricing = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {plans.map((plan, idx) => (
             <div
               key={idx}
@@ -63,9 +63,9 @@ const Pricing = () => {
             >
               <div className="mb-4 text-sm font-semibold text-primary">{plan.highlight ? 'Most Popular' : ' '}</div>
               <h3 className="text-2xl font-semibold text-gray-900 mb-2">{plan.name}</h3>
-              <div className="flex items-end gap-2 mb-6">
-                <div className="text-4xl font-bold text-gray-900">{plan.price}</div>
-                <div className="text-gray-500">{plan.period}</div>
+              <div className="flex items-baseline gap-2 mb-6">
+                <div className="text-3xl sm:text-4xl font-bold text-gray-900">{plan.price}</div>
+                <div className="text-gray-500 text-sm sm:text-base">{plan.period}</div>
               </div>
               <ul className="space-y-3 mb-8">
                 {plan.features.map((f, i) => (
@@ -75,7 +75,7 @@ const Pricing = () => {
                   </li>
                 ))}
               </ul>
-              <a href="#contact" className={`w-full inline-block text-center ${plan.highlight ? 'btn-primary' : 'btn-secondary'}`}>
+              <a href="#contact" className={`w-full inline-block text-center mt-2 ${plan.highlight ? 'btn-primary' : 'btn-secondary'}`}>
                 Get Started
               </a>
             </div>

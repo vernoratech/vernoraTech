@@ -12,6 +12,17 @@
   }
 }
 
+/* Account for fixed header on anchor jumps */
+section[id] {
+  scroll-margin-top: 84px;
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  section[id] {
+    scroll-margin-top: 92px;
+  }
+}
+
 /* Page fade-in on initial mount */
 #root {
   opacity: 0;

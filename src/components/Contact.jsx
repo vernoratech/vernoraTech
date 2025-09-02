@@ -36,7 +36,7 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-12">
           {/* Contact Form */}
           <div className="bg-white p-8 rounded-lg shadow-md reveal-up">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">
@@ -125,7 +125,7 @@ const Contact = () => {
 
           {/* Contact Information */}
           <div>
-            <div className="bg-white p-8 rounded-lg shadow-md mb-8 reveal-up" style={{ transitionDelay: '120ms' }}>
+            <div className="bg-white p-6 md:p-8 rounded-lg shadow-md mb-8 reveal-up" style={{ transitionDelay: '120ms' }}>
               <h3 className="text-2xl font-semibold text-gray-900 mb-6">
                 Contact Information
               </h3>
@@ -154,7 +154,7 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="bg-primary text-white p-8 rounded-lg reveal-up" style={{ transitionDelay: '200ms' }}>
+            <div className="bg-primary text-white p-6 md:p-8 rounded-lg reveal-up" style={{ transitionDelay: '200ms' }}>
               <h3 className="text-2xl font-semibold mb-4">
                 Free Consultation
               </h3>
