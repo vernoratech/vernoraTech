@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@theme {
+  --color-primary: #4f46e5;
+  /* indigo-600 */
+  --color-accent: #16a34a;
+  /* green-600 */
+}
+
+@utility section-padding {
+  @apply px-4 sm:px-6 lg:px-8 py-20;
+}
+
+@utility btn-primary {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-white font-semibold shadow hover:brightness-110 transition duration-300;
+}
+
+@utility btn-secondary {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg border border-gray-300 text-gray-900 font-semibold hover:bg-gray-50 transition duration-300;
+}
+
+/* Scroll reveal animations */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile menu smooth toggle */
+.mobile-menu {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease;
+}
+
+.mobile-menu.open {
+  max-height: 480px;
+  opacity: 1;
+}
