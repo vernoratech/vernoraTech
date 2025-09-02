@@ -12,6 +12,22 @@
   }
 }
 
+/* Page fade-in on initial mount */
+#root {
+  opacity: 0;
+}
+
+.app-mounted #root {
+  opacity: 1;
+  transition: opacity 320ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-mounted #root {
+    transition: none;
+  }
+}
+
 @theme {
   --color-primary: #4f46e5;
   /* indigo-600 */
@@ -32,15 +48,38 @@
 }
 
 /* Scroll reveal animations */
-.reveal-up {
+/* Only hide elements when JS is ready to reveal them */
+.js-ready .reveal-up {
   opacity: 0;
-  transform: translateY(24px);
+  /* base translate for initial reveal; overridable via CSS var */
+  --reveal-base-ty: 28px;
+  /* subtle scroll drift (set via JS) */
+  --scroll-drift: 0px;
+  transform: translateY(calc(var(--reveal-base-ty) + var(--scroll-drift)));
   transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: transform, opacity;
 }
 
-.reveal-up.is-visible {
+.js-ready .reveal-up.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  --reveal-base-ty: 0px;
+  /* snappier transition for small scroll drift while visible */
+  transition: transform 140ms ease-out, opacity 220ms ease-out;
+}
+
+/* Fallback: if JS fails to run, keep content visible */
+.reveal-up:not(.is-visible) {
+  opacity: 1;
+  transform: none;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .js-ready .reveal-up {
+    transition: none;
+    transform: translateY(var(--reveal-base-ty));
+    opacity: 1;
+  }
 }
 
 /* Mobile menu smooth toggle */
