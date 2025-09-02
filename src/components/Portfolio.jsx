@@ -5,25 +5,25 @@ const Portfolio = () => {
     {
       title: 'Sharma & Associates CA',
       category: 'Chartered Accountant',
-      image: 'https://via.placeholder.com/400x300',
+      image: 'https://d3h2k7ug3o5pb3.cloudfront.net/image/2020-12-05/b3a6ac30-36b4-11eb-a219-73e9ca8fa2ef.jpg',
       description: 'Professional website with client portal and service showcase'
     },
     {
       title: 'BuildRight Construction',
       category: 'Construction',
-      image: 'https://via.placeholder.com/400x300',
+      image: 'https://contentwriterireland.ie/wp-content/uploads/2021/11/5e5a34_77ddeffbc8da4613a26e2388b5be98d2_mv2.png',
       description: 'Modern construction website with project gallery'
     },
     {
       title: 'Legal Solutions',
       category: 'Legal Services',
-      image: 'https://via.placeholder.com/400x300',
+      image: 'https://www.apexure.com/uploads/Group%207295.webp',
       description: 'Professional law firm website with case studies'
     },
     {
       title: 'MediCare Clinic',
       category: 'Healthcare',
-      image: 'https://via.placeholder.com/400x300',
+      image: 'https://www.wordstream.com/wp-content/uploads/2022/09/b2b-website-design-examples-hunch.png',
       description: 'Healthcare website with appointment booking system'
     }
   ];
