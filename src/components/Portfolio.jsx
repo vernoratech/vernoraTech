@@ -1,32 +1,9 @@
 import React from 'react';
+import { projects } from '../data/projects';
 
-const Portfolio = () => {
-  const projects = [
-    {
-      title: 'Sharma & Associates CA',
-      category: 'Chartered Accountant',
-      image: 'https://d3h2k7ug3o5pb3.cloudfront.net/image/2020-12-05/b3a6ac30-36b4-11eb-a219-73e9ca8fa2ef.jpg',
-      description: 'Professional website with client portal and service showcase'
-    },
-    {
-      title: 'BuildRight Construction',
-      category: 'Construction',
-      image: 'https://contentwriterireland.ie/wp-content/uploads/2021/11/5e5a34_77ddeffbc8da4613a26e2388b5be98d2_mv2.png',
-      description: 'Modern construction website with project gallery'
-    },
-    {
-      title: 'Legal Solutions',
-      category: 'Legal Services',
-      image: 'https://www.apexure.com/uploads/Group%207295.webp',
-      description: 'Professional law firm website with case studies'
-    },
-    {
-      title: 'MediCare Clinic',
-      category: 'Healthcare',
-      image: 'https://www.wordstream.com/wp-content/uploads/2022/09/b2b-website-design-examples-hunch.png',
-      description: 'Healthcare website with appointment booking system'
-    }
-  ];
+const Portfolio = (props) => {
+
+  const visibleProjects = projects.slice(0, 4);
 
   return (
     <section id="portfolio" className="bg-gray-50 section-padding reveal-up">
@@ -42,7 +19,7 @@ const Portfolio = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-          {projects.map((project, index) => (
+          {visibleProjects.map((project, index) => (
             <div key={index} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 reveal-up" style={{ transitionDelay: `${80 + index * 60}ms` }}>
               <img
                 src={project.image}
@@ -64,7 +41,13 @@ const Portfolio = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-12 flex items-center justify-center gap-4">
+          <button
+            onClick={props.onSeeAllProjects}
+            className="btn-secondary"
+          >
+            See All Projects
+          </button>
           <a href="#contact" className="btn-primary">
             Start Your Project
           </a>
