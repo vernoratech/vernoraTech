@@ -1,50 +1,90 @@
-export const projects = [
+export const domains = [
   {
-    title: 'Sharma & Associates CA',
-    category: 'Chartered Accountant',
-    image: 'https://d3h2k7ug3o5pb3.cloudfront.net/image/2020-12-05/b3a6ac30-36b4-11eb-a219-73e9ca8fa2ef.jpg',
-    description: 'Professional website with client portal and service showcase'
+    name: 'Healthcare & Wellness',
+    headline: 'Patient-first digital experiences',
+    summary: 'Crafted conversion-focused websites and portals for hospitals, clinics, and diagnostics teams needing HIPAA-ready, multi-location experiences.',
+    focusAreas: [
+      'Telemedicine-ready appointment workflows',
+      'Doctor and service catalogues with smart search',
+      'Lab integrations and secure patient intake'
+    ],
+    results: 'Enabled 6+ healthcare brands to launch compliant patient journeys and grow appointment bookings by up to 38%.'
   },
   {
-    title: 'BuildRight Construction',
-    category: 'Construction',
-    image: 'https://contentwriterireland.ie/wp-content/uploads/2021/11/5e5a34_77ddeffbc8da4613a26e2388b5be98d2_mv2.png',
-    description: 'Modern construction website with project gallery'
+    name: 'Finance & Accounting',
+    headline: 'Trust-building digital presence',
+    summary: 'Delivered modern websites and client portals for CA firms, tax consultants, and fintech advisors who need secure onboarding and document flows.',
+    focusAreas: [
+      'Secure lead capture and client onboarding',
+      'Service catalogues highlighting compliance expertise',
+      'Resource hubs to educate prospects'
+    ],
+    results: 'Helped finance teams turn inbound website traffic into qualified consultations with streamlined intake experiences.'
   },
   {
-    title: 'Legal Solutions',
-    category: 'Legal Services',
-    image: 'https://www.apexure.com/uploads/Group%207295.webp',
-    description: 'Professional law firm website with case studies'
+    name: 'Legal & Compliance',
+    headline: 'Authority-building content hubs',
+    summary: 'Supported law firms and compliance specialists with credibility-first sites featuring case studies, service segments, and lead qualification funnels.',
+    focusAreas: [
+      'Practice area landing pages with tailored CTAs',
+      'Knowledge centers for thought leadership',
+      'Automated consultation scheduling'
+    ],
+    results: 'Enabled boutique legal teams to triple consultation requests by demystifying offerings for prospective clients.'
   },
   {
-    title: 'MediCare Clinic',
-    category: 'Healthcare',
-    image: 'https://www.wordstream.com/wp-content/uploads/2022/09/b2b-website-design-examples-hunch.png',
-    description: 'Healthcare website with appointment booking system'
+    name: 'Real Estate & Construction',
+    headline: 'Location-driven lead generation',
+    summary: 'Built immersive property showcases and contractor portfolios focused on site tours, project proof, and on-site lead capture.',
+    focusAreas: [
+      'Interactive galleries and project timelines',
+      'Lead capture forms synced with CRM tools',
+      'Localized SEO landing pages'
+    ],
+    results: 'Partnered with builders and developers to keep sales pipelines filled with high-intent buyer inquiries.'
   },
   {
-    title: 'TechStart Solutions',
-    category: 'Technology',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80',
-    description: 'SaaS platform with modern dashboard and user management'
+    name: 'SaaS & Technology',
+    headline: 'Product-led storytelling',
+    summary: 'Collaborated with tech startups to launch conversion-ready marketing sites, demo flows, and investor decks that translate features into value.',
+    focusAreas: [
+      'Narrative product pages with feature blocks',
+      'Interactive dashboards and onboarding walkthroughs',
+      'Pricing, FAQ, and trust signal optimization'
+    ],
+    results: 'Supported SaaS teams through launch, scale, and funding milestones with data-backed UX decisions.'
   },
   {
-    title: 'GreenEats Restaurant',
-    category: 'Food & Beverage',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-    description: 'Restaurant website with online ordering and menu showcase'
+    name: 'Food, Beverage & Hospitality',
+    headline: 'Experience-led discovery',
+    summary: 'Evolved restaurant and hospitality brands with ordering-ready menus, reservation tools, and social proof baked into every screen.',
+    focusAreas: [
+      'Menu systems with seasonal update controls',
+      'Reservation and table management integrations',
+      'Customer review and social proof modules'
+    ],
+    results: 'Helped hospitality teams increase direct bookings by pairing strong visuals with conversion-focused UX.'
   },
   {
-    title: 'FitLife Gym',
-    category: 'Fitness',
-    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-    description: 'Gym website with class schedules and membership plans'
+    name: 'Fitness & Lifestyle',
+    headline: 'Community-centric brand journeys',
+    summary: 'Partnered with gyms, studios, and wellness coaches to craft membership funnels, schedule visibility, and community retention touchpoints.',
+    focusAreas: [
+      'Class scheduling and trainer profiles',
+      'Membership plan comparison flows',
+      'Retention-focused content drip campaigns'
+    ],
+    results: 'Boosted membership sign-ups and renewals with transparent program storytelling and on-brand visuals.'
   },
   {
-    title: 'Creative Agency Pro',
-    category: 'Marketing',
-    image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-    description: 'Creative agency portfolio with case studies and services'
+    name: 'Marketing & Creative Agencies',
+    headline: 'Conversion-ready showcase',
+    summary: 'Collaborated with agencies to highlight signature services, process clarity, and client results through modular case storytelling.',
+    focusAreas: [
+      'Service positioning and capability matrices',
+      'Before-and-after case study layouts',
+      'Lead qualification and proposal request flows'
+    ],
+    results: 'Empowered agency leaders to pitch faster with reusable assets that spotlight measurable impact.'
   }
 ];

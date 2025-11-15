@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="col-span-2">
-            <div className="text-2xl font-bold mb-4">VesnoraTech</div>
+            <div className="text-2xl font-bold mb-4">VernoraTech</div>
             <p className="text-gray-400 mb-6 max-w-md">
               Creating professional websites for service businesses.
               We help CAs, construction companies, and professional services
@@ -50,7 +50,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 VesnoraTech. All rights reserved.</p>
+          <p>&copy; 2025 VernoraTech. All rights reserved.</p>
         </div>
       </div>
     </footer>

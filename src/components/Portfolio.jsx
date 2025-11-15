@@ -1,41 +1,51 @@
 import React from 'react';
-import { projects } from '../data/projects';
+import { domains } from '../data/projects';
 
 const Portfolio = (props) => {
 
-  const visibleProjects = projects.slice(0, 4);
+  const visibleDomains = domains.slice(0, 4);
 
   return (
     <section id="portfolio" className="bg-gray-50 section-padding reveal-up">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 reveal-up">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Our Portfolio
+            Industries We Empower
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Check out some of our recent work and see how we've helped
-            businesses like yours succeed online.
+            Explore the domains where we've delivered measurable outcomes,
+            crafted tailored journeys, and accelerated digital growth.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-          {visibleProjects.map((project, index) => (
-            <div key={index} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 reveal-up" style={{ transitionDelay: `${80 + index * 60}ms` }}>
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 sm:h-56 md:h-64 object-cover"
-              />
-              <div className="p-6">
-                <div className="text-sm text-primary font-semibold mb-2">
-                  {project.category}
+          {visibleDomains.map((domain, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 reveal-up"
+              style={{ transitionDelay: `${80 + index * 60}ms` }}
+            >
+              <div className="p-6 h-full flex flex-col">
+                <div className="text-sm text-primary font-semibold mb-2 uppercase tracking-wide">
+                  {domain.name}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {project.title}
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  {domain.headline}
                 </h3>
-                <p className="text-gray-600">
-                  {project.description}
+                <p className="text-gray-600 mb-4 flex-1">
+                  {domain.summary}
                 </p>
+                <ul className="space-y-2 text-gray-600 text-sm">
+                  {domain.focusAreas.map((item, itemIndex) => (
+                    <li key={itemIndex} className="flex gap-2">
+                      <span className="text-primary leading-6">•</span>
+                      <span className="leading-6">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 pt-4 border-t border-gray-100 text-sm text-gray-500 font-medium">
+                  {domain.results}
+                </div>
               </div>
             </div>
           ))}
@@ -46,10 +56,10 @@ const Portfolio = (props) => {
             onClick={props.onSeeAllProjects}
             className="btn-secondary"
           >
-            See All Projects
+            Explore All Domains
           </button>
           <a href="#contact" className="btn-primary">
-            Start Your Project
+            Start Your Domain Project
           </a>
         </div>
       </div>

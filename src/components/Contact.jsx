@@ -134,14 +134,14 @@ const Contact = () => {
                   <span className="text-primary text-xl mr-4">📧</span>
                   <div>
                     <div className="font-medium text-gray-900">Email</div>
-                    <div className="text-gray-600">hello@vesnoratech.com</div>
+                    <div className="text-gray-600" mailto="vernoratech.devharsh@gmail.com">vernoratech.devharsh@gmail.com</div>
                   </div>
                 </div>
                 <div className="flex items-center">
                   <span className="text-primary text-xl mr-4">📱</span>
                   <div>
                     <div className="font-medium text-gray-900">Phone</div>
-                    <div className="text-gray-600">+91 XXXXX XXXXX</div>
+                    <div className="text-gray-600">+91 73978 25850</div>
                   </div>
                 </div>
                 <div className="flex items-center">

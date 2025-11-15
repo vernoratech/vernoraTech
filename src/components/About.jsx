@@ -7,7 +7,7 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="reveal-up">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              About VesnoraTech
+              About VernoraTech
             </h2>
             <p className="text-lg text-gray-600 mb-6">
               We're a dedicated team of web designers and developers specializing in

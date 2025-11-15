@@ -6,7 +6,7 @@ const Testimonials = () => {
       name: 'Anuj Sharma',
       role: 'Partner, Sharma & Associates (CA)',
       quote:
-        'VesnoraTech delivered a clean, professional website that boosted our inquiries by 60% within two months.'
+        'VernoraTech delivered a clean, professional website that boosted our inquiries by 60% within two months.'
     },
     {
       name: 'Priya Mehta',
