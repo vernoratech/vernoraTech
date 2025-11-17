@@ -3,46 +3,39 @@ import React from 'react';
 const ClientShowcase = (props) => {
   const clients = [
     {
-      name: 'TechCorp',
-      industry: 'Technology',
-      logo: '🏢',
-      testimonial: 'Outstanding work! They delivered our project on time and exceeded our expectations.',
-      representative: 'CEO, TechCorp'
+      name: 'GreenSprout Nursery',
+      industry: 'Local Retail',
+      logo: '🪴',
+      testimonial: 'Our neighborhood plant shop now has an online catalog and booking form—customers love how easy it is.',
+      representative: 'Owner, GreenSprout Nursery'
     },
     {
-      name: 'HealthFlow',
-      industry: 'Healthcare',
-      logo: '🏥',
-      testimonial: 'Professional team with deep technical expertise. Highly recommended!',
-      representative: 'CTO, HealthFlow'
+      name: 'FixIt Fast Repairs',
+      industry: 'Home Services',
+      logo: '🔧',
+      testimonial: 'The new landing page doubled our enquiry calls within two weeks. Perfect for small service teams like ours.',
+      representative: 'Lead Technician, FixIt Fast Repairs'
     },
     {
-      name: 'EduTech',
+      name: 'BrightPath Tutoring',
       industry: 'Education',
-      logo: '🎓',
-      testimonial: 'They transformed our vision into a beautiful, functional platform.',
-      representative: 'Founder, EduTech'
+      logo: '📚',
+      testimonial: 'Parents can now schedule demo sessions instantly. The simple layout gives our small tutoring crew big credibility.',
+      representative: 'Founder, BrightPath Tutoring'
     },
     {
-      name: 'FinServe',
-      industry: 'Finance',
-      logo: '💳',
-      testimonial: 'Exceptional quality and attention to detail. A pleasure to work with.',
-      representative: 'Product Manager, FinServe'
+      name: 'Tastebuds Home Bakery',
+      industry: 'Food & Beverage',
+      logo: '🧁',
+      testimonial: 'We showcase daily specials and accept pre-orders without any hassle. It feels tailor-made for our kitchen.',
+      representative: 'Head Baker, Tastebuds Home Bakery'
     },
     {
-      name: 'RetailPlus',
-      industry: 'Retail',
-      logo: '🛍️',
-      testimonial: 'Our e-commerce platform increased sales by 300% in the first quarter.',
-      representative: 'Marketing Director, RetailPlus'
-    },
-    {
-      name: 'GreenEnergy',
-      industry: 'Energy',
-      logo: '⚡',
-      testimonial: 'Innovative solutions that perfectly align with our sustainability goals.',
-      representative: 'Operations Lead, GreenEnergy'
+      name: 'ShiftRight Movers',
+      industry: 'Local Logistics',
+      logo: '🚚',
+      testimonial: 'Customers can now request quotes online, which keeps our two-truck crew booked every weekend.',
+      representative: 'Co-owner, ShiftRight Movers'
     }
   ];
 
