@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,8 @@ const Contact = () => {
     service: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [feedbackMessage, setFeedbackMessage] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -16,11 +19,53 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission here
     console.log('Form submitted:', formData);
     // You can integrate with your backend or email service
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setFeedbackMessage('Email service is not configured. Please contact us directly.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setFeedbackMessage('');
+
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          service: formData.service,
+          message: formData.message,
+          to_email: 'vernoratech@gmail.com'
+        },
+        {
+          publicKey
+        }
+      );
+
+      setFeedbackMessage('Thank you! Your message has been sent.');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        service: '',
+        message: ''
+      });
+    } catch (error) {
+      setFeedbackMessage('Something went wrong while sending your message. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -117,9 +162,14 @@ const Contact = () => {
                 ></textarea>
               </div>
 
-              <button type="submit" className="w-full btn-primary cursor-pointer">
-                Send Message
+              <button type="submit" className="w-full btn-primary cursor-pointer disabled:opacity-70" disabled={isSubmitting}>
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
+              {feedbackMessage && (
+                <p className="text-sm text-center text-gray-600">
+                  {feedbackMessage}
+                </p>
+              )}
             </form>
           </div>
 
