@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { BsWhatsapp } from "react-icons/bs";
+import { MdOutlineEmail } from "react-icons/md";
+import { LuClock2 } from "react-icons/lu";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -181,23 +184,22 @@ const Contact = () => {
               </h3>
               <div className="space-y-4">
                 <div className="flex items-center">
-                  <span className="text-primary text-xl mr-4">📧</span>
+                  <span className="text-primary text-xl mr-4"><MdOutlineEmail className='text-blue-600 text-2xl'/></span>
                   <div>
                     <div className="font-medium text-gray-900">Email</div>
-                    <div className="text-gray-600 cursor-pointer hover:text-blue-600" onClick={() => window.location.href = 'mailto:vernoratech.devharsh@gmail.com'}>vernoratech.devharsh@gmail.com</div>
-                    <div className="text-gray-600 cursor-pointer hover:text-blue-600" onClick={() => window.location.href = 'mailto:vernoratech.devdevendra@gmail.com'}>vernoratech.devdevendra@gmail.com</div>
+                    <div className="text-gray-600 cursor-pointer hover:text-blue-600" onClick={() => window.location.href = 'mailto:vernoratech@gmail.com'}>vernoratech@gmail.com</div>
                   </div>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-primary text-xl mr-4">📱</span>
+                  <span className="text-primary text-xl mr-4"><BsWhatsapp className='text-green-600'/></span>
                   <div>
-                    <div className="font-medium text-gray-900">Phone</div>
-                    <div className="text-gray-600 cursor-pointer hover:text-blue-600" onClick={() => window.location.href = 'tel:+917397825850'}>+91 73978 25850</div>
-                    <div className="text-gray-600 cursor-pointer hover:text-blue-600" onClick={() => window.location.href = 'tel:+918767425955'}>+91 87674 25955</div>
+                    <div className="font-medium text-gray-900">WhatsApp</div>
+                    <div className="text-gray-600 cursor-pointer hover:text-blue-600" onClick={() => window.open('https://wa.me/917397825850', '_blank')}>+91 73978 25850</div>
+                    <div className="text-gray-600 cursor-pointer hover:text-blue-600" onClick={() => window.open('https://wa.me/918767425955', '_blank')}>+91 87674 25955</div>
                   </div>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-primary text-xl mr-4">⏰</span>
+                  <span className="text-primary text-xl mr-4"><LuClock2 className='text-gray-600 text-2xl'/></span>
                   <div>
                     <div className="font-medium text-gray-900">Business Hours</div>
                     <div className="text-gray-600">Mon - Fri: 9:00 AM - 6:00 PM</div>

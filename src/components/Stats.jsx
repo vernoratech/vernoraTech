@@ -1,32 +1,72 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+
+const MIN_PIPELINE = 5;
+const MAX_PIPELINE = 15;
+const PIPELINE_DELTAS = [3, -2, 2];
+const UPDATE_INTERVAL_MS = 2 * 60 * 1000;
+// const UPDATE_INTERVAL_MS = 2000;
+
+const getRandomPipeline = () =>
+  Math.floor(Math.random() * (MAX_PIPELINE - MIN_PIPELINE + 1)) + MIN_PIPELINE;
+
+const getNextPipeline = (current) => {
+  const candidates = PIPELINE_DELTAS.map((delta) => current + delta).filter(
+    (value) => value >= MIN_PIPELINE && value <= MAX_PIPELINE
+  );
+
+  if (candidates.length === 0) {
+    return current;
+  }
+
+  const distinctCandidates = candidates.filter((value) => value !== current);
+  const viable = distinctCandidates.length > 0 ? distinctCandidates : candidates;
+  return viable[Math.floor(Math.random() * viable.length)];
+};
 
 const Stats = () => {
-  const stats = [
-    {
-      number: '25+',
-      label: 'Landing Pages in Pipeline',
-      description: 'Active build schedule for the next launch window.',
-      detail: 'Onboarding sprint queue'
-    },
-    {
-      number: '45',
-      label: 'Discovery Calls Booked',
-      description: 'Teams exploring how we can elevate their service brand.',
-      detail: 'Q4 interest snapshot'
-    },
-    {
-      number: '92%',
-      label: 'Projected Satisfaction Score',
-      description: 'Benchmark we are committed to meeting post-launch.',
-      detail: 'Based on pilot feedback'
-    },
-    {
-      number: '30d',
-      label: 'Average Build Timeline Target',
-      description: 'Goal for rolling out optimized landing experiences.',
-      detail: 'Includes testing runway'
-    }
-  ];
+  const [pipelineCount, setPipelineCount] = useState(getRandomPipeline);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setPipelineCount((previous) => getNextPipeline(previous));
+    }, UPDATE_INTERVAL_MS);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const stats = useMemo(() => {
+    const pipelineDisplay = pipelineCount === MAX_PIPELINE ? `${pipelineCount}+` : `${pipelineCount}`;
+    const discoveryCalls = Math.max(5, Math.round(pipelineCount * 0.7) + 3);
+    const satisfactionScore = `${Math.min(98, 85 + Math.round(pipelineCount / 2))}%`;
+    const buildTimelineTarget = `${Math.max(14, 24 - pipelineCount)}d`;
+
+    return [
+      {
+        number: pipelineDisplay,
+        label: 'Landing Pages in Pipeline',
+        description: 'Active build schedule for the next launch window.',
+        detail: 'Onboarding sprint queue'
+      },
+      {
+        number: `${discoveryCalls}`,
+        label: 'Discovery Calls Booked',
+        description: 'Teams exploring how we can elevate their service brand.',
+        detail: 'Q4 interest snapshot'
+      },
+      {
+        number: satisfactionScore,
+        label: 'Projected Satisfaction Score',
+        description: 'Benchmark we are committed to meeting post-launch.',
+        detail: 'Based on pilot feedback'
+      },
+      {
+        number: buildTimelineTarget,
+        label: 'Average Build Timeline Target',
+        description: 'Goal for rolling out optimized landing experiences.',
+        detail: 'Includes testing runway'
+      }
+    ];
+  }, [pipelineCount]);
 
   return (
     <section className="relative py-20 overflow-hidden">

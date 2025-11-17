@@ -1,4 +1,18 @@
 import React from 'react';
+import { FaReact } from "react-icons/fa";
+import { TbBrandNextjs } from "react-icons/tb";
+import { TbBrandTypescript } from "react-icons/tb";
+import { SiFlutter } from "react-icons/si";
+import { FaNodeJs } from "react-icons/fa";
+import { IoLogoPython } from "react-icons/io5";
+import { SiExpress } from "react-icons/si";
+import { SiFastapi } from "react-icons/si";
+import { BiLogoSpringBoot } from "react-icons/bi";
+import { SiMongodb } from "react-icons/si";
+import { SiMysql } from "react-icons/si";
+import { DiRedis } from "react-icons/di";
+
+
 
 const Technologies = () => {
   const techCategories = [
@@ -6,30 +20,30 @@ const Technologies = () => {
       category: 'Frontend',
       description: 'Enterprise-grade interfaces, design systems, and micro-frontends built for performance and accessibility.',
       technologies: [
-        { name: 'React', icon: '⚛️', level: 'Expert' },
-        { name: 'Next.js', icon: '⚡', level: 'Expert' },
-        { name: 'TypeScript', icon: '📘', level: 'Expert' },
-        { name: 'Flutter', icon: '🦋', level: 'Advanced' }
+        { name: 'React', icon: <FaReact/>, level: 'Expert' },
+        { name: 'Next.js', icon: <TbBrandNextjs/>, level: 'Expert' },
+        { name: 'TypeScript', icon: <TbBrandTypescript/>, level: 'Expert' },
+        { name: 'Flutter', icon: <SiFlutter/>, level: 'Advanced' }
       ]
     },
     {
       category: 'Backend',
       description: 'Robust APIs, serverless workloads, and event-driven architectures powering secure, scalable products.',
       technologies: [
-        { name: 'Node.js', icon: '🟢', level: 'Expert' },
-        { name: 'Python', icon: '🐍', level: 'Advanced' },
-        { name: 'Express.js', icon: '🚂', level: 'Expert' },
-        { name: 'FastAPI', icon: '⚡', level: 'Advanced' },
-        { name: 'Spring Boot', icon: '🌱', level: 'Advanced' }
+        { name: 'Node.js', icon: <FaNodeJs/>, level: 'Expert' },
+        { name: 'Python', icon: <IoLogoPython/>, level: 'Advanced' },
+        { name: 'Express.js', icon: <SiExpress/>, level: 'Expert' },
+        { name: 'FastAPI', icon: <SiFastapi/>, level: 'Advanced' },
+        { name: 'Spring Boot', icon: <BiLogoSpringBoot/>, level: 'Advanced' }
       ]
     },
     {
       category: 'Database',
       description: 'High-availability data solutions with tuned queries, replication strategies, and observability baked in.',
       technologies: [
-        { name: 'MongoDB', icon: '🍃', level: 'Advanced' },
-        { name: 'MySQL', icon: '🐬', level: 'Advanced' },
-        { name: 'Redis', icon: '🔴', level: 'Advanced' }
+        { name: 'MongoDB', icon: <SiMongodb/>, level: 'Advanced' },
+        { name: 'MySQL', icon: <SiMysql/>, level: 'Advanced' },
+        { name: 'Redis', icon: <DiRedis/>, level: 'Advanced' }
       ]
     }
   ];

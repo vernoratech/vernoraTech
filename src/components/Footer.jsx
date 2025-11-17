@@ -14,13 +14,23 @@ const Footer = () => {
               grow their online presence.
             </p>
             <div className="flex space-x-4">
-              <a href="https://www.linkedin.com/company/vernoratech/" className="text-gray-400 hover:text-white transition duration-300">
+              <a
+                href="https://www.linkedin.com/company/vernoratech/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition duration-300"
+              >
                 LinkedIn
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition duration-300">
+              {/* <a href="#" className="text-gray-400 hover:text-white transition duration-300">
                 Twitter
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition duration-300">
+              </a> */}
+              <a
+                href="https://www.instagram.com/vernoratech"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition duration-300"
+              >
                 Instagram
               </a>
             </div>

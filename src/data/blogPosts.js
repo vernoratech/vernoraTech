@@ -6,7 +6,7 @@ export const blogPosts = [
     category: 'Technology Trends',
     readTime: '5 min read',
     date: '2024-01-15',
-    author: 'Sarah Johnson',
+    author: 'Brijesh Vishwakarma',
     image: '🤖',
     featured: true,
     content: [
@@ -22,7 +22,7 @@ export const blogPosts = [
     category: 'Development',
     readTime: '8 min read',
     date: '2024-01-10',
-    author: 'Michael Chen',
+    author: 'Harsh Tiwari',
     image: '🛒',
     featured: true,
     content: [
@@ -38,7 +38,7 @@ export const blogPosts = [
     category: 'Design',
     readTime: '6 min read',
     date: '2024-01-08',
-    author: 'Emily Rodriguez',
+    author: 'Brijesh Vishwakarma',
     image: '🎨',
     featured: false,
     content: [
@@ -54,7 +54,7 @@ export const blogPosts = [
     category: 'Design',
     readTime: '6 min read',
     date: '2025-01-08',
-    author: 'Emily Rodriguez',
+    author: 'Brijesh Vishwakarma',
     image: '⌨',
     featured: false,
     content: [
@@ -70,7 +70,7 @@ export const blogPosts = [
     category: 'Performance',
     readTime: '7 min read',
     date: '2024-01-05',
-    author: 'David Kim',
+    author: 'Devendra Shukla',
     image: '⚡',
     featured: false,
     content: [
@@ -86,7 +86,7 @@ export const blogPosts = [
     category: 'Security',
     readTime: '9 min read',
     date: '2024-01-03',
-    author: 'Alex Morgan',
+    author: 'Brijesh Vishwakarma',
     image: '🔒',
     featured: false,
     content: [
@@ -102,7 +102,7 @@ export const blogPosts = [
     category: 'Mobile',
     readTime: '6 min read',
     date: '2024-01-01',
-    author: 'Lisa Thompson',
+    author: 'Harsh Tiwari',
     image: '📱',
     featured: false,
     content: [
