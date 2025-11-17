@@ -1,9 +1,57 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const Hero = () => {
+  const videoSources = [
+    '/AI_Video_of_Future_Technologies.mp4',
+    '/Tech_Background_Video_Generated.mp4',
+    '/Tech_Website_Background_Video_Creation.mp4',
+  ];
+  const videoRef = useRef(null);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+
+  useEffect(() => {
+    const videoElement = videoRef.current;
+    if (!videoElement) return;
+
+    const handleEnded = () => {
+      setCurrentVideoIndex((index) => (index + 1) % videoSources.length);
+    };
+
+    videoElement.addEventListener('ended', handleEnded);
+
+    return () => {
+      videoElement.removeEventListener('ended', handleEnded);
+    };
+  }, [videoSources.length]);
+
+  useEffect(() => {
+    const videoElement = videoRef.current;
+    if (!videoElement) return;
+
+    const playVideo = () => {
+      const playPromise = videoElement.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(() => {});
+      }
+    };
+
+    videoElement.load();
+    playVideo();
+  }, [currentVideoIndex]);
+
   return (
-    <section id="home" className="bg-gradient-to-br from-blue-50 to-indigo-100 pt-20 reveal-up">
-      <div className="max-w-7xl mx-auto section-padding">
+    <section id="home" className="relative pt-20 overflow-hidden reveal-up">
+      <video
+        ref={videoRef}
+        className="absolute inset-0 h-full w-full object-cover"
+        src={videoSources[currentVideoIndex]}
+        autoPlay
+        muted
+        playsInline
+        preload="auto"
+      />
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/90 via-white/80 to-indigo-100/80" aria-hidden="true" />
+      <div className="relative z-10 max-w-7xl mx-auto section-padding">
         <div className="text-center reveal-up">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 px-2">
             Professional Landing Pages for
