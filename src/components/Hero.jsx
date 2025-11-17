@@ -8,6 +8,7 @@ const Hero = () => {
   ];
   const videoRef = useRef(null);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [isVideoReady, setIsVideoReady] = useState(false);
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -17,10 +18,23 @@ const Hero = () => {
       setCurrentVideoIndex((index) => (index + 1) % videoSources.length);
     };
 
+    const handleLoadedData = () => {
+      setIsVideoReady(true);
+    };
+
+    const handleError = () => {
+      setIsVideoReady(false);
+      setCurrentVideoIndex((index) => (index + 1) % videoSources.length);
+    };
+
     videoElement.addEventListener('ended', handleEnded);
+    videoElement.addEventListener('loadeddata', handleLoadedData);
+    videoElement.addEventListener('error', handleError);
 
     return () => {
       videoElement.removeEventListener('ended', handleEnded);
+      videoElement.removeEventListener('loadeddata', handleLoadedData);
+      videoElement.removeEventListener('error', handleError);
     };
   }, [videoSources.length]);
 
@@ -35,20 +49,33 @@ const Hero = () => {
       }
     };
 
+    setIsVideoReady(false);
     videoElement.load();
     playVideo();
   }, [currentVideoIndex]);
 
   return (
-    <section id="home" className="relative pt-20 overflow-hidden reveal-up">
+    <section id="home" className="relative pt-20 pb-20 min-h-[90vh] overflow-hidden reveal-up">
+      <img
+        src="/bg_pace_holder.jpeg"
+        alt=""
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+          isVideoReady ? 'opacity-0' : 'opacity-100'
+        }`}
+        loading="eager"
+        aria-hidden="true"
+      />
       <video
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover"
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+          isVideoReady ? 'opacity-100' : 'opacity-0'
+        }`}
         src={videoSources[currentVideoIndex]}
         autoPlay
         muted
         playsInline
         preload="auto"
+        poster="/bg_pace_holder.jpeg"
       />
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/90 via-white/80 to-indigo-100/80" aria-hidden="true" />
       <div className="relative z-10 max-w-7xl mx-auto section-padding">
@@ -84,6 +111,63 @@ const Hero = () => {
           <div className="text-center reveal-up" style={{ transitionDelay: '200ms' }}>
             <div className="text-4xl font-bold text-primary">24/7</div>
             <div className="text-gray-600">Support Available</div>
+          </div>
+        </div>
+
+        <div className="mt-14 sm:mt-16 md:mt-20 bg-white/80 backdrop-blur-2xl rounded-3xl shadow-2xl px-6 py-10 sm:px-12 sm:py-14 reveal-up">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 text-center sm:text-left">
+            Why Service Brands Trust VernoraTech
+            </h2>
+            <div className="flex justify-center sm:justify-end">
+              <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-primary text-sm font-medium">
+                <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+                Proven track record
+              </span>
+            </div>
+          </div>
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-8">
+            <div className="relative space-y-4 text-center sm:text-left">
+              <div className="mx-auto sm:mx-0 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary text-xl font-semibold">
+                01
+              </div>
+              <div className="absolute hidden sm:block top-0 right-0 h-full w-px bg-gradient-to-b from-primary/40 via-primary/10 to-transparent" />
+              <h3 className="text-xl font-semibold text-gray-900">Conversion Strategy</h3>
+              <p className="text-gray-600 text-base">
+                Tailored messaging frameworks built to guide visitors from interest to inquiry seamlessly.
+              </p>
+              <div className="inline-flex items-center gap-2 text-sm font-medium text-primary/80">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                Audience insights + CRO playbooks
+              </div>
+            </div>
+            <div className="relative space-y-4 text-center sm:text-left">
+              <div className="mx-auto sm:mx-0 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary text-xl font-semibold">
+                02
+              </div>
+              <div className="absolute hidden sm:block top-0 right-0 h-full w-px bg-gradient-to-b from-primary/40 via-primary/10 to-transparent" />
+              <h3 className="text-xl font-semibold text-gray-900">Lightning Delivery</h3>
+              <p className="text-gray-600 text-base">
+                Rapid turnaround with iterative feedback loops so your page goes live without delays.
+              </p>
+              <div className="inline-flex items-center gap-2 text-sm font-medium text-primary/80">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                Agile sprints + weekly reviews
+              </div>
+            </div>
+            <div className="space-y-4 text-center sm:text-left">
+              <div className="mx-auto sm:mx-0 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary text-xl font-semibold">
+                03
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900">Growth Support</h3>
+              <p className="text-gray-600 text-base">
+                Ongoing optimization insights and 24/7 support to keep your lead flow consistently strong.
+              </p>
+              <div className="inline-flex items-center gap-2 text-sm font-medium text-primary/80">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                Conversion analytics dashboard
+              </div>
+            </div>
           </div>
         </div>
       </div>
