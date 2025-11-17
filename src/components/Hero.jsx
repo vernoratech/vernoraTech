@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const Hero = () => {
   const videoSources = [
-    '/AI_Video_of_Future_Technologies.mp4',
-    '/Tech_Background_Video_Generated.mp4',
-    '/Tech_Website_Background_Video_Creation.mp4',
+    'https://res.cloudinary.com/ddo1qupzg/video/upload/v1763360505/AI_Video_of_Future_Technologies_ojhxwi.mp4',
+    'https://res.cloudinary.com/ddo1qupzg/video/upload/v1763360505/Tech_Background_Video_Generated_ln9mxx.mp4',
+    'https://res.cloudinary.com/ddo1qupzg/video/upload/v1763360505/Tech_Website_Background_Video_Creation_vwvdye.mp4',
   ];
   const videoRef = useRef(null);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
@@ -65,7 +65,7 @@ const Hero = () => {
             <a href="#portfolio" className="btn-primary">
               View Our Work
             </a>
-            <a href="#contact" className="btn-secondary">
+            <a href="#contact" className="btn-secondary border-1 border-primary">
               Start Your Project
             </a>
           </div>
