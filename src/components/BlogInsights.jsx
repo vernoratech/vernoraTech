@@ -1,68 +1,7 @@
 import React from 'react';
+import { blogPosts } from '../data/blogPosts';
 
-const BlogInsights = () => {
-  const blogPosts = [
-    {
-      title: 'The Future of Web Development: AI-Powered Tools',
-      excerpt: 'Discover how artificial intelligence is revolutionizing the way we build websites and applications.',
-      category: 'Technology Trends',
-      readTime: '5 min read',
-      date: '2024-01-15',
-      author: 'Sarah Johnson',
-      image: '🤖',
-      featured: true
-    },
-    {
-      title: 'Building Scalable E-commerce Solutions',
-      excerpt: 'Learn the best practices for creating e-commerce platforms that can handle millions of users.',
-      category: 'Development',
-      readTime: '8 min read',
-      date: '2024-01-10',
-      author: 'Michael Chen',
-      image: '🛒',
-      featured: false
-    },
-    {
-      title: 'UI/UX Design Principles for 2024',
-      excerpt: 'Explore the latest design trends and principles that will dominate the digital landscape.',
-      category: 'Design',
-      readTime: '6 min read',
-      date: '2024-01-08',
-      author: 'Emily Rodriguez',
-      image: '🎨',
-      featured: false
-    },
-    {
-      title: 'Performance Optimization Techniques',
-      excerpt: 'Essential strategies to make your website lightning-fast and improve user experience.',
-      category: 'Performance',
-      readTime: '7 min read',
-      date: '2024-01-05',
-      author: 'David Kim',
-      image: '⚡',
-      featured: false
-    },
-    {
-      title: 'Security Best Practices for Web Applications',
-      excerpt: 'Protect your web applications from common vulnerabilities and security threats.',
-      category: 'Security',
-      readTime: '9 min read',
-      date: '2024-01-03',
-      author: 'Alex Morgan',
-      image: '🔒',
-      featured: false
-    },
-    {
-      title: 'The Rise of Progressive Web Apps',
-      excerpt: 'How PWAs are changing the mobile web experience and why you should consider them.',
-      category: 'Mobile',
-      readTime: '6 min read',
-      date: '2024-01-01',
-      author: 'Lisa Thompson',
-      image: '📱',
-      featured: false
-    }
-  ];
+const BlogInsights = (props) => {
 
   const categories = ['All', 'Technology Trends', 'Development', 'Design', 'Performance', 'Security', 'Mobile'];
 
@@ -94,7 +33,7 @@ const BlogInsights = () => {
         </div>
 
         {/* Featured Post */}
-        <div className="mb-16">
+        <div className="mb-16 flex flex-col gap-4">
           {blogPosts.filter(post => post.featured).map((post, index) => (
             <div
               key={index}
@@ -127,7 +66,10 @@ const BlogInsights = () => {
                         <p className="text-sm text-gray-500">{post.date}</p>
                       </div>
                     </div>
-                    <button className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200">
+                    <button 
+                      onClick={() => props.onReadBlog(post.id)}
+                      className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200"
+                    >
                       Read More
                     </button>
                   </div>
@@ -168,7 +110,10 @@ const BlogInsights = () => {
                     <span className="text-gray-300">•</span>
                     <span className="text-sm text-gray-500">{post.date}</span>
                   </div>
-                  <button className="text-blue-600 hover:text-blue-700 font-medium text-sm">
+                  <button 
+                    onClick={() => props.onReadBlog(post.id)}
+                    className="text-blue-600 hover:text-blue-700 font-medium text-sm"
+                  >
                     Read →
                   </button>
                 </div>

@@ -4,6 +4,9 @@ import Footer from './Footer';
 import { domains } from '../data/projects';
 
 const PortfolioPage = (props) => {
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">

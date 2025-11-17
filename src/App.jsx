@@ -5,6 +5,7 @@ import Services from './components/Services';
 import Process from './components/Process';
 import Portfolio from './components/Portfolio';
 import PortfolioPage from './components/PortfolioPage';
+import BlogPage from './components/BlogPage';
 import Pricing from './components/Pricing';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
@@ -22,22 +23,48 @@ function App() {
   const [isTermsOpen, setIsTermsOpen] = React.useState(false);
   const [activePlan, setActivePlan] = React.useState(null);
   const [currentPage, setCurrentPage] = React.useState('home');
+  const [currentBlogId, setCurrentBlogId] = React.useState(null);
+  const homeScrollPosRef = React.useRef(0);
 
   React.useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname;
-      setCurrentPage(path === '/portfolio' ? 'portfolio' : 'home');
+      if (path.startsWith('/blog/')) {
+        const blogId = path.replace('/blog/', '');
+        setCurrentBlogId(blogId);
+        setCurrentPage('blog');
+      } else if (path === '/portfolio') {
+        homeScrollPosRef.current = window.scrollY || 0;
+        setCurrentPage('portfolio');
+      } else {
+        setCurrentPage('home');
+      }
     };
 
-    // Set initial page
     const path = window.location.pathname;
-    setCurrentPage(path === '/portfolio' ? 'portfolio' : 'home');
+    if (path.startsWith('/blog/')) {
+      const blogId = path.replace('/blog/', '');
+      setCurrentBlogId(blogId);
+      setCurrentPage('blog');
+    } else if (path === '/portfolio') {
+      homeScrollPosRef.current = window.scrollY || 0;
+      setCurrentPage('portfolio');
+    } else {
+      setCurrentPage('home');
+    }
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
+  React.useEffect(() => {
+    if (currentPage === 'home') {
+      window.scrollTo({ top: homeScrollPosRef.current, behavior: 'auto' });
+    }
+  }, [currentPage]);
+
   const navigateToPortfolio = () => {
+    homeScrollPosRef.current = window.scrollY || 0;
     window.history.pushState({}, '', '/portfolio');
     setCurrentPage('portfolio');
   };
@@ -45,6 +72,13 @@ function App() {
   const navigateToHome = () => {
     window.history.pushState({}, '', '/');
     setCurrentPage('home');
+  };
+
+  const navigateToBlog = (blogId) => {
+    homeScrollPosRef.current = window.scrollY || 0;
+    window.history.pushState({}, '', `/blog/${blogId}`);
+    setCurrentBlogId(blogId);
+    setCurrentPage('blog');
   };
 
   const openTerms = (plan) => {
@@ -84,6 +118,8 @@ function App() {
     <div className="App">
       {currentPage === 'portfolio' ? (
         <PortfolioPage onBackToHome={navigateToHome} />
+      ) : currentPage === 'blog' ? (
+        <BlogPage blogId={currentBlogId} onBackToHome={navigateToHome} onNavigateToBlog={navigateToBlog} />
       ) : (
         <>
           <Header />
@@ -98,7 +134,7 @@ function App() {
           <Pricing onTermsClick={openTerms} />
           <Testimonials />
           <Awards />
-          <BlogInsights />
+          <BlogInsights onReadBlog={navigateToBlog} />
           <FAQ />
           <About />
           <Contact />
