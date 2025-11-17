@@ -58,6 +58,9 @@ const WelcomePopup = ({ isOpen, onClose, onStart }) => {
                 </svg>
                 100% FREE OFFER
               </div>
+              <p className="mt-2 text-[11px] uppercase tracking-[0.25em] text-red-700">
+                Valid only under 2025
+              </p>
               <h2 className="mt-2 text-xl sm:text-2xl font-bold text-slate-900 leading-tight">
                 Build Your First Website
                 <span className="block text-green-600">Absolutely FREE</span>
