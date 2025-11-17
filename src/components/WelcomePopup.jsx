@@ -1,6 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+const SLOT_MIN = 2;
+const SLOT_MAX = 9;
+const SLOT_DELTAS = [-2, -1, 1, 2];
+
+const getRandomSlotCount = () =>
+  Math.floor(Math.random() * (SLOT_MAX - SLOT_MIN + 1)) + SLOT_MIN;
+
+const getNextSlotCount = (current) => {
+  const candidates = SLOT_DELTAS.map((delta) => current + delta).filter(
+    (value) => value >= SLOT_MIN && value <= SLOT_MAX && value !== current
+  );
+
+  if (candidates.length === 0) {
+    return current;
+  }
+
+  return candidates[Math.floor(Math.random() * candidates.length)];
+};
 
 const WelcomePopup = ({ isOpen, onClose, onStart }) => {
+  const [slotCount, setSlotCount] = useState(() => getRandomSlotCount());
+
+  useEffect(() => {
+    if (!isOpen || typeof window === 'undefined') {
+      return undefined;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setSlotCount((prev) => getNextSlotCount(prev));
+    }, 5 * 60 * 1000);
+
+    return () => window.clearInterval(intervalId);
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen) {
+      setSlotCount(() => getRandomSlotCount());
+    }
+  }, [isOpen]);
+
   if (!isOpen) {
     return null;
   }
@@ -103,7 +142,7 @@ const WelcomePopup = ({ isOpen, onClose, onStart }) => {
           </div>
 
           <p className="mt-3 text-xs text-slate-500 text-center">
-            🔥 Only 10 slots left this week
+            🔥 Only {slotCount} slots left this week
           </p>
         </div>
       </div>
