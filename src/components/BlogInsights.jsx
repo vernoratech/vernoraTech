@@ -68,7 +68,7 @@ const BlogInsights = (props) => {
                     </div>
                     <button 
                       onClick={() => props.onReadBlog(post.id)}
-                      className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200"
+                      className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 cursor-pointer"
                     >
                       Read More
                     </button>
@@ -112,7 +112,7 @@ const BlogInsights = (props) => {
                   </div>
                   <button 
                     onClick={() => props.onReadBlog(post.id)}
-                    className="text-blue-600 hover:text-blue-700 font-medium text-sm"
+                    className="text-blue-600 hover:text-blue-700 font-medium text-sm cursor-pointer"
                   >
                     Read →
                   </button>
