@@ -21,6 +21,7 @@ import ClientShowcase from './components/ClientShowcase';
 import BlogInsights from './components/BlogInsights';
 import Awards from './components/Awards';
 import WelcomePopup from './components/WelcomePopup';
+import LoadingOverlay from './components/LoadingOverlay';
 
 function App() {
   const [isTermsOpen, setIsTermsOpen] = React.useState(false);
@@ -28,6 +29,13 @@ function App() {
   const [currentPage, setCurrentPage] = React.useState('home');
   const [currentBlogId, setCurrentBlogId] = React.useState(null);
   const [isWelcomeOpen, setIsWelcomeOpen] = React.useState(false);
+  const [showLoading, setShowLoading] = React.useState(true);
+  const [hasVisited, setHasVisited] = React.useState(() => {
+    if (typeof window === 'undefined') {
+      return false;
+    }
+    return Boolean(window.localStorage.getItem('vernoratech_loader_shown'));
+  });
   const homeScrollPosRef = React.useRef(0);
   const welcomeResetTimerRef = React.useRef(null);
 
@@ -77,12 +85,31 @@ function App() {
       return undefined;
     }
 
+    if (hasVisited) {
+      setShowLoading(false);
+      return undefined;
+    }
+
+    const loaderTimer = window.setTimeout(() => {
+      window.localStorage.setItem('vernoratech_loader_shown', 'true');
+      setHasVisited(true);
+      setShowLoading(false);
+    }, 1800);
+
+    return () => window.clearTimeout(loaderTimer);
+  }, [hasVisited]);
+
+  React.useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
     const hasSeen = window.localStorage.getItem('vernoratech_welcome_seen');
 
     if (!hasSeen) {
       const timer = window.setTimeout(() => {
         setIsWelcomeOpen(true);
-      }, 3000);
+      }, 7000);
 
       return () => window.clearTimeout(timer);
     }
@@ -193,6 +220,8 @@ function App() {
 
   return (
     <div className="App">
+      <LoadingOverlay isVisible={showLoading} />
+
       {currentPage === 'portfolio' ? (
         <PortfolioPage onBackToHome={navigateToHome} />
       ) : currentPage === 'blog' ? (
