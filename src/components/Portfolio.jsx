@@ -1,4 +1,5 @@
 import React from 'react';
+import ScreenshotPlaceholder from './ScreenshotPlaceholder';
 import { domains } from '../data/projects';
 
 const Portfolio = (props) => {
@@ -22,10 +23,16 @@ const Portfolio = (props) => {
           {visibleDomains.map((domain, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 reveal-up"
+              className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 reveal-up"
               style={{ transitionDelay: `${80 + index * 60}ms` }}
             >
-              <div className="p-6 h-full flex flex-col">
+              <div className="p-6 h-full flex flex-col gap-5">
+                {/* <ScreenshotPlaceholder
+                  label={domain.name}
+                  title={`${domain.name} showcase`}
+                  aspectClass="aspect-[4/3]"
+                  className="bg-gradient-to-br from-slate-900/5 via-primary/5 to-indigo-200/10"
+                /> */}
                 <div className="text-sm text-primary font-semibold mb-2 uppercase tracking-wide">
                   {domain.name}
                 </div>

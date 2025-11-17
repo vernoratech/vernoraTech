@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import ScreenshotPlaceholder from './ScreenshotPlaceholder';
 
 const OFFER_DEADLINE = new Date('2025-12-31T23:59:59');
 
@@ -130,34 +131,45 @@ const Hero = () => {
               Start Your Project
             </a>
           </div>
-          <div className="mt-8 flex flex-col items-center gap-4 px-3 text-center">
-            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-primary">
-              Free Build Countdown
+          <div className="mt-12 grid gap-10 px-3 sm:grid-cols-[1fr_0.8fr] sm:items-center">
+            <div className="flex flex-col items-center gap-4 text-center sm:items-start sm:text-left">
+              <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-primary">
+                Free Build Countdown
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-semibold text-gray-900">
+                🔥 Claim your complimentary build before the timer hits zero
+              </h3>
+              <p className="max-w-xl text-sm sm:text-base text-gray-600">
+                Offer valid until 31 December 2025 — lock in your slot and launch with VernoraTech.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4 sm:justify-start sm:gap-6">
+                <div className="flex flex-col items-center sm:items-start">
+                  <span className="text-3xl sm:text-4xl font-bold text-gray-900">{countdown.days}</span>
+                  <span className="mt-1 text-xs uppercase tracking-[0.3em] text-gray-500">Days</span>
+                </div>
+                <div className="flex flex-col items-center sm:items-start">
+                  <span className="text-3xl sm:text-4xl font-bold text-gray-900">{countdown.hours}</span>
+                  <span className="mt-1 text-xs uppercase tracking-[0.3em] text-gray-500">Hours</span>
+                </div>
+                <div className="flex flex-col items-center sm:items-start">
+                  <span className="text-3xl sm:text-4xl font-bold text-gray-900">{countdown.minutes}</span>
+                  <span className="mt-1 text-xs uppercase tracking-[0.3em] text-gray-500">Minutes</span>
+                </div>
+                <div className="flex flex-col items-center sm:items-start">
+                  <span className="text-3xl sm:text-4xl font-bold text-gray-900">{countdown.seconds}</span>
+                  <span className="mt-1 text-xs uppercase tracking-[0.3em] text-gray-500">Seconds</span>
+                </div>
+              </div>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-semibold text-gray-900">
-              🔥 Claim your complimentary build before the timer hits zero
-            </h3>
-            <p className="max-w-xl text-sm sm:text-base text-gray-600">
-              Offer valid until 31 December 2025 — lock in your slot and launch with VernoraTech.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
-              <div className="flex flex-col items-center">
-                <span className="text-3xl sm:text-4xl font-bold text-gray-900">{countdown.days}</span>
-                <span className="mt-1 text-xs uppercase tracking-[0.3em] text-gray-500">Days</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <span className="text-3xl sm:text-4xl font-bold text-gray-900">{countdown.hours}</span>
-                <span className="mt-1 text-xs uppercase tracking-[0.3em] text-gray-500">Hours</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <span className="text-3xl sm:text-4xl font-bold text-gray-900">{countdown.minutes}</span>
-                <span className="mt-1 text-xs uppercase tracking-[0.3em] text-gray-500">Minutes</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <span className="text-3xl sm:text-4xl font-bold text-gray-900">{countdown.seconds}</span>
-                <span className="mt-1 text-xs uppercase tracking-[0.3em] text-gray-500">Seconds</span>
-              </div>
-            </div>
+            {/* <div className="relative">
+              <div className="absolute -inset-6 rounded-[32px] bg-gradient-to-r from-primary/15 via-indigo-400/10 to-sky-400/10 blur-2xl" aria-hidden="true" />
+              <ScreenshotPlaceholder
+                label="Landing Page Flow"
+                title="Upcoming project screenshot"
+                className="relative shadow-2xl"
+                imageSrc=""
+              />
+            </div> */}
           </div>
         </div>
 
