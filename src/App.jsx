@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import Process from './components/Process';
+import BuildProcess from './components/BuildProcess';
 import Portfolio from './components/Portfolio';
 import PortfolioPage from './components/PortfolioPage';
 import BlogPage from './components/BlogPage';
@@ -19,13 +20,16 @@ import Team from './components/Team';
 import ClientShowcase from './components/ClientShowcase';
 import BlogInsights from './components/BlogInsights';
 import Awards from './components/Awards';
+import WelcomePopup from './components/WelcomePopup';
 
 function App() {
   const [isTermsOpen, setIsTermsOpen] = React.useState(false);
   const [activePlan, setActivePlan] = React.useState(null);
   const [currentPage, setCurrentPage] = React.useState('home');
   const [currentBlogId, setCurrentBlogId] = React.useState(null);
+  const [isWelcomeOpen, setIsWelcomeOpen] = React.useState(false);
   const homeScrollPosRef = React.useRef(0);
+  const welcomeResetTimerRef = React.useRef(null);
 
   React.useEffect(() => {
     const handlePopState = () => {
@@ -67,6 +71,25 @@ function App() {
       window.scrollTo({ top: homeScrollPosRef.current, behavior: 'auto' });
     }
   }, [currentPage]);
+
+  React.useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
+    const hasSeen = window.localStorage.getItem('vernoratech_welcome_seen');
+
+    if (!hasSeen) {
+      const timer = window.setTimeout(() => {
+        setIsWelcomeOpen(true);
+      }, 3000);
+
+      return () => window.clearTimeout(timer);
+    }
+
+    setIsWelcomeOpen(false);
+    return undefined;
+  }, []);
 
   const navigateToPortfolio = () => {
     homeScrollPosRef.current = window.scrollY || 0;
@@ -128,15 +151,45 @@ function App() {
     setTimeout(navigateToContactSection, 50);
   };
 
+  const markWelcomeSeen = () => {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('vernoratech_welcome_seen', 'true');
+      if (welcomeResetTimerRef.current) {
+        window.clearTimeout(welcomeResetTimerRef.current);
+      }
+      welcomeResetTimerRef.current = window.setTimeout(() => {
+        window.localStorage.removeItem('vernoratech_welcome_seen');
+        welcomeResetTimerRef.current = null;
+      }, 5 * 60 * 1000);
+    }
+  };
+
+  const closeWelcome = () => {
+    markWelcomeSeen();
+    setIsWelcomeOpen(false);
+  };
+
+  const startFreeBuild = () => {
+    closeWelcome();
+    navigateToContactSection();
+  };
+
   React.useEffect(() => {
-    if (isTermsOpen) {
+    if (isTermsOpen || isWelcomeOpen) {
       const prev = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       return () => {
         document.body.style.overflow = prev;
       };
     }
-  }, [isTermsOpen]);
+    return undefined;
+  }, [isTermsOpen, isWelcomeOpen]);
+
+  React.useEffect(() => () => {
+    if (welcomeResetTimerRef.current) {
+      window.clearTimeout(welcomeResetTimerRef.current);
+    }
+  }, []);
 
   return (
     <div className="App">
@@ -154,6 +207,7 @@ function App() {
           <Services />
           <Technologies />
           <Process />
+          <BuildProcess />
           <Portfolio onSeeAllProjects={navigateToPortfolio} />
           {/* <Team /> */}
           <ClientShowcase onStartProject={navigateToContactSection} onViewCaseStudies={navigateToCaseStudies} />
@@ -167,6 +221,8 @@ function App() {
           <Footer />
         </>
       )}
+
+      <WelcomePopup isOpen={isWelcomeOpen} onClose={closeWelcome} onStart={startFreeBuild} />
 
       {isTermsOpen && activePlan && (
         <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
