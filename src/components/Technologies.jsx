@@ -18,8 +18,6 @@ const Technologies = () => {
       technologies: [
         { name: 'Node.js', icon: '🟢', level: 'Expert' },
         { name: 'Python', icon: '🐍', level: 'Advanced' },
-        // { name: 'PHP', icon: '🐘', level: 'Advanced' },
-        // { name: 'Laravel', icon: '🔥', level: 'Expert' },
         { name: 'Express.js', icon: '🚂', level: 'Expert' },
         { name: 'FastAPI', icon: '⚡', level: 'Advanced' },
         { name: 'Spring Boot', icon: '🌱', level: 'Advanced' }
@@ -33,34 +31,28 @@ const Technologies = () => {
         { name: 'MySQL', icon: '🐬', level: 'Advanced' },
         { name: 'Redis', icon: '🔴', level: 'Advanced' }
       ]
-    },
-    // {
-    //   category: 'Cloud & DevOps',
-    //   technologies: [
-    //     { name: 'AWS', icon: '☁️', level: 'Advanced' },
-    //     { name: 'Docker', icon: '🐳', level: 'Advanced' },
-    //     { name: 'Git', icon: '📚', level: 'Expert' },
-    //     { name: 'CI/CD', icon: '🔄', level: 'Advanced' }
-    //   ]
-    // }
+    }
   ];
 
   const capabilityHighlights = [
     {
       title: 'Modern engineering stack',
-      summary: 'Composable architecture patterns that balance rapid delivery with long-term maintainability.'
+      summary: 'Composable architecture patterns that balance rapid delivery with long-term maintainability.',
+      icon: '🧩'
     },
     {
       title: 'Production-grade delivery',
-      summary: 'Security reviews, performance budgets, and observability pillars embedded in every release cycle.'
+      summary: 'Security reviews, performance budgets, and observability pillars embedded in every release cycle.',
+      icon: '🚀'
     },
     {
       title: 'Co-creation with your team',
-      summary: 'Pairing sessions, code reviews, and transparent documentation to empower in-house squads.'
+      summary: 'Pairing sessions, code reviews, and transparent documentation to empower in-house squads.',
+      icon: '🤝'
     }
   ];
 
-  const coreStack = ['React', 'Next.js', 'TypeScript', 'Node.js', 'Express.js','FastAPI','Redis','Spring boot', 'Flutter' ,'MongoDB', 'MySQL'];
+  const coreStack = ['React', 'Next.js', 'TypeScript', 'Node.js', 'Express.js', 'FastAPI', 'Redis', 'Spring Boot', 'Flutter', 'MongoDB', 'MySQL'];
 
   const levelToPercent = {
     Expert: 100,
@@ -70,61 +62,69 @@ const Technologies = () => {
 
   const getLevelColor = (level) => {
     switch (level) {
-      case 'Expert': return 'bg-emerald-100 text-emerald-700';
-      case 'Advanced': return 'bg-sky-100 text-sky-700';
-      case 'Intermediate': return 'bg-amber-100 text-amber-700';
-      default: return 'bg-slate-100 text-slate-600';
+      case 'Expert': return 'bg-emerald-50 text-emerald-700 border-emerald-200';
+      case 'Advanced': return 'bg-blue-50 text-blue-700 border-blue-200';
+      case 'Intermediate': return 'bg-amber-50 text-amber-700 border-amber-200';
+      default: return 'bg-gray-50 text-gray-700 border-gray-200';
+    }
+  };
+
+  const handleDiscussStackClick = () => {
+    const contactSection = document.querySelector('#contact');
+    if (contactSection && contactSection.scrollIntoView) {
+      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
   return (
-    <section className="relative py-24 bg-slate-950 text-white overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900" />
-      <div className="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-primary/20 to-transparent blur-3xl opacity-40" />
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold bg-white/10 text-primary-100 border border-white/10">
+    <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-slate-50 to-white">
+      {/* Header Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20">
+          <span className="inline-flex items-center px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold bg-blue-100 text-blue-700 border border-blue-200">
             Full-stack craftsmanship
           </span>
-          <h2 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
+          <h2 className="mt-4 sm:mt-6 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900">
             Technologies We Master
           </h2>
-          <p className="mt-4 text-lg text-slate-200">
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
             We blend proven platforms with emerging tooling to ship resilient, maintainable products that can evolve with your roadmap.
           </p>
         </div>
 
-        <div className="mt-16 grid gap-12 lg:grid-cols-[320px_1fr] items-start">
-          <aside className="space-y-8">
-            <div className="bg-white/5 border border-white/10 rounded-3xl p-8 shadow-2xl backdrop-blur">
-              <h3 className="text-2xl font-semibold">How we partner</h3>
-              <p className="mt-3 text-sm text-slate-200/80">
+        {/* Main Content Grid */}
+        <div className="space-y-8 lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-8">
+          {/* Sidebar - Stacks on top on mobile/tablet */}
+          <aside className="lg:col-span-4 space-y-6 sm:space-y-8">
+            {/* Partnership Card */}
+            <div className="bg-white border-2 border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900">How We Partner</h3>
+              <p className="mt-2 sm:mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
                 A pragmatic, delivery-driven model that keeps codebases future-ready while giving stakeholders complete visibility.
               </p>
-              <div className="mt-6 space-y-5">
+              <div className="mt-6 space-y-4 sm:space-y-5">
                 {capabilityHighlights.map((item, index) => (
-                  <div key={index} className="flex gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary/90 text-lg">
-                      {index === 0 && '🧩'}
-                      {index === 1 && '🚀'}
-                      {index === 2 && '🤝'}
+                  <div key={index} className="flex gap-3 sm:gap-4">
+                    <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-2xl">
+                      {item.icon}
                     </div>
-                    <div>
-                      <p className="font-semibold text-white">{item.title}</p>
-                      <p className="mt-1 text-sm text-slate-200/80">{item.summary}</p>
+                    <div className="min-w-0">
+                      <p className="font-semibold text-sm sm:text-base text-slate-900">{item.title}</p>
+                      <p className="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed">{item.summary}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-white/5 border border-white/10 rounded-3xl p-8 shadow-2xl backdrop-blur">
-              <h4 className="text-sm uppercase tracking-[0.3em] text-slate-300">Core stack</h4>
-              <div className="mt-5 flex flex-wrap gap-3">
+            {/* Core Stack Card */}
+            <div className="bg-slate-900 border-2 border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm">
+              <h4 className="text-xs sm:text-sm uppercase tracking-wider font-semibold text-slate-400">Core Stack</h4>
+              <div className="mt-4 sm:mt-5 flex flex-wrap gap-2 sm:gap-3">
                 {coreStack.map((item, index) => (
                   <span
                     key={index}
-                    className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white shadow-sm"
+                    className="inline-flex items-center rounded-lg bg-slate-800 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-white border border-slate-700"
                   >
                     {item}
                   </span>
@@ -133,45 +133,53 @@ const Technologies = () => {
             </div>
           </aside>
 
-          <div className="space-y-8">
+          {/* Main Technology Cards */}
+          <div className="lg:col-span-8 space-y-6 sm:space-y-8">
             {techCategories.map((category, index) => (
-              <div key={index} className="bg-white text-slate-900 rounded-3xl p-10 shadow-xl">
-                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div key={index} className="bg-white border-2 border-slate-200 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm">
+                {/* Category Header */}
+                <div className="flex flex-col gap-3 sm:gap-4 md:flex-row md:items-center md:justify-between mb-6 sm:mb-8">
                   <div>
-                    <p className="text-sm font-semibold uppercase tracking-[0.4em] text-primary">
+                    <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-blue-600">
                       {category.category}
                     </p>
-                    <h3 className="mt-2 text-2xl font-bold text-slate-900">
+                    <h3 className="mt-1 sm:mt-2 text-lg sm:text-xl lg:text-2xl font-bold text-slate-900 leading-tight">
                       {category.description}
                     </h3>
                   </div>
-                  <span className="inline-flex items-center rounded-full bg-slate-100 px-4 py-2 text-sm font-medium text-slate-600">
+                  <span className="inline-flex items-center self-start md:self-auto rounded-full bg-slate-100 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-slate-700 border border-slate-200 whitespace-nowrap">
                     {category.technologies.length} core tools
                   </span>
                 </div>
 
-                <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {/* Technology Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                   {category.technologies.map((tech, techIndex) => (
                     <div
                       key={techIndex}
-                      className="group relative rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg"
+                      className="group relative rounded-xl border-2 border-slate-200 bg-slate-50 p-4 sm:p-5 transition-all duration-200 hover:border-blue-300 hover:shadow-md"
                     >
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="flex items-center gap-3">
-                          <span className="text-2xl">{tech.icon}</span>
-                          <span className="text-lg font-semibold text-slate-900">{tech.name}</span>
+                      {/* Tech Header */}
+                      <div className="flex items-start justify-between gap-2 sm:gap-3 mb-3 sm:mb-4">
+                        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                          <span className="text-xl sm:text-2xl shrink-0">{tech.icon}</span>
+                          <span className="text-base sm:text-lg font-bold text-slate-900 truncate">{tech.name}</span>
                         </div>
-                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getLevelColor(tech.level)}`}>
+                        <span className={`px-2 sm:px-3 py-1 rounded-full text-xs font-semibold border shrink-0 ${getLevelColor(tech.level)}`}>
                           {tech.level}
                         </span>
                       </div>
-                      <div className="mt-4 h-1.5 w-full rounded-full bg-slate-100">
+
+                      {/* Progress Bar */}
+                      <div className="h-2 w-full rounded-full bg-slate-200 overflow-hidden">
                         <div
-                          className="h-full rounded-full bg-primary/80"
+                          className="h-full rounded-full bg-blue-600 transition-all duration-300"
                           style={{ width: `${levelToPercent[tech.level] || 50}%` }}
                         />
                       </div>
-                      <p className="mt-3 text-xs font-medium uppercase tracking-[0.3em] text-slate-400">
+
+                      {/* Capability Label */}
+                      <p className="mt-2 sm:mt-3 text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-slate-400">
                         Capability depth
                       </p>
                     </div>
@@ -182,11 +190,15 @@ const Technologies = () => {
           </div>
         </div>
 
-        <div className="mt-16 rounded-3xl border border-white/10 bg-white/5 p-10 text-center shadow-2xl backdrop-blur">
-          <h3 className="text-2xl font-semibold text-white">Evaluating a new toolchain?</h3>
-          <p className="mt-3 text-sm text-slate-200/80">
+        {/* Bottom CTA Card */}
+        <div className="mt-12 sm:mt-16 lg:mt-20 rounded-2xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white p-6 sm:p-8 lg:p-10 text-center shadow-sm">
+          <h3 className="text-xl sm:text-2xl font-bold text-slate-900">Evaluating a New Toolchain?</h3>
+          <p className="mt-2 sm:mt-3 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
             We assess fit-for-purpose technologies, provide comparative analysis, and co-create adoption roadmaps tailored to your delivery timelines.
           </p>
+          <button onClick={handleDiscussStackClick} className="mt-4 sm:mt-6 inline-flex items-center px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg bg-slate-900 text-white text-sm sm:text-base font-semibold hover:bg-slate-800 transition-colors duration-200 shadow-sm cursor-pointer">
+            Let's discuss your stack
+          </button>
         </div>
       </div>
     </section>

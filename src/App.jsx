@@ -6,6 +6,7 @@ import Process from './components/Process';
 import Portfolio from './components/Portfolio';
 import PortfolioPage from './components/PortfolioPage';
 import BlogPage from './components/BlogPage';
+import CaseStudiesPage from './components/CaseStudiesPage';
 import Pricing from './components/Pricing';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
@@ -33,6 +34,8 @@ function App() {
         const blogId = path.replace('/blog/', '');
         setCurrentBlogId(blogId);
         setCurrentPage('blog');
+      } else if (path === '/case-studies') {
+        setCurrentPage('caseStudies');
       } else if (path === '/portfolio') {
         homeScrollPosRef.current = window.scrollY || 0;
         setCurrentPage('portfolio');
@@ -46,6 +49,8 @@ function App() {
       const blogId = path.replace('/blog/', '');
       setCurrentBlogId(blogId);
       setCurrentPage('blog');
+    } else if (path === '/case-studies') {
+      setCurrentPage('caseStudies');
     } else if (path === '/portfolio') {
       homeScrollPosRef.current = window.scrollY || 0;
       setCurrentPage('portfolio');
@@ -81,6 +86,32 @@ function App() {
     setCurrentPage('blog');
   };
 
+  const navigateToCaseStudies = () => {
+    homeScrollPosRef.current = window.scrollY || 0;
+    window.history.pushState({}, '', '/case-studies');
+    setCurrentPage('caseStudies');
+  };
+
+  const navigateToContactSection = () => {
+    const scrollToContact = () => {
+      const contactEl = document.querySelector('#contact');
+      if (contactEl && contactEl.scrollIntoView) {
+        contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.location.hash = '#contact';
+      }
+    };
+
+    if (currentPage !== 'home') {
+      homeScrollPosRef.current = 0;
+      window.history.pushState({}, '', '/');
+      setCurrentPage('home');
+      setTimeout(scrollToContact, 120);
+    } else {
+      scrollToContact();
+    }
+  };
+
   const openTerms = (plan) => {
     setActivePlan(plan);
     setIsTermsOpen(true);
@@ -94,14 +125,7 @@ function App() {
   const goToContact = (event) => {
     if (event) event.preventDefault();
     closeTerms();
-    setTimeout(() => {
-      const contactEl = document.querySelector('#contact');
-      if (contactEl && contactEl.scrollIntoView) {
-        contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        window.location.hash = '#contact';
-      }
-    }, 50);
+    setTimeout(navigateToContactSection, 50);
   };
 
   React.useEffect(() => {
@@ -120,6 +144,8 @@ function App() {
         <PortfolioPage onBackToHome={navigateToHome} />
       ) : currentPage === 'blog' ? (
         <BlogPage blogId={currentBlogId} onBackToHome={navigateToHome} onNavigateToBlog={navigateToBlog} />
+      ) : currentPage === 'caseStudies' ? (
+        <CaseStudiesPage onBackToHome={navigateToHome} />
       ) : (
         <>
           <Header />
@@ -130,7 +156,7 @@ function App() {
           <Process />
           <Portfolio onSeeAllProjects={navigateToPortfolio} />
           {/* <Team /> */}
-          <ClientShowcase />
+          <ClientShowcase onStartProject={navigateToContactSection} onViewCaseStudies={navigateToCaseStudies} />
           <Pricing onTermsClick={openTerms} />
           <Testimonials />
           <Awards />

@@ -2,8 +2,23 @@ import React from 'react';
 import { blogPosts } from '../data/blogPosts';
 
 const BlogInsights = (props) => {
-
   const categories = ['All', 'Technology Trends', 'Development', 'Design', 'Performance', 'Security', 'Mobile'];
+  const [activeCategory, setActiveCategory] = React.useState('All');
+
+  const filteredPosts = React.useMemo(() => {
+    if (activeCategory === 'All') return blogPosts;
+    return blogPosts.filter(post => post.category === activeCategory);
+  }, [activeCategory]);
+
+  const featuredPosts = React.useMemo(
+    () => filteredPosts.filter(post => post.featured),
+    [filteredPosts]
+  );
+
+  const regularPosts = React.useMemo(
+    () => filteredPosts.filter(post => !post.featured),
+    [filteredPosts]
+  );
 
   return (
     <section className="py-20 bg-gray-50">
@@ -22,10 +37,12 @@ const BlogInsights = (props) => {
           {categories.map((category, index) => (
             <button
               key={index}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${index === 0
+              onClick={() => setActiveCategory(category)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${category === activeCategory
                 ? 'bg-blue-600 text-white'
                 : 'bg-white text-gray-700 hover:bg-blue-100 hover:text-blue-700'
                 }`}
+              type="button"
             >
               {category}
             </button>
@@ -34,7 +51,7 @@ const BlogInsights = (props) => {
 
         {/* Featured Post */}
         <div className="mb-16 flex flex-col gap-4">
-          {blogPosts.filter(post => post.featured).map((post, index) => (
+          {featuredPosts.map((post, index) => (
             <div
               key={index}
               className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
@@ -81,7 +98,7 @@ const BlogInsights = (props) => {
 
         {/* Regular Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {blogPosts.filter(post => !post.featured).map((post, index) => (
+          {regularPosts.map((post, index) => (
             <article
               key={index}
               className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"

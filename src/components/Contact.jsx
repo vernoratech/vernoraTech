@@ -117,7 +117,7 @@ const Contact = () => {
                 ></textarea>
               </div>
 
-              <button type="submit" className="w-full btn-primary">
+              <button type="submit" className="w-full btn-primary cursor-pointer">
                 Send Message
               </button>
             </form>
@@ -134,14 +134,16 @@ const Contact = () => {
                   <span className="text-primary text-xl mr-4">📧</span>
                   <div>
                     <div className="font-medium text-gray-900">Email</div>
-                    <div className="text-gray-600" mailto="vernoratech.devharsh@gmail.com">vernoratech.devharsh@gmail.com</div>
+                    <div className="text-gray-600 cursor-pointer hover:text-blue-600" onClick={() => window.location.href = 'mailto:vernoratech.devharsh@gmail.com'}>vernoratech.devharsh@gmail.com</div>
+                    <div className="text-gray-600 cursor-pointer hover:text-blue-600" onClick={() => window.location.href = 'mailto:vernoratech.devdevendra@gmail.com'}>vernoratech.devdevendra@gmail.com</div>
                   </div>
                 </div>
                 <div className="flex items-center">
                   <span className="text-primary text-xl mr-4">📱</span>
                   <div>
                     <div className="font-medium text-gray-900">Phone</div>
-                    <div className="text-gray-600">+91 73978 25850</div>
+                    <div className="text-gray-600 cursor-pointer hover:text-blue-600" onClick={() => window.location.href = 'tel:+917397825850'}>+91 73978 25850</div>
+                    <div className="text-gray-600 cursor-pointer hover:text-blue-600" onClick={() => window.location.href = 'tel:+918767425955'}>+91 87674 25955</div>
                   </div>
                 </div>
                 <div className="flex items-center">
@@ -163,7 +165,7 @@ const Contact = () => {
                 and we'll discuss your project requirements and provide
                 personalized recommendations.
               </p>
-              <button className="bg-white text-primary hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition duration-300">
+              <button className="bg-white text-primary hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition duration-300 cursor-pointer">
                 Schedule Call
               </button>
             </div>

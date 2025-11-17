@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ClientShowcase = () => {
+const ClientShowcase = (props) => {
   const clients = [
     {
       name: 'TechCorp',
@@ -47,6 +47,41 @@ const ClientShowcase = () => {
   ];
 
   const industries = ['Technology', 'Healthcare', 'Education', 'Finance', 'Retail', 'Energy', 'Manufacturing', 'Real Estate'];
+
+  const metrics = [
+    {
+      value: '95%',
+      label: 'Client retention rate',
+      description: 'Partners renew with us because we deliver measured outcomes and transparent collaboration.'
+    },
+    {
+      value: '4.9/5',
+      label: 'Average project rating',
+      description: 'Consistently high satisfaction scores across design, engineering, and delivery squads.'
+    },
+    {
+      value: '200%',
+      label: 'Average ROI uplift',
+      description: 'Digital initiatives compound growth through performance optimizations and conversion strategy.'
+    }
+  ];
+
+  const handleStartProject = () => {
+    if (props.onStartProject) {
+      props.onStartProject();
+      return;
+    }
+    const contactSection = document.querySelector('#contact');
+    if (contactSection && contactSection.scrollIntoView) {
+      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleViewCaseStudies = () => {
+    if (props.onViewCaseStudies) {
+      props.onViewCaseStudies();
+    }
+  };
 
   return (
     <section className="py-20 bg-white">
@@ -99,24 +134,35 @@ const ClientShowcase = () => {
           ))}
         </div>
 
-        {/* Stats Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center">
-          <h3 className="text-2xl font-bold mb-6">
-            Our Client Success Metrics
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <div className="text-4xl font-bold mb-2">95%</div>
-              <div className="text-blue-100">Client Retention Rate</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">4.9/5</div>
-              <div className="text-blue-100">Average Client Rating</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">200%</div>
-              <div className="text-blue-100">Average ROI for Clients</div>
-            </div>
+        {/* Metrics Section */}
+        <div className="relative overflow-hidden rounded-3xl bg-slate-900 text-white px-8 py-12 sm:px-10 sm:py-14">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/50 via-indigo-700/40 to-purple-600/50 opacity-80" />
+          <div className="absolute -top-24 -right-16 h-48 w-48 rounded-full bg-white/10 blur-3xl" />
+          <div className="absolute -bottom-28 -left-10 h-60 w-60 rounded-full bg-white/10 blur-3xl" />
+
+          <div className="relative text-center mb-10">
+            <span className="inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-[0.3em] bg-white/10 text-blue-100 border border-white/10">
+              Proof in the numbers
+            </span>
+            <h3 className="mt-6 text-3xl sm:text-4xl font-bold">Our Client Success Metrics</h3>
+            <p className="mt-3 text-base text-slate-200/80 max-w-2xl mx-auto">
+              Performance dashboards keep every engagement accountable — we foreground the metrics that matter to your leadership team.
+            </p>
+          </div>
+
+          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-5">
+            {metrics.map((metric, index) => (
+              <div
+                key={index}
+                className="group relative rounded-2xl border border-white/10 bg-white/5 p-6 text-left transition-all duration-300 hover:border-white/30 hover:shadow-[0_25px_60px_-25px_rgba(15,23,42,0.7)]"
+              >
+                <div className="text-4xl font-bold text-white">{metric.value}</div>
+                <div className="mt-2 text-sm font-semibold uppercase tracking-wide text-blue-100">{metric.label}</div>
+                <p className="mt-3 text-sm text-slate-200/80 leading-relaxed">
+                  {metric.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -129,10 +175,18 @@ const ClientShowcase = () => {
             Let's discuss how we can help transform your business with cutting-edge web solutions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200">
+            <button
+              type="button"
+              onClick={handleStartProject}
+              className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 cursor-pointer"
+            >
               Start Your Project
             </button>
-            <button className="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-200">
+            <button
+              type="button"
+              onClick={handleViewCaseStudies}
+              className="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-200 cursor-pointer"
+            >
               View Case Studies
             </button>
           </div>
