@@ -161,15 +161,15 @@ const Hero = () => {
                 </div>
               </div>
             </div>
-            {/* <div className="relative">
+            <div className="relative">
               <div className="absolute -inset-6 rounded-[32px] bg-gradient-to-r from-primary/15 via-indigo-400/10 to-sky-400/10 blur-2xl" aria-hidden="true" />
               <ScreenshotPlaceholder
                 label="Landing Page Flow"
                 title="Upcoming project screenshot"
                 className="relative shadow-2xl"
-                imageSrc=""
+                imageSrc="https://www.digitalconcepts.in/wp-content/uploads/2020/08/dc_portfolio_ssglass.png"
               />
-            </div> */}
+            </div>
           </div>
         </div>
 
