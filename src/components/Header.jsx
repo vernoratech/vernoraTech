@@ -16,12 +16,12 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-white shadow-md fixed w-full z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="bg-white/90 backdrop-blur-md shadow-xl fixed top-4 left-1/2 transform -translate-x-1/2 z-50 rounded-2xl px-4 sm:px-6 lg:px-8 max-w-7xl w-[96%]">
+      <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <a href="#home" className="flex items-center space-x-2">
-            <img src="/VernoraTech.png" alt="VernoraTech" className="h-7 w-auto" />
+            <img src="/VernoraTech.png" alt="VernoraTech" className="h-8 w-auto" />
           </a>
 
           {/* Desktop Navigation */}
