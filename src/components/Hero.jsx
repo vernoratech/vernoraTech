@@ -115,13 +115,12 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/90 via-white/80 to-indigo-100/80" aria-hidden="true" />
       <div className="relative z-10 max-w-7xl mx-auto section-padding">
         <div className="text-center reveal-up">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 px-2">
-            Professional Landing Pages for
-            <span className="text-primary"> Service Businesses</span>
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-[#0C2A63] leading-tight tracking-tight mb-6 sm:mb-8 px-4">
+            Get a Landing Page That Works — 
+            <span className="text-primary"> Not Just Looks Good</span>
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-3xl mx-auto px-3">
-            We create high-converting landing pages for CAs, Construction Companies,
-            and Professional Services. Boost your online presence and get more clients.
+            We create sharp, simple sites that help your brand stand out, build trust online, and turn more visitors into clients.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-3">
             <a href="#portfolio" className="btn-primary">
