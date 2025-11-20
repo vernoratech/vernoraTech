@@ -81,7 +81,7 @@ const Services = () => {
             </div>
 
             <div className="rounded-2xl bg-primary text-white px-6 py-8 shadow-lg">
-              <h3 className="text-xl font-semibold">Schedule a discovery walkthrough</h3>
+              <h3 className="text-xl font-semibold text-[#D9E4F2]">Schedule a discovery walkthrough</h3>
               <p className="mt-3 text-sm text-white/80">
                 We’ll map your immediate goals to the service stream that fits best and outline how to make launch day effortless.
               </p>

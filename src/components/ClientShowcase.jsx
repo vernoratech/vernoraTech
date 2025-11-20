@@ -111,14 +111,14 @@ const ClientShowcase = (props) => {
             </div>
 
             <div className="rounded-2xl bg-primary text-white px-6 py-8 shadow-lg">
-              <h3 className="text-xl font-semibold">Want your brand on the next release?</h3>
-              <p className="mt-3 text-sm text-white/80">
+              <h3 className="text-xl font-semibold text-[#D9E4F2] tracking-wider">Want your brand on the next release?</h3>
+              <p className="mt-3 text-sm text-[#D9E4F2]/80">
                 Partner with us now and we’ll include your journey in the upcoming client premiere deck.
               </p>
               <button
                 type="button"
                 onClick={handleStartProject}
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#D9E4F2] cursor-pointer"
               >
                 Reserve a spot
                 <span aria-hidden="true">→</span>
@@ -146,7 +146,7 @@ const ClientShowcase = (props) => {
               {clients.map((client, index) => (
                 <div
                   key={index}
-                  className="group relative overflow-hidden rounded-3xl border border-gray-200 bg-white/95 p-6 shadow-md transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl"
+                  className="group relative overflow-hidden rounded-3xl border border-gray-200 bg-[#FAFAFA] p-6 shadow-md transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl"
                 >
                   <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary via-primary/70 to-indigo-400" aria-hidden="true" />
                   <div className="relative space-y-4">
@@ -177,8 +177,8 @@ const ClientShowcase = (props) => {
 
         <div className="mt-16">
           {/* Metrics Section */}
-          <div className="relative overflow-hidden rounded-3xl bg-slate-900 text-white px-8 py-12 sm:px-10 sm:py-14">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/50 via-indigo-700/40 to-purple-600/50 opacity-80" />
+          <div className="relative overflow-hidden rounded-3xl bg-[#1A3A6F] text-[#D9E4F2] px-8 py-12 sm:px-10 sm:py-14">
+            <div className="absolute inset-0  opacity-80" />
             <div className="absolute -top-24 -right-16 h-48 w-48 rounded-full bg-white/10 blur-3xl" />
             <div className="absolute -bottom-28 -left-10 h-60 w-60 rounded-full bg-white/10 blur-3xl" />
 
@@ -186,8 +186,8 @@ const ClientShowcase = (props) => {
               <span className="inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-[0.3em] bg-white/10 text-blue-100 border border-white/10">
                 Proof in the numbers
               </span>
-              <h3 className="mt-6 text-3xl sm:text-4xl font-bold">Our Client Success Metrics</h3>
-              <p className="mt-3 text-base text-slate-200/80 max-w-2xl mx-auto">
+              <h3 className="mt-6 text-3xl sm:text-4xl font-bold text-[#D9E4F2]">Our Client Success Metrics</h3>
+              <p className="mt-3 text-base text-[#D9E4F2]/80 max-w-2xl mx-auto">
                 Performance dashboards keep every engagement accountable — we foreground the metrics that matter to your leadership team.
               </p>
             </div>
@@ -198,9 +198,9 @@ const ClientShowcase = (props) => {
                   key={index}
                   className="group relative rounded-2xl border border-white/10 bg-white/5 p-6 text-left transition-all duration-300 hover:border-white/30 hover:shadow-[0_25px_60px_-25px_rgba(15,23,42,0.7)]"
                 >
-                  <div className="text-4xl font-bold text-white">{metric.value}</div>
-                  <div className="mt-2 text-sm font-semibold uppercase tracking-wide text-blue-100">{metric.label}</div>
-                  <p className="mt-3 text-sm text-slate-200/80 leading-relaxed">
+                  <div className="text-4xl font-bold text-[#D9E4F2]">{metric.value}</div>
+                  <div className="mt-2 text-sm font-semibold uppercase tracking-wide text-[#D9E4F2]">{metric.label}</div>
+                  <p className="mt-3 text-sm text-[#D9E4F2]/80 leading-relaxed">
                     {metric.description}
                   </p>
                 </div>
@@ -221,14 +221,14 @@ const ClientShowcase = (props) => {
             <button
               type="button"
               onClick={handleStartProject}
-              className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 cursor-pointer"
+              className="btn-primary px-8 py-3 rounded-lg font-semibold transition-colors duration-200 cursor-pointer"
             >
               Start Your Project
             </button>
             <button
               type="button"
               onClick={handleViewCaseStudies}
-              className="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-200 cursor-pointer"
+              className="border-2 border-[#2DA3DB] text-[#2DA3DB] px-8 py-3 rounded-lg font-semibold hover:bg-[#2DA3DB] hover:text-white transition-all duration-200 cursor-pointer"
             >
               Request the preview deck
             </button>

@@ -11,6 +11,20 @@
 
   body {
     font-family: 'Inter', sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--color-text-primary);
+  }
+
+  p,
+  li {
+    color: var(--color-text-secondary);
   }
 }
 
@@ -42,10 +56,23 @@ section[id] {
 }
 
 @theme {
-  --color-primary: #4f46e5;
-  /* indigo-600 */
-  --color-accent: #16a34a;
-  /* green-600 */
+  --color-primary: #1A3A6F;
+  --color-secondary: #2DA3DB;
+  --color-background: #FAFAFA;
+  --color-accent: #D9E4F2;
+  --color-text-primary: #1C1F26;
+  --color-text-secondary: #6E7787;
+  --color-gray-950: #13161d;
+  --color-gray-900: #1C1F26;
+  --color-gray-800: #253141;
+  --color-gray-700: #2E3C4F;
+  --color-gray-600: #6E7787;
+  --color-gray-500: #8C95A5;
+  --color-gray-400: #AEB6C4;
+  --color-gray-300: #CCD3DE;
+  --color-gray-200: #E0E5ED;
+  --color-gray-100: #F0F3F8;
+  --color-gray-50: #F7F9FB;
 }
 
 @utility section-padding {
@@ -53,11 +80,69 @@ section[id] {
 }
 
 @utility btn-primary {
-  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-white font-semibold shadow hover:brightness-110 transition duration-300;
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-white font-semibold shadow transition duration-300 hover:bg-secondary cursor-pointer;
 }
 
 @utility btn-secondary {
-  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg border border-gray-300 text-gray-900 font-semibold hover:bg-gray-50 transition duration-300;
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg border-2 border-[#2DA3DB] text-[#2DA3DB] hover:bg-[#2DA3DB] hover:text-white transition duration-300;
+}
+
+@layer utilities {
+  .text-gray-900 {
+    color: var(--color-gray-900) !important;
+  }
+
+  .text-gray-800 {
+    color: var(--color-gray-800) !important;
+  }
+
+  .text-gray-700 {
+    color: var(--color-gray-700) !important;
+  }
+
+  .text-gray-600 {
+    color: var(--color-gray-600) !important;
+  }
+
+  .text-gray-500 {
+    color: var(--color-gray-500) !important;
+  }
+
+  .text-gray-400 {
+    color: var(--color-gray-400) !important;
+  }
+
+  .text-gray-300 {
+    color: var(--color-gray-300) !important;
+  }
+
+  .bg-gray-50 {
+    background-color: var(--color-gray-50) !important;
+  }
+
+  .bg-gray-100 {
+    background-color: var(--color-gray-100) !important;
+  }
+
+  .bg-gray-200 {
+    background-color: var(--color-gray-200) !important;
+  }
+
+  .bg-gray-300 {
+    background-color: var(--color-gray-300) !important;
+  }
+
+  .border-gray-100 {
+    border-color: var(--color-gray-100) !important;
+  }
+
+  .border-gray-200 {
+    border-color: var(--color-gray-200) !important;
+  }
+
+  .border-gray-300 {
+    border-color: var(--color-gray-300) !important;
+  }
 }
 
 /* Scroll reveal animations */

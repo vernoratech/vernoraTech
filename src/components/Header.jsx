@@ -21,7 +21,7 @@ const Header = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <a href="#home" className="flex items-center space-x-2">
-            <img src="/VernoraTech.png" alt="VernoraTech" className="h-8 w-auto" />
+            <img src="/logo2.png" alt="VernoraTech" className="h-10 w-auto" />
           </a>
 
           {/* Desktop Navigation */}

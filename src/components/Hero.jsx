@@ -117,7 +117,7 @@ const Hero = () => {
         <div className="text-center reveal-up">
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-[#0C2A63] leading-tight tracking-tight mb-6 sm:mb-8 px-4">
             Get a Landing Page That Works — 
-            <span className="text-primary"> Not Just Looks Good</span>
+            <span className="text-[#2DA3DB]"> Not Just Looks Good</span>
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-3xl mx-auto px-3">
             We create sharp, simple sites that help your brand stand out, build trust online, and turn more visitors into clients.
@@ -126,7 +126,7 @@ const Hero = () => {
             <a href="#portfolio" className="btn-primary">
               View Our Work
             </a>
-            <a href="#contact" className="btn-secondary border-1 border-primary">
+            <a href="#contact" className="btn-secondary ">
               Start Your Project
             </a>
           </div>
@@ -136,7 +136,7 @@ const Hero = () => {
                 Free Build Countdown
               </div>
               <h3 className="text-2xl sm:text-3xl font-semibold text-gray-900">
-                🔥 Claim your complimentary build before the timer hits zero
+                Claim your complimentary build before the timer hits zero
               </h3>
               <p className="max-w-xl text-sm sm:text-base text-gray-600">
                 Offer valid until 31 December 2025 — lock in your slot and launch with VernoraTech.
