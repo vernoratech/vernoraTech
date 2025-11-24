@@ -27,12 +27,12 @@ const Portfolio = (props) => {
               style={{ transitionDelay: `${80 + index * 60}ms` }}
             >
               <div className="p-6 h-full flex flex-col gap-5">
-                {/* <ScreenshotPlaceholder
+                <ScreenshotPlaceholder
                   label={domain.name}
                   title={`${domain.name} showcase`}
                   aspectClass="aspect-[4/3]"
                   className="bg-gradient-to-br from-slate-900/5 via-primary/5 to-indigo-200/10"
-                /> */}
+                />
                 <div className="text-sm text-primary font-semibold mb-2 uppercase tracking-wide">
                   {domain.name}
                 </div>

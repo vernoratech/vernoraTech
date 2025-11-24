@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Pricing = (props) => {
 
@@ -144,8 +144,12 @@ const Pricing = (props) => {
     }
   ];
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <section id="pricing" className="bg-gray-50 section-padding reveal-up">
+    <section id="pricing" className="bg-gray-50 section-padding reveal-up mt-10">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 reveal-up">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Transparent Pricing</h2>

@@ -1,27 +1,14 @@
 import React from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
 import Header from './components/Header';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import Process from './components/Process';
-import BuildProcess from './components/BuildProcess';
-import Portfolio from './components/Portfolio';
 import PortfolioPage from './components/PortfolioPage';
 import BlogPage from './components/BlogPage';
 import CaseStudiesPage from './components/CaseStudiesPage';
-import Pricing from './components/Pricing';
-import Testimonials from './components/Testimonials';
-import FAQ from './components/FAQ';
-import About from './components/About';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Stats from './components/Stats';
-import Technologies from './components/Technologies';
-import Team from './components/Team';
-import ClientShowcase from './components/ClientShowcase';
-import BlogInsights from './components/BlogInsights';
-import Awards from './components/Awards';
 import WelcomePopup from './components/WelcomePopup';
 import LoadingOverlay from './components/LoadingOverlay';
+import Home from './components/Home';
+import Pricing from './components/Pricing';
 
 function App() {
   const [isTermsOpen, setIsTermsOpen] = React.useState(false);
@@ -218,38 +205,51 @@ function App() {
     }
   }, []);
 
+  const mainAppContent = (
+    <>
+      {currentPage === 'portfolio' ? (
+        <PortfolioPage onBackToHome={navigateToHome} />
+      ) : currentPage === 'blog' ? (
+        <BlogPage
+          blogId={currentBlogId}
+          onBackToHome={navigateToHome}
+          onNavigateToBlog={navigateToBlog}
+        />
+      ) : currentPage === 'caseStudies' ? (
+        <CaseStudiesPage onBackToHome={navigateToHome} />
+      ) : (
+        <Home
+          onNavigateToPortfolio={navigateToPortfolio}
+          onNavigateToContactSection={navigateToContactSection}
+          onNavigateToCaseStudies={navigateToCaseStudies}
+          onOpenTerms={openTerms}
+          onNavigateToBlog={navigateToBlog}
+        />
+      )}
+    </>
+  );
+
+  const testRouteContent = (
+    <div className="App min-h-screen flex items-center justify-center">
+      <Link to="/">
+        <h1 className="text-3xl font-semibold text-gray-900">Test route placeholder</h1>
+      </Link>
+    </div>
+  );
+
   return (
     <div className="App">
       <LoadingOverlay isVisible={showLoading} />
 
-      {currentPage === 'portfolio' ? (
-        <PortfolioPage onBackToHome={navigateToHome} />
-      ) : currentPage === 'blog' ? (
-        <BlogPage blogId={currentBlogId} onBackToHome={navigateToHome} onNavigateToBlog={navigateToBlog} />
-      ) : currentPage === 'caseStudies' ? (
-        <CaseStudiesPage onBackToHome={navigateToHome} />
-      ) : (
-        <>
-          <Header />
-          <Hero />
-          <Stats />
-          <Services />
-          <Technologies />
-          <Process />
-          <BuildProcess />
-          <Portfolio onSeeAllProjects={navigateToPortfolio} />
-          {/* <Team /> */}
-          <ClientShowcase onStartProject={navigateToContactSection} onViewCaseStudies={navigateToCaseStudies} />
-          <Pricing onTermsClick={openTerms} />
-          <Testimonials />
-          <Awards />
-          <BlogInsights onReadBlog={navigateToBlog} />
-          <FAQ />
-          <About />
-          <Contact />
-          <Footer />
-        </>
-      )}
+      <Header />
+
+      <Routes>
+        <Route path="/test" element={testRouteContent} />
+        <Route path="/pricing" element={<Pricing onTermsClick={openTerms}/>} />
+        <Route path="*" element={mainAppContent} />
+      </Routes>
+
+      <Footer />
 
       <WelcomePopup isOpen={isWelcomeOpen} onClose={closeWelcome} onStart={startFreeBuild} />
 

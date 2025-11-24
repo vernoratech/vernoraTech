@@ -150,12 +150,12 @@ const ClientShowcase = (props) => {
                 >
                   <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary via-primary/70 to-indigo-400" aria-hidden="true" />
                   <div className="relative space-y-4">
-                    {/* <ScreenshotPlaceholder
+                    <ScreenshotPlaceholder
                       title={`${client.name} preview`}
                       label="In-review snapshot"
                       aspectClass="aspect-[16/10]"
                       className="bg-white/50"
-                    /> */}
+                    />
                     <div className="flex items-center gap-3">
                       <div className="text-4xl">{client.logo}</div>
                       <div>

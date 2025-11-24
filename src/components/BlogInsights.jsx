@@ -38,9 +38,9 @@ const BlogInsights = (props) => {
             <button
               key={index}
               onClick={() => setActiveCategory(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${category === activeCategory
-                ? 'bg-blue-600 text-white'
-                : 'bg-white text-gray-700 hover:bg-blue-100 hover:text-blue-700'
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer ${category === activeCategory
+                ? 'bg-primary text-white'
+                : 'bg-secondary text-white hover:bg-[#D9E4F2] hover:text-[#1C1F26]'
                 }`}
               type="button"
             >
@@ -57,17 +57,17 @@ const BlogInsights = (props) => {
               className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
               <div className="md:flex">
-                <div className="md:w-1/3 bg-gradient-to-br from-blue-500 to-purple-600 p-8 flex items-center justify-center">
-                  <div className="text-8xl">{post.image}</div>
+                <div className="md:w-1/3 flex items-center justify-center">
+                  <img src={post.image} alt={post.title} className="w-full h-auto" />
                 </div>
                 <div className="md:w-2/3 p-8">
                   <div className="flex items-center gap-4 mb-4">
-                    <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full font-medium">
+                    <span className="px-3 py-1 bg-primary text-white text-sm rounded-full font-medium">
                       {post.category}
                     </span>
                     <span className="text-gray-500 text-sm">{post.readTime}</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  <h3 className="text-2xl font-bold text-primary mb-4">
                     {post.title}
                   </h3>
                   <p className="text-gray-600 mb-6 leading-relaxed">
@@ -85,7 +85,7 @@ const BlogInsights = (props) => {
                     </div>
                     <button 
                       onClick={() => props.onReadBlog(post.id)}
-                      className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 cursor-pointer"
+                      className="btn btn-primary"
                     >
                       Read More
                     </button>
@@ -140,7 +140,7 @@ const BlogInsights = (props) => {
         </div>
 
         {/* Newsletter Signup */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center">
+        {/* <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center">
           <h3 className="text-2xl font-bold mb-4">
             Stay Updated with Our Newsletter
           </h3>
@@ -157,7 +157,7 @@ const BlogInsights = (props) => {
               Subscribe
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
