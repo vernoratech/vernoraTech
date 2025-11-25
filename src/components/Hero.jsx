@@ -1,21 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Play, ArrowRight, CheckCircle2, ChevronRight, Timer, ShieldCheck, BarChart3, Rocket } from 'lucide-react';
+import ScreenshotPlaceholder from './ScreenshotPlaceholder';
 
 const OFFER_DEADLINE = new Date('2025-12-31T23:59:59');
 
 // --- Sub-component: ScreenshotPlaceholder ---
-const ScreenshotPlaceholder = ({ label, title, className, imageSrc }) => (
-  <div className={`relative overflow-hidden rounded-2xl border border-[#D9E4F2] bg-[#FAFAFA] ${className}`}>
-    {imageSrc ? (
-      <img src={imageSrc} alt={title} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
-    ) : (
-      <div className="flex h-full w-full items-center justify-center bg-[#D9E4F2]/20">
-        <span className="text-[#6E7787]">{label}</span>
-      </div>
-    )}
-    <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-2xl" />
-  </div>
-);
+// const ScreenshotPlaceholder = ({ label, title, className, imageSrc }) => (
+//   <div className={`relative overflow-hidden rounded-2xl border border-[#D9E4F2] bg-[#FAFAFA] ${className}`}>
+//     {imageSrc ? (
+//       <img src={imageSrc} alt={title} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
+//     ) : (
+//       <div className="flex h-full w-full items-center justify-center bg-[#D9E4F2]/20">
+//         <span className="text-[#6E7787]">{label}</span>
+//       </div>
+//     )}
+//     <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-2xl" />
+//   </div>
+// );
 
 const Hero = () => {
   const videoSources = [
