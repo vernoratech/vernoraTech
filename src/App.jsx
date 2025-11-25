@@ -15,8 +15,6 @@ import BlogInsights from './components/BlogInsights';
 function App() {
   const [isTermsOpen, setIsTermsOpen] = React.useState(false);
   const [activePlan, setActivePlan] = React.useState(null);
-  const [currentPage, setCurrentPage] = React.useState('home');
-  const [currentBlogId, setCurrentBlogId] = React.useState(null);
   const [isWelcomeOpen, setIsWelcomeOpen] = React.useState(false);
   const [showLoading, setShowLoading] = React.useState(true);
   const [hasVisited, setHasVisited] = React.useState(() => {
@@ -31,30 +29,14 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  React.useEffect(() => {
-    const path = location.pathname;
-    if (path.startsWith('/blog/')) {
-      const blogId = path.replace('/blog/', '');
-      setCurrentBlogId(blogId);
-      setCurrentPage('blog');
-    } else if (path === '/blog') {
-      setCurrentBlogId(null);
-      setCurrentPage('blogList');
-    } else if (path === '/case-studies') {
-      setCurrentPage('caseStudies');
-    } else if (path === '/portfolio') {
-      homeScrollPosRef.current = window.scrollY || 0;
-      setCurrentPage('portfolio');
-    } else {
-      setCurrentPage('home');
-    }
-  }, [location.pathname]);
+  const pathName = location.pathname;
+  const isBlogDetailView = pathName.startsWith('/blog/');
 
   React.useEffect(() => {
-    if (currentPage === 'home') {
+    if (pathName === '/') {
       window.scrollTo({ top: homeScrollPosRef.current, behavior: 'auto' });
     }
-  }, [currentPage]);
+  }, [pathName]);
 
   React.useEffect(() => {
     if (typeof window === 'undefined') {
@@ -97,25 +79,20 @@ function App() {
   const navigateToPortfolio = () => {
     homeScrollPosRef.current = window.scrollY || 0;
     navigate('/portfolio');
-    setCurrentPage('portfolio');
   };
 
   const navigateToHome = () => {
     navigate('/');
-    setCurrentPage('home');
   };
 
   const navigateToBlog = (blogId) => {
     homeScrollPosRef.current = window.scrollY || 0;
     navigate(`/blog/${blogId}`);
-    setCurrentBlogId(blogId);
-    setCurrentPage('blog');
   };
 
   const navigateToCaseStudies = () => {
     homeScrollPosRef.current = window.scrollY || 0;
     navigate('/case-studies');
-    setCurrentPage('caseStudies');
   };
 
   const navigateToContactSection = () => {
@@ -128,10 +105,9 @@ function App() {
       }
     };
 
-    if (currentPage !== 'home') {
+    if (pathName !== '/') {
       homeScrollPosRef.current = 0;
-      window.history.pushState({}, '', '/');
-      setCurrentPage('home');
+      navigate('/', { replace: false });
       setTimeout(scrollToContact, 120);
     } else {
       scrollToContact();
@@ -194,30 +170,6 @@ function App() {
     }
   }, []);
 
-  const mainAppContent = (
-    <>
-      {currentPage === 'portfolio' ? (
-        <PortfolioPage onBackToHome={navigateToHome} />
-      ) : currentPage === 'blog' ? (
-        <BlogPage
-          blogId={currentBlogId}
-          onBackToHome={navigateToHome}
-          onNavigateToBlog={navigateToBlog}
-        />
-      ) : currentPage === 'caseStudies' ? (
-        <CaseStudiesPage onBackToHome={navigateToHome} />
-      ) : (
-        <Home
-          onNavigateToPortfolio={navigateToPortfolio}
-          onNavigateToContactSection={navigateToContactSection}
-          onNavigateToCaseStudies={navigateToCaseStudies}
-          onOpenTerms={openTerms}
-          onNavigateToBlog={navigateToBlog}
-        />
-      )}
-    </>
-  );
-
   const testRouteContent = (
     <div className="App min-h-screen flex items-center justify-center">
       <Link to="/">
@@ -237,21 +189,32 @@ function App() {
     );
   };
 
-  const isBlogView = currentPage === 'blog';
+  const homeElement = (
+    <Home
+      onNavigateToPortfolio={navigateToPortfolio}
+      onNavigateToContactSection={navigateToContactSection}
+      onNavigateToCaseStudies={navigateToCaseStudies}
+      onOpenTerms={openTerms}
+      onNavigateToBlog={navigateToBlog}
+    />
+  );
 
   return (
     <div className="App">
       <LoadingOverlay isVisible={showLoading} />
 
-      {!isBlogView && <Header />}
+      {!isBlogDetailView && <Header />}
 
       <Routes>
         <Route path="/test" element={testRouteContent} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/blog" element={<BlogInsights onReadBlog={navigateToBlog} />} />
         <Route path="/blog/:blogId" element={<BlogDetailRoute />} />
+        <Route path="/portfolio" element={<PortfolioPage onBackToHome={navigateToHome} />} />
+        <Route path="/case-studies" element={<CaseStudiesPage onBackToHome={navigateToHome} />} />
         <Route path="/pricing" element={<Pricing onTermsClick={openTerms} />} />
-        <Route path="*" element={mainAppContent} />
+        <Route path="/" element={homeElement} />
+        <Route path="*" element={homeElement} />
       </Routes>
 
       <Footer />
