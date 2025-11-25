@@ -92,7 +92,7 @@ const Header = () => {
 
         {/* Mobile Menu Dropdown */}
         <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-[400px] opacity-100 border-t border-[#D9E4F2]' : 'max-h-0 opacity-0'
+          className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-[70vh] opacity-100 border-t border-[#D9E4F2] overflow-y-auto' : 'max-h-0 opacity-0 overflow-hidden'
             }`}
         >
           <div className="px-4 py-6 space-y-3 bg-white/50 backdrop-blur-xl rounded-b-2xl">
