@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { Layers, Phone, HeartHandshake, Clock, Activity } from 'lucide-react';
 
 const MIN_PIPELINE = 5;
 const MAX_PIPELINE = 15;
 const PIPELINE_DELTAS = [3, -2, 2];
 const UPDATE_INTERVAL_MS = 2 * 60 * 1000;
-// const UPDATE_INTERVAL_MS = 2000;
 
 const getRandomPipeline = () =>
   Math.floor(Math.random() * (MAX_PIPELINE - MIN_PIPELINE + 1)) + MIN_PIPELINE;
@@ -45,66 +45,84 @@ const Stats = () => {
         number: pipelineDisplay,
         label: 'Landing Pages in Pipeline',
         description: 'Active build schedule for the next launch window.',
-        detail: 'Onboarding sprint queue'
+        detail: 'Onboarding sprint queue',
+        icon: <Layers className="h-6 w-6" />
       },
       {
         number: `${discoveryCalls}`,
         label: 'Discovery Calls Booked',
         description: 'Teams exploring how we can elevate their service brand.',
-        detail: 'Q4 interest snapshot'
+        detail: 'Q4 interest snapshot',
+        icon: <Phone className="h-6 w-6" />
       },
       {
         number: satisfactionScore,
         label: 'Projected Satisfaction Score',
         description: 'Benchmark we are committed to meeting post-launch.',
-        detail: 'Based on pilot feedback'
+        detail: 'Based on pilot feedback',
+        icon: <HeartHandshake className="h-6 w-6" />
       },
       {
         number: buildTimelineTarget,
-        label: 'Average Build Timeline Target',
+        label: 'Avg. Build Timeline Target',
         description: 'Goal for rolling out optimized landing experiences.',
-        detail: 'Includes testing runway'
+        detail: 'Includes testing runway',
+        icon: <Clock className="h-6 w-6" />
       }
     ];
   }, [pipelineCount]);
 
   return (
-    <section className="relative py-20 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-100" aria-hidden="true" />
-      <div className="absolute -top-32 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" aria-hidden="true" />
+    <section className="relative py-24 overflow-hidden bg-[#FAFAFA]">
+      {/* Background Decor */}
+      <div className="absolute inset-0 pointer-events-none">
+         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#2DA3DB]/5 via-transparent to-transparent" />
+      </div>
+
       <div className="relative container mx-auto px-6 lg:px-12">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#2DA3DB]/20 bg-[#2DA3DB]/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#1A3A6F] mb-6">
+            <Activity size={14} className="text-[#2DA3DB]" />
             Vision dashboard
-            <span className="h-2 w-2 rounded-full bg-primary animate-ping" />
           </div>
-          <h2 className="mt-6 text-4xl sm:text-5xl font-bold text-gray-900">
-            Momentum We’re Building Right Now
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1C1F26] tracking-tight">
+            Momentum We’re Building <span className="text-[#2DA3DB]">Right Now</span>
           </h2>
-          <p className="mt-4 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="mt-6 text-lg text-[#6E7787] max-w-3xl mx-auto leading-relaxed">
             These are the milestones and targets guiding our upcoming launches—transparent goals we’re tracking day by day.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="group relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-lg p-8 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+              className="group relative overflow-hidden rounded-3xl border border-[#D9E4F2] bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#2DA3DB]/30 hover:shadow-xl hover:shadow-[#1A3A6F]/5"
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/0 via-primary/5 to-primary/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
               <div className="relative flex flex-col items-center text-center">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/15 text-primary text-2xl font-bold mb-4">
+                {/* Icon Circle */}
+                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#1A3A6F] text-white shadow-lg shadow-[#1A3A6F]/20 transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#2DA3DB]">
+                  {stat.icon}
+                </div>
+                
+                {/* Number */}
+                <div className="text-4xl font-black text-[#1C1F26] mb-2 tracking-tight">
                   {stat.number}
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                
+                {/* Label */}
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[#2DA3DB] mb-4">
                   {stat.label}
                 </h3>
-                <p className="text-gray-600 text-sm mb-4">
+                
+                {/* Description */}
+                <p className="text-[#6E7787] text-sm leading-relaxed mb-6">
                   {stat.description}
                 </p>
-                <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                
+                {/* Detail Badge */}
+                <div className="mt-auto inline-flex items-center gap-2 rounded-full bg-[#FAFAFA] border border-[#D9E4F2] px-3 py-1.5 text-xs font-semibold text-[#1A3A6F]">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#2DA3DB] animate-pulse" />
                   {stat.detail}
                 </div>
               </div>

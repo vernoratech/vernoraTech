@@ -1,7 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
-import ScreenshotPlaceholder from './ScreenshotPlaceholder';
+import { Play, ArrowRight, CheckCircle2, ChevronRight, Timer, ShieldCheck, BarChart3, Rocket } from 'lucide-react';
 
 const OFFER_DEADLINE = new Date('2025-12-31T23:59:59');
+
+// --- Sub-component: ScreenshotPlaceholder ---
+const ScreenshotPlaceholder = ({ label, title, className, imageSrc }) => (
+  <div className={`relative overflow-hidden rounded-2xl border border-[#D9E4F2] bg-[#FAFAFA] ${className}`}>
+    {imageSrc ? (
+      <img src={imageSrc} alt={title} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
+    ) : (
+      <div className="flex h-full w-full items-center justify-center bg-[#D9E4F2]/20">
+        <span className="text-[#6E7787]">{label}</span>
+      </div>
+    )}
+    <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-2xl" />
+  </div>
+);
 
 const Hero = () => {
   const videoSources = [
@@ -14,6 +28,7 @@ const Hero = () => {
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [countdown, setCountdown] = useState({ days: '00', hours: '00', minutes: '00', seconds: '00' });
 
+  // Video Handling Logic
   useEffect(() => {
     const videoElement = videoRef.current;
     if (!videoElement) return;
@@ -58,6 +73,7 @@ const Hero = () => {
     playVideo();
   }, [currentVideoIndex]);
 
+  // Countdown Logic
   useEffect(() => {
     const calculateTimeRemaining = () => {
       const now = new Date().getTime();
@@ -90,160 +106,152 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="relative pt-20 pb-20 min-h-[90vh] overflow-hidden reveal-up">
-      <img
-        src="/bg_pace_holder.jpeg"
-        alt=""
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-          isVideoReady ? 'opacity-0' : 'opacity-100'
-        }`}
-        loading="eager"
-        aria-hidden="true"
-      />
-      <video
-        ref={videoRef}
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-          isVideoReady ? 'opacity-100' : 'opacity-0'
-        }`}
-        src={videoSources[currentVideoIndex]}
-        autoPlay
-        muted
-        playsInline
-        preload="auto"
-        poster="/bg_pace_holder.jpeg"
-      />
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/90 via-white/80 to-indigo-100/80" aria-hidden="true" />
-      <div className="relative z-10 max-w-7xl mx-auto section-padding">
-        <div className="text-center reveal-up">
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-[#0C2A63] leading-tight tracking-tight mb-6 sm:mb-8 px-4">
+    <section id="home" className="relative pt-32 pb-20 min-h-[95vh] overflow-hidden bg-[#FAFAFA]">
+      
+      {/* --- Video Background Layer --- */}
+      <div className="absolute inset-0 h-full w-full overflow-hidden">
+        <div className={`absolute inset-0 bg-[#1A3A6F] transition-opacity duration-700 ${isVideoReady ? 'opacity-0' : 'opacity-100'}`} />
+        <video
+          ref={videoRef}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${isVideoReady ? 'opacity-30' : 'opacity-0'}`}
+          src={videoSources[currentVideoIndex]}
+          autoPlay
+          muted
+          playsInline
+          preload="auto"
+        />
+        {/* Overlay Gradients for Readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FAFAFA]/95 via-[#FAFAFA]/90 to-[#FAFAFA]/60 sm:via-[#FAFAFA]/80 sm:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#FAFAFA]/50 to-[#FAFAFA]" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* --- Main Hero Content --- */}
+        <div className="max-w-4xl">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#1A3A6F]/10 bg-white/50 backdrop-blur-sm px-4 py-1.5 mb-8 shadow-sm">
+            <span className="flex h-2 w-2 rounded-full bg-[#2DA3DB] animate-pulse" />
+            <span className="text-xs font-bold uppercase tracking-widest text-[#1A3A6F]">Accepting New Clients</span>
+          </div>
+
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-[#1C1F26] leading-[1.1] tracking-tight mb-6">
             Get a Landing Page That Works — 
-            <span className="text-[#2DA3DB]"> Not Just Looks Good</span>
+            <span className="text-[#2DA3DB] block mt-2"> Not Just Looks Good</span>
           </h1>
-          <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-3xl mx-auto px-3">
+          
+          <p className="text-lg sm:text-xl text-[#6E7787] mb-10 max-w-2xl leading-relaxed">
             We create sharp, simple sites that help your brand stand out, build trust online, and turn more visitors into clients.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-3">
-            <a href="#portfolio" className="btn-primary">
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a 
+              href="#portfolio" 
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1A3A6F] px-8 py-4 text-sm font-bold text-white shadow-lg shadow-[#1A3A6F]/20 transition-all hover:bg-[#2DA3DB] hover:shadow-[#2DA3DB]/30 hover:-translate-y-1"
+            >
               View Our Work
+              <ArrowRight size={16} />
             </a>
-            <a href="#contact" className="btn-secondary ">
+            <a 
+              href="#contact" 
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold text-[#1C1F26] border border-[#D9E4F2] shadow-sm transition-all hover:border-[#1A3A6F]/30 hover:bg-[#FAFAFA]"
+            >
+              <Play size={16} className="text-[#2DA3DB] fill-[#2DA3DB]" />
               Start Your Project
             </a>
           </div>
-          <div className="mt-12 grid gap-10 px-3 sm:grid-cols-[1fr_0.8fr] sm:items-center">
-            <div className="flex flex-col items-center gap-4 text-center sm:items-start sm:text-left">
-              <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-primary">
-                Free Build Countdown
+        </div>
+
+        {/* --- Countdown & Feature Section --- */}
+        <div className="mt-20 lg:mt-32">
+          <div className="rounded-3xl border border-[#D9E4F2] bg-white/80 backdrop-blur-md p-8 sm:p-10 lg:p-12 shadow-2xl shadow-[#1A3A6F]/5">
+            <div className="grid gap-12 lg:grid-cols-[1fr_0.8fr] lg:items-center">
+              
+              {/* Left Column: Text & Timer */}
+              <div className="flex flex-col gap-6">
+                <div className="inline-flex items-center gap-2 rounded-lg bg-[#2DA3DB]/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#1A3A6F] w-fit">
+                  <Timer size={14} />
+                  Free Build Countdown
+                </div>
+                
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-[#1C1F26] mb-3">
+                    Claim your complimentary build before the timer hits zero
+                  </h3>
+                  <p className="text-[#6E7787] text-base leading-relaxed">
+                    Offer valid until 31 December 2025 — lock in your slot and launch with VernoraTech.
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-4 sm:gap-8 mt-2">
+                  {[
+                    { label: 'Days', value: countdown.days },
+                    { label: 'Hours', value: countdown.hours },
+                    { label: 'Minutes', value: countdown.minutes },
+                    { label: 'Seconds', value: countdown.seconds },
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex flex-col">
+                      <span className="text-3xl sm:text-5xl font-black text-[#1A3A6F] font-mono tracking-tight">
+                        {item.value}
+                      </span>
+                      <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#2DA3DB]">
+                        {item.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-semibold text-gray-900">
-                Claim your complimentary build before the timer hits zero
-              </h3>
-              <p className="max-w-xl text-sm sm:text-base text-gray-600">
-                Offer valid until 31 December 2025 — lock in your slot and launch with VernoraTech.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4 sm:justify-start sm:gap-6">
-                <div className="flex flex-col items-center sm:items-start">
-                  <span className="text-3xl sm:text-4xl font-bold text-gray-900">{countdown.days}</span>
-                  <span className="mt-1 text-xs uppercase tracking-[0.3em] text-gray-500">Days</span>
-                </div>
-                <div className="flex flex-col items-center sm:items-start">
-                  <span className="text-3xl sm:text-4xl font-bold text-gray-900">{countdown.hours}</span>
-                  <span className="mt-1 text-xs uppercase tracking-[0.3em] text-gray-500">Hours</span>
-                </div>
-                <div className="flex flex-col items-center sm:items-start">
-                  <span className="text-3xl sm:text-4xl font-bold text-gray-900">{countdown.minutes}</span>
-                  <span className="mt-1 text-xs uppercase tracking-[0.3em] text-gray-500">Minutes</span>
-                </div>
-                <div className="flex flex-col items-center sm:items-start">
-                  <span className="text-3xl sm:text-4xl font-bold text-gray-900">{countdown.seconds}</span>
-                  <span className="mt-1 text-xs uppercase tracking-[0.3em] text-gray-500">Seconds</span>
-                </div>
+
+              {/* Right Column: Screenshot */}
+              <div className="relative group perspective-1000">
+                <div className="absolute -inset-4 bg-gradient-to-r from-[#2DA3DB]/20 to-[#1A3A6F]/10 rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition-opacity" />
+                <ScreenshotPlaceholder
+                  label="Landing Page Flow"
+                  title="Upcoming project screenshot"
+                  className="relative shadow-lg transition-transform duration-500 group-hover:rotate-y-2 group-hover:scale-[1.02]"
+                  imageSrc="https://www.digitalconcepts.in/wp-content/uploads/2020/08/dc_portfolio_ssglass.png"
+                />
               </div>
-            </div>
-            <div className="relative">
-              <div className="absolute -inset-6 rounded-[32px] bg-gradient-to-r from-primary/15 via-indigo-400/10 to-sky-400/10 blur-2xl" aria-hidden="true" />
-              <ScreenshotPlaceholder
-                label="Landing Page Flow"
-                title="Upcoming project screenshot"
-                className="relative shadow-2xl"
-                imageSrc="https://www.digitalconcepts.in/wp-content/uploads/2020/08/dc_portfolio_ssglass.png"
-              />
             </div>
           </div>
         </div>
 
-        {/* Hero Image/Stats */}
-        {/* <div className="mt-12 sm:mt-14 md:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
-          <div className="text-center reveal-up" style={{ transitionDelay: '80ms' }}>
-            <div className="text-4xl font-bold text-primary">50+</div>
-            <div className="text-gray-600">Projects Completed</div>
-          </div>
-          <div className="text-center reveal-up" style={{ transitionDelay: '140ms' }}>
-            <div className="text-4xl font-bold text-primary">100%</div>
-            <div className="text-gray-600">Client Satisfaction</div>
-          </div>
-          <div className="text-center reveal-up" style={{ transitionDelay: '200ms' }}>
-            <div className="text-4xl font-bold text-primary">24/7</div>
-            <div className="text-gray-600">Support Available</div>
-          </div>
-        </div> */}
-
-        {/* <div className="mt-14 sm:mt-16 md:mt-20 bg-white/80 backdrop-blur-2xl rounded-3xl shadow-2xl px-6 py-10 sm:px-12 sm:py-14 reveal-up">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 text-center sm:text-left">
-            Why Service Brands Trust VernoraTech
-            </h2>
-            <div className="flex justify-center sm:justify-end">
-              <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-primary text-sm font-medium">
-                <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-                Proven track record
-              </span>
-            </div>
-          </div>
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-8">
-            <div className="relative space-y-4 text-center sm:text-left">
-              <div className="mx-auto sm:mx-0 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary text-xl font-semibold">
-                01
+        {/* --- "Why Trust Us" Cards --- */}
+        <div className="mt-20  grid-cols-1 md:grid-cols-3 gap-6 md:grid hidden">
+           {/* Card 1 */}
+           <div className="group rounded-2xl border border-[#D9E4F2] bg-white p-6 shadow-sm transition-all hover:border-[#2DA3DB]/30 hover:shadow-lg hover:shadow-[#1A3A6F]/5">
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#2DA3DB]/10 text-[#2DA3DB] group-hover:bg-[#2DA3DB] group-hover:text-white transition-colors">
+                 <ShieldCheck size={24} />
               </div>
-              <div className="absolute hidden sm:block top-0 right-0 h-full w-px bg-gradient-to-b from-primary/40 via-primary/10 to-transparent" />
-              <h3 className="text-xl font-semibold text-gray-900">Conversion Strategy</h3>
-              <p className="text-gray-600 text-base">
+              <h3 className="text-lg font-bold text-[#1C1F26] mb-2">Conversion Strategy</h3>
+              <p className="text-sm text-[#6E7787] leading-relaxed">
                 Tailored messaging frameworks built to guide visitors from interest to inquiry seamlessly.
               </p>
-              <div className="inline-flex items-center gap-2 text-sm font-medium text-primary/80">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                Audience insights + CRO playbooks
+           </div>
+
+           {/* Card 2 */}
+           <div className="group rounded-2xl border border-[#D9E4F2] bg-white p-6 shadow-sm transition-all hover:border-[#2DA3DB]/30 hover:shadow-lg hover:shadow-[#1A3A6F]/5">
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#2DA3DB]/10 text-[#2DA3DB] group-hover:bg-[#2DA3DB] group-hover:text-white transition-colors">
+                 <Rocket size={24} />
               </div>
-            </div>
-            <div className="relative space-y-4 text-center sm:text-left">
-              <div className="mx-auto sm:mx-0 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary text-xl font-semibold">
-                02
-              </div>
-              <div className="absolute hidden sm:block top-0 right-0 h-full w-px bg-gradient-to-b from-primary/40 via-primary/10 to-transparent" />
-              <h3 className="text-xl font-semibold text-gray-900">Lightning Delivery</h3>
-              <p className="text-gray-600 text-base">
+              <h3 className="text-lg font-bold text-[#1C1F26] mb-2">Lightning Delivery</h3>
+              <p className="text-sm text-[#6E7787] leading-relaxed">
                 Rapid turnaround with iterative feedback loops so your page goes live without delays.
               </p>
-              <div className="inline-flex items-center gap-2 text-sm font-medium text-primary/80">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                Agile sprints + weekly reviews
+           </div>
+
+           {/* Card 3 */}
+           <div className="group rounded-2xl border border-[#D9E4F2] bg-white p-6 shadow-sm transition-all hover:border-[#2DA3DB]/30 hover:shadow-lg hover:shadow-[#1A3A6F]/5">
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#2DA3DB]/10 text-[#2DA3DB] group-hover:bg-[#2DA3DB] group-hover:text-white transition-colors">
+                 <BarChart3 size={24} />
               </div>
-            </div>
-            <div className="space-y-4 text-center sm:text-left">
-              <div className="mx-auto sm:mx-0 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary text-xl font-semibold">
-                03
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900">Growth Support</h3>
-              <p className="text-gray-600 text-base">
+              <h3 className="text-lg font-bold text-[#1C1F26] mb-2">Growth Support</h3>
+              <p className="text-sm text-[#6E7787] leading-relaxed">
                 Ongoing optimization insights and 24/7 support to keep your lead flow consistently strong.
               </p>
-              <div className="inline-flex items-center gap-2 text-sm font-medium text-primary/80">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                Conversion analytics dashboard
-              </div>
-            </div>
-          </div>
-        </div> */}
+           </div>
+        </div>
+
       </div>
     </section>
   );

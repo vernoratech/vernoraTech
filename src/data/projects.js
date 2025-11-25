@@ -1,90 +1,115 @@
 export const domains = [
+  // ------------------- PORTFOLIOS -------------------
   {
-    name: 'Healthcare & Wellness',
-    headline: 'Patient-first digital experiences',
-    summary: 'Crafted conversion-focused websites and portals for hospitals, clinics, and diagnostics teams needing HIPAA-ready, multi-location experiences.',
+    name: 'Personal Portfolio',
+    headline: 'Showcase your work with clarity',
+    summary: 'A clean, fast personal portfolio for creators and freelancers.',
     focusAreas: [
-      'Telemedicine-ready appointment workflows',
-      'Doctor and service catalogues with smart search',
-      'Lab integrations and secure patient intake'
+      'Projects & skills sections',
+      'Testimonials',
+      'Contact/WhatsApp CTA'
     ],
-    results: 'Enabled 6+ healthcare brands to launch compliant patient journeys and grow appointment bookings by up to 38%.'
+    results: 'Helped creators get more project inquiries quickly.',
+    imageSrc: 'https://w3layouts.b-cdn.net//wp-content/uploads/2023/10/Biodata-Personal-Website-Template-scaled-1.jpg'
   },
   {
-    name: 'Finance & Accounting',
-    headline: 'Trust-building digital presence',
-    summary: 'Delivered modern websites and client portals for CA firms, tax consultants, and fintech advisors who need secure onboarding and document flows.',
+    name: 'Developer Portfolio',
+    headline: 'Your skills, presented simply',
+    summary: 'A simple portfolio for developers with projects and experience timeline.',
     focusAreas: [
-      'Secure lead capture and client onboarding',
-      'Service catalogues highlighting compliance expertise',
-      'Resource hubs to educate prospects'
+      'Project highlights',
+      'GitHub & Resume links',
+      'Fast-loading sections'
     ],
-    results: 'Helped finance teams turn inbound website traffic into qualified consultations with streamlined intake experiences.'
+    results: 'Increased interview callbacks and recruiter interest.',
+    imageSrc: 'https://themewagon.com/wp-content/uploads/2020/08/Clyde.png'
   },
   {
-    name: 'Legal & Compliance',
-    headline: 'Authority-building content hubs',
-    summary: 'Supported law firms and compliance specialists with credibility-first sites featuring case studies, service segments, and lead qualification funnels.',
+    name: 'Photography Portfolio',
+    headline: 'Let your visuals do the talking',
+    summary: 'A visual-first portfolio for photographers with category galleries.',
     focusAreas: [
-      'Practice area landing pages with tailored CTAs',
-      'Knowledge centers for thought leadership',
-      'Automated consultation scheduling'
+      'Photo gallery layouts',
+      'Category filters',
+      'Quick contact options'
     ],
-    results: 'Enabled boutique legal teams to triple consultation requests by demystifying offerings for prospective clients.'
+    results: 'Generated more bookings for photography clients.',
+    imageSrc: 'https://www.creative-tim.com/blog/content/images/wordpress/2019/03/Rubik-Presentation-Page-Premium-One-Page-Template.png'
+  },
+
+  // ------------------- LANDING PAGES -------------------
+  {
+    name: 'Fitness Coach Landing Page',
+    headline: 'Get more class signups',
+    summary: 'A single-page funnel for fitness trainers to showcase programs and timings.',
+    focusAreas: [
+      'Program details',
+      'Class schedules',
+      'WhatsApp lead button'
+    ],
+    results: 'Boosted class registrations within the first week.',
+    imageSrc: 'https://img.freepik.com/free-vector/flat-landing-page-template-gym-exercise_23-2149557500.jpg'
   },
   {
-    name: 'Real Estate & Construction',
-    headline: 'Location-driven lead generation',
-    summary: 'Built immersive property showcases and contractor portfolios focused on site tours, project proof, and on-site lead capture.',
+    name: 'App Launch Landing Page',
+    headline: 'Explain your app in seconds',
+    summary: 'A launch-ready page for apps or SaaS tools with features and pricing.',
     focusAreas: [
-      'Interactive galleries and project timelines',
-      'Lead capture forms synced with CRM tools',
-      'Localized SEO landing pages'
+      'Feature breakdowns',
+      'Screenshots section',
+      'Pricing & FAQs'
     ],
-    results: 'Partnered with builders and developers to keep sales pipelines filled with high-intent buyer inquiries.'
+    results: 'Helped early-stage startups get their first users.',
+    imageSrc: 'https://www.shutterstock.com/image-vector/website-template-websites-apps-600nw-1019269555.jpg'
   },
   {
-    name: 'SaaS & Technology',
-    headline: 'Product-led storytelling',
-    summary: 'Collaborated with tech startups to launch conversion-ready marketing sites, demo flows, and investor decks that translate features into value.',
+    name: 'Service Business Landing Page',
+    headline: 'Turn visitors into leads',
+    summary: 'A landing page for local service businesses with simple booking flow.',
     focusAreas: [
-      'Narrative product pages with feature blocks',
-      'Interactive dashboards and onboarding walkthroughs',
-      'Pricing, FAQ, and trust signal optimization'
+      'Service list',
+      'Pricing blocks',
+      'Quick lead form'
     ],
-    results: 'Supported SaaS teams through launch, scale, and funding milestones with data-backed UX decisions.'
+    results: 'Increased quality leads for small businesses.',
+    imageSrc: 'https://s3-figma-hubfile-images-production.figma.com/hub/file/carousel/img/cd4bf53a78ebde90128c851951ca0f6bbbed03a2'
+  },
+
+  // ------------------- E-COMMERCE -------------------
+  {
+    name: 'Clothing Store',
+    headline: 'Start selling your products online',
+    summary: 'A simple e-commerce setup for small clothing brands.',
+    focusAreas: [
+      'Product pages',
+      'Size & color variants',
+      'Razorpay checkout'
+    ],
+    results: 'Helped brands generate sales without marketplaces.',
+    imageSrc: 'https://themewagon.com/wp-content/uploads/2024/10/Kaira.webp'
   },
   {
-    name: 'Food, Beverage & Hospitality',
-    headline: 'Experience-led discovery',
-    summary: 'Evolved restaurant and hospitality brands with ordering-ready menus, reservation tools, and social proof baked into every screen.',
+    name: 'Single Product Store',
+    headline: 'Sell one product with focus',
+    summary: 'A high-conversion one-product website with testimonials and fast checkout.',
     focusAreas: [
-      'Menu systems with seasonal update controls',
-      'Reservation and table management integrations',
-      'Customer review and social proof modules'
+      'Hero product page',
+      'Social proof',
+      'Simple checkout'
     ],
-    results: 'Helped hospitality teams increase direct bookings by pairing strong visuals with conversion-focused UX.'
+    results: 'Achieved strong conversion rates for trending products.',
+    imageSrc: 'https://cdn.dribbble.com/userupload/4058878/file/original-87daae31fb2b541441fef5d03f37e9cd.jpg?format=webp&resize=400x300&vertical=center'
   },
   {
-    name: 'Fitness & Lifestyle',
-    headline: 'Community-centric brand journeys',
-    summary: 'Partnered with gyms, studios, and wellness coaches to craft membership funnels, schedule visibility, and community retention touchpoints.',
+    name: 'Digital Products Store',
+    headline: 'Sell digital downloads instantly',
+    summary: 'A lightweight store for selling templates, PDFs, and digital files.',
     focusAreas: [
-      'Class scheduling and trainer profiles',
-      'Membership plan comparison flows',
-      'Retention-focused content drip campaigns'
+      'Auto delivery',
+      'Payment integration',
+      'No-maintenance setup'
     ],
-    results: 'Boosted membership sign-ups and renewals with transparent program storytelling and on-brand visuals.'
-  },
-  {
-    name: 'Marketing & Creative Agencies',
-    headline: 'Conversion-ready showcase',
-    summary: 'Collaborated with agencies to highlight signature services, process clarity, and client results through modular case storytelling.',
-    focusAreas: [
-      'Service positioning and capability matrices',
-      'Before-and-after case study layouts',
-      'Lead qualification and proposal request flows'
-    ],
-    results: 'Empowered agency leaders to pitch faster with reusable assets that spotlight measurable impact.'
+    results: 'Created a passive income stream for digital creators.',
+    imageSrc: 'https://market-resized.envatousercontent.com/previews/files/649577836/Theme-Preview/01_home_01.jpg?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=23bc447da3f74b3c92fa9f34318b76a0cd7c0e08369bad939d120b4d870e8288'
   }
 ];

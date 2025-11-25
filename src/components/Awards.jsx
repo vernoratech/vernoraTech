@@ -198,8 +198,8 @@ const Awards = () => {
         </div> */}
 
         {/* CTA Section */}
-        <div className="text-center">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
+        {/* <div className="text-center">
+          <div className="bg-gradient-to-r from-[#1A3A6F] to-[#1A3A6F] rounded-2xl p-8 text-white">
             <h3 className="text-2xl font-bold mb-4">
               Ready to Work with an Award-Winning Team?
             </h3>
@@ -215,7 +215,7 @@ const Awards = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -1,33 +1,20 @@
 import React from 'react';
+import { Routes, Route, Link, useParams, useNavigate, useLocation } from 'react-router-dom';
 import Header from './components/Header';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import Process from './components/Process';
-import BuildProcess from './components/BuildProcess';
-import Portfolio from './components/Portfolio';
 import PortfolioPage from './components/PortfolioPage';
 import BlogPage from './components/BlogPage';
 import CaseStudiesPage from './components/CaseStudiesPage';
-import Pricing from './components/Pricing';
-import Testimonials from './components/Testimonials';
-import FAQ from './components/FAQ';
-import About from './components/About';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Stats from './components/Stats';
-import Technologies from './components/Technologies';
-import Team from './components/Team';
-import ClientShowcase from './components/ClientShowcase';
-import BlogInsights from './components/BlogInsights';
-import Awards from './components/Awards';
 import WelcomePopup from './components/WelcomePopup';
 import LoadingOverlay from './components/LoadingOverlay';
+import Home from './components/Home';
+import Pricing from './components/Pricing';
+import FAQ from './components/FAQ';
+import BlogInsights from './components/BlogInsights';
 
 function App() {
   const [isTermsOpen, setIsTermsOpen] = React.useState(false);
   const [activePlan, setActivePlan] = React.useState(null);
-  const [currentPage, setCurrentPage] = React.useState('home');
-  const [currentBlogId, setCurrentBlogId] = React.useState(null);
   const [isWelcomeOpen, setIsWelcomeOpen] = React.useState(false);
   const [showLoading, setShowLoading] = React.useState(true);
   const [hasVisited, setHasVisited] = React.useState(() => {
@@ -39,46 +26,17 @@ function App() {
   const homeScrollPosRef = React.useRef(0);
   const welcomeResetTimerRef = React.useRef(null);
 
-  React.useEffect(() => {
-    const handlePopState = () => {
-      const path = window.location.pathname;
-      if (path.startsWith('/blog/')) {
-        const blogId = path.replace('/blog/', '');
-        setCurrentBlogId(blogId);
-        setCurrentPage('blog');
-      } else if (path === '/case-studies') {
-        setCurrentPage('caseStudies');
-      } else if (path === '/portfolio') {
-        homeScrollPosRef.current = window.scrollY || 0;
-        setCurrentPage('portfolio');
-      } else {
-        setCurrentPage('home');
-      }
-    };
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    const path = window.location.pathname;
-    if (path.startsWith('/blog/')) {
-      const blogId = path.replace('/blog/', '');
-      setCurrentBlogId(blogId);
-      setCurrentPage('blog');
-    } else if (path === '/case-studies') {
-      setCurrentPage('caseStudies');
-    } else if (path === '/portfolio') {
-      homeScrollPosRef.current = window.scrollY || 0;
-      setCurrentPage('portfolio');
-    } else {
-      setCurrentPage('home');
-    }
-
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
+  const pathName = location.pathname;
+  const isBlogDetailView = pathName.startsWith('/blog/');
 
   React.useEffect(() => {
-    if (currentPage === 'home') {
+    if (pathName === '/') {
       window.scrollTo({ top: homeScrollPosRef.current, behavior: 'auto' });
     }
-  }, [currentPage]);
+  }, [pathName]);
 
   React.useEffect(() => {
     if (typeof window === 'undefined') {
@@ -120,26 +78,21 @@ function App() {
 
   const navigateToPortfolio = () => {
     homeScrollPosRef.current = window.scrollY || 0;
-    window.history.pushState({}, '', '/portfolio');
-    setCurrentPage('portfolio');
+    navigate('/portfolio', { state: { from: pathName } });
   };
 
   const navigateToHome = () => {
-    window.history.pushState({}, '', '/');
-    setCurrentPage('home');
+    navigate('/');
   };
 
   const navigateToBlog = (blogId) => {
     homeScrollPosRef.current = window.scrollY || 0;
-    window.history.pushState({}, '', `/blog/${blogId}`);
-    setCurrentBlogId(blogId);
-    setCurrentPage('blog');
+    navigate(`/blog/${blogId}`, { state: { from: pathName } });
   };
 
   const navigateToCaseStudies = () => {
     homeScrollPosRef.current = window.scrollY || 0;
-    window.history.pushState({}, '', '/case-studies');
-    setCurrentPage('caseStudies');
+    navigate('/case-studies');
   };
 
   const navigateToContactSection = () => {
@@ -152,10 +105,9 @@ function App() {
       }
     };
 
-    if (currentPage !== 'home') {
+    if (pathName !== '/') {
       homeScrollPosRef.current = 0;
-      window.history.pushState({}, '', '/');
-      setCurrentPage('home');
+      navigate('/', { replace: false });
       setTimeout(scrollToContact, 120);
     } else {
       scrollToContact();
@@ -218,38 +170,54 @@ function App() {
     }
   }, []);
 
+  const testRouteContent = (
+    <div className="App min-h-screen flex items-center justify-center">
+      <Link to="/">
+        <h1 className="text-3xl font-semibold text-gray-900">Test route placeholder</h1>
+      </Link>
+    </div>
+  );
+
+  const BlogDetailRoute = () => {
+    const { blogId } = useParams();
+    return (
+      <BlogPage
+        blogId={blogId}
+        onBackToHome={navigateToHome}
+        onNavigateToBlog={navigateToBlog}
+      />
+    );
+  };
+
+  const homeElement = (
+    <Home
+      onNavigateToPortfolio={navigateToPortfolio}
+      onNavigateToContactSection={navigateToContactSection}
+      onNavigateToCaseStudies={navigateToCaseStudies}
+      onOpenTerms={openTerms}
+      onNavigateToBlog={navigateToBlog}
+    />
+  );
+
   return (
     <div className="App">
       <LoadingOverlay isVisible={showLoading} />
 
-      {currentPage === 'portfolio' ? (
-        <PortfolioPage onBackToHome={navigateToHome} />
-      ) : currentPage === 'blog' ? (
-        <BlogPage blogId={currentBlogId} onBackToHome={navigateToHome} onNavigateToBlog={navigateToBlog} />
-      ) : currentPage === 'caseStudies' ? (
-        <CaseStudiesPage onBackToHome={navigateToHome} />
-      ) : (
-        <>
-          <Header />
-          <Hero />
-          <Stats />
-          <Services />
-          <Technologies />
-          <Process />
-          <BuildProcess />
-          <Portfolio onSeeAllProjects={navigateToPortfolio} />
-          {/* <Team /> */}
-          <ClientShowcase onStartProject={navigateToContactSection} onViewCaseStudies={navigateToCaseStudies} />
-          <Pricing onTermsClick={openTerms} />
-          <Testimonials />
-          <Awards />
-          <BlogInsights onReadBlog={navigateToBlog} />
-          <FAQ />
-          <About />
-          <Contact />
-          <Footer />
-        </>
-      )}
+      {!isBlogDetailView && <Header />}
+
+      <Routes>
+        <Route path="/test" element={testRouteContent} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/blog" element={<BlogInsights onReadBlog={navigateToBlog} />} />
+        <Route path="/blog/:blogId" element={<BlogDetailRoute />} />
+        <Route path="/portfolio" element={<PortfolioPage onBackToHome={navigateToHome} />} />
+        <Route path="/case-studies" element={<CaseStudiesPage onBackToHome={navigateToHome} />} />
+        <Route path="/pricing" element={<Pricing onTermsClick={openTerms} />} />
+        <Route path="/" element={homeElement} />
+        <Route path="*" element={homeElement} />
+      </Routes>
+
+      <Footer />
 
       <WelcomePopup isOpen={isWelcomeOpen} onClose={closeWelcome} onStart={startFreeBuild} />
 
