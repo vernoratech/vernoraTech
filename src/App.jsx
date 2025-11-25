@@ -9,6 +9,7 @@ import WelcomePopup from './components/WelcomePopup';
 import LoadingOverlay from './components/LoadingOverlay';
 import Home from './components/Home';
 import Pricing from './components/Pricing';
+import FAQ from './components/FAQ';
 
 function App() {
   const [isTermsOpen, setIsTermsOpen] = React.useState(false);
@@ -245,6 +246,7 @@ function App() {
 
       <Routes>
         <Route path="/test" element={testRouteContent} />
+        <Route path="/faq" element={<FAQ />} />
         <Route path="/pricing" element={<Pricing onTermsClick={openTerms}/>} />
         <Route path="*" element={mainAppContent} />
       </Routes>

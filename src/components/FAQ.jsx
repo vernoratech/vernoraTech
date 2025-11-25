@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const FAQ = () => {
   const items = [
@@ -21,13 +21,35 @@ const FAQ = () => {
   ];
 
   const [openIndex, setOpenIndex] = useState(0);
+  const contentRefs = useRef([]);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setOpenIndex(-1);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
-    <section id="faq" className="bg-gray-50 section-padding reveal-up">
+    <section id="faq" className="bg-[#fafafa] section-padding reveal-up mt-10">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16 reveal-up">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-[#1A3A6F] mb-4">Frequently Asked Questions</h2>
+          <p className="text-xl text-[#1A3A6F] max-w-2xl mx-auto">
             Quick answers to common questions about our service.
           </p>
         </div>
@@ -36,17 +58,37 @@ const FAQ = () => {
           {items.map((item, idx) => {
             const isOpen = openIndex === idx;
             return (
-              <div key={idx} className="bg-white rounded-lg shadow-sm">
+              <div key={idx} className="bg-[#fafafa] rounded-lg shadow-sm">
                 <button
-                  className="w-full text-left px-6 py-4 flex items-center justify-between"
+                  type="button"
+                  className="w-full text-left px-6 py-4 flex items-center justify-between cursor-pointer"
                   onClick={() => setOpenIndex(isOpen ? -1 : idx)}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-panel-${idx}`}
+                  id={`faq-trigger-${idx}`}
                 >
-                  <span className="font-semibold text-gray-900">{item.q}</span>
-                  <span className="text-primary">{isOpen ? '−' : '+'}</span>
+                  <span className="font-semibold text-[#1A3A6F] ">{item.q}</span>
+                  <span className="text-[#1A3A6F]">{isOpen ? '−' : '+'}</span>
                 </button>
-                {isOpen && (
-                  <div className="px-6 pb-6 text-gray-600">{item.a}</div>
-                )}
+                <div
+                  ref={(el) => (contentRefs.current[idx] = el)}
+                  id={`faq-panel-${idx}`}
+                  role="region"
+                  aria-labelledby={`faq-trigger-${idx}`}
+                  className={`transition-[max-height] duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-[500px]' : 'max-h-0'
+                    }`}
+                  style={{
+                    maxHeight: isOpen
+                      ? isMounted && contentRefs.current[idx]
+                        ? `${contentRefs.current[idx].scrollHeight}px`
+                        : '500px'
+                      : '0px'
+                  }}
+                >
+                  <div className="px-6 pb-6 text-[#1A3A6F]">
+                    {item.a}
+                  </div>
+                </div>
               </div>
             );
           })}

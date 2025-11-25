@@ -26,8 +26,8 @@ const Testimonials = () => {
     <section id="testimonials" className="bg-white section-padding reveal-up">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 reveal-up">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">What Clients Say</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-primary mb-4">What Clients Say</h2>
+          <p className="text-xl text-primary max-w-2xl mx-auto">
             Real results from real businesses we serve.
           </p>
         </div>
@@ -35,9 +35,9 @@ const Testimonials = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {testimonials.map((t, i) => (
             <div key={i} className="bg-gray-50 p-6 sm:p-7 rounded-lg shadow-sm reveal-up" style={{ transitionDelay: `${80 + i * 80}ms` }}>
-              <div className="text-gray-700 italic mb-6">“{t.quote}”</div>
-              <div className="font-semibold text-gray-900">{t.name}</div>
-              <div className="text-gray-500 text-sm">{t.role}</div>
+              <div className="text-primary italic mb-6">“{t.quote}”</div>
+              <div className="font-semibold text-primary">{t.name}</div>
+              <div className="text-primary text-sm">{t.role}</div>
             </div>
           ))}
         </div>

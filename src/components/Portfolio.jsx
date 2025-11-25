@@ -10,10 +10,10 @@ const Portfolio = (props) => {
     <section id="portfolio" className="bg-gray-50 section-padding reveal-up">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 reveal-up">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-bold text-primary mb-4">
             Industries We Empower
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-primary max-w-2xl mx-auto">
             Explore the domains where we've delivered measurable outcomes,
             crafted tailored journeys, and accelerated digital growth.
           </p>
@@ -31,18 +31,19 @@ const Portfolio = (props) => {
                   label={domain.name}
                   title={`${domain.name} showcase`}
                   aspectClass="aspect-[4/3]"
+                  imageSrc={domain.imageSrc}
                   className="bg-gradient-to-br from-slate-900/5 via-primary/5 to-indigo-200/10"
                 />
                 <div className="text-sm text-primary font-semibold mb-2 uppercase tracking-wide">
                   {domain.name}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                <h3 className="text-xl font-semibold text-primary mb-3">
                   {domain.headline}
                 </h3>
-                <p className="text-gray-600 mb-4 flex-1">
+                <p className="text-primary mb-4 flex-1">
                   {domain.summary}
                 </p>
-                <ul className="space-y-2 text-gray-600 text-sm">
+                <ul className="space-y-2 text-primary text-sm">
                   {domain.focusAreas.map((item, itemIndex) => (
                     <li key={itemIndex} className="flex gap-2">
                       <span className="text-primary leading-6">•</span>
@@ -50,7 +51,7 @@ const Portfolio = (props) => {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-6 pt-4 border-t border-gray-100 text-sm text-gray-500 font-medium">
+                <div className="mt-6 pt-4 border-t border-gray-100 text-sm text-primary font-medium">
                   {domain.results}
                 </div>
               </div>

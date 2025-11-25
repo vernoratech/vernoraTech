@@ -136,19 +136,34 @@ const Contact = () => {
                 <label className="block text-sm font-medium text-[#1A3A6F] mb-2">
                   Service Needed
                 </label>
-                <select
-                  name="service"
-                  value={formData.service}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                >
-                  <option value="">Select a service</option>
-                  <option value="landing-page">Landing Page Design</option>
-                  <option value="ca-website">CA Firm Website</option>
-                  <option value="construction">Construction Website</option>
-                  <option value="professional">Professional Services</option>
-                  <option value="other">Other</option>
-                </select>
+                <div className="relative">
+                  <select
+                    name="service"
+                    value={formData.service}
+                    onChange={handleChange}
+                    className="w-full appearance-none px-4 py-3 pe-12 border border-gray-200 rounded-lg bg-white shadow-sm text-gray-700 transition-all duration-200 focus:border-primary focus:ring-4 focus:ring-primary/20 hover:border-primary/60"
+                  >
+                    <option value="">Select a service</option>
+                    <option value="landing-page">Landing Page (1-page site)</option>
+                    <option value="business-website">Business Website (3–5 pages)</option>
+                    <option value="online-store">Online Store (E-commerce)</option>
+                    <option value="portfolio">Portfolio / Personal Website</option>
+                    <option value="booking-website">Booking Website (Appointments)</option>
+                    <option value="blog">Blog / Content Website</option>
+                    <option value="revamp">Redesign My Existing Website</option>
+                    <option value="marketing-funnel">Marketing Funnel / Lead Capture</option>
+                    <option value="company-profile">Company Profile Website</option>
+                    <option value="other">Other (Tell Us More)</option>
+                  </select>
+                  <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
+                      <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 111.06 1.061l-4.24 4.24a.75.75 0 01-1.06 0l-4.24-4.24a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                    </svg>
+                  </span>
+                </div>
+                <p className="mt-2 text-sm text-gray-500">
+                  Choose the project type that best matches your needs so we can tailor our consultation.
+                </p>
               </div>
 
               <div>
@@ -184,14 +199,14 @@ const Contact = () => {
               </h3>
               <div className="space-y-4">
                 <div className="flex items-center">
-                  <span className="text-primary text-xl mr-4"><MdOutlineEmail className='text-blue-600 text-2xl'/></span>
+                  <span className="text-primary text-xl mr-4"><MdOutlineEmail className='text-blue-600 text-2xl' /></span>
                   <div>
                     <div className="font-medium text-[#1A3A6F]">Email</div>
                     <div className="text-gray-600 cursor-pointer hover:text-blue-600" onClick={() => window.location.href = 'mailto:vernoratech@gmail.com'}>vernoratech@gmail.com</div>
                   </div>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-primary text-xl mr-4"><BsWhatsapp className='text-green-600'/></span>
+                  <span className="text-primary text-xl mr-4"><BsWhatsapp className='text-green-600' /></span>
                   <div>
                     <div className="font-medium text-[#1A3A6F]">WhatsApp</div>
                     <div className="text-gray-600 cursor-pointer hover:text-blue-600" onClick={() => window.open('https://wa.me/917397825850', '_blank')}>+91 73978 25850</div>
@@ -199,7 +214,7 @@ const Contact = () => {
                   </div>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-primary text-xl mr-4"><LuClock2 className='text-gray-600 text-2xl'/></span>
+                  <span className="text-primary text-xl mr-4"><LuClock2 className='text-gray-600 text-2xl' /></span>
                   <div>
                     <div className="font-medium text-[#1A3A6F]">Business Hours</div>
                     <div className="text-gray-600">Mon - Fri: 9:00 AM - 6:00 PM</div>

@@ -21,13 +21,13 @@ const BlogInsights = (props) => {
   );
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-10 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-bold text-[#1A3A6F] mb-4">
             Latest Insights & Trends
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-[#1A3A6F] max-w-3xl mx-auto">
             Stay ahead of the curve with our expert insights on web development, design, and technology trends.
           </p>
         </div>
@@ -97,11 +97,11 @@ const BlogInsights = (props) => {
         </div>
 
         {/* Regular Posts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-1">
           {regularPosts.map((post, index) => (
             <article
               key={index}
-              className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+              className="bg-[#fafafa] rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
             >
               <div className="p-6">
                 <div className="flex items-center gap-3 mb-4">
@@ -129,7 +129,7 @@ const BlogInsights = (props) => {
                   </div>
                   <button 
                     onClick={() => props.onReadBlog(post.id)}
-                    className="text-blue-600 hover:text-blue-700 font-medium text-sm cursor-pointer"
+                    className="text-[#1A3A6F] hover:text-[#1A3A6F] font-medium text-sm cursor-pointer"
                   >
                     Read →
                   </button>
