@@ -1,24 +1,56 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
+
+const FAQ_ITEMS = [
+  {
+    q: 'How long does a website project take?',
+    a: 'Most landing pages take 1–2 weeks. Multi-page business sites usually take 3–5 weeks depending on how quickly we receive your content.'
+  },
+  {
+    q: 'Do you provide content and images?',
+    a: 'We help you with structure and copy suggestions. For images, we can use high-quality royalty-free visuals or your own photos.'
+  },
+  {
+    q: 'Is SEO included?',
+    a: 'Every project includes essential on-page SEO such as meta tags, clean code, performance optimization, and mobile-friendly design.'
+  },
+  {
+    q: 'Do you provide support after launch?',
+    a: 'Yes, we offer optional monthly care plans for updates, backups, security checks, and small improvements.'
+  },
+
+  // ---- Friendly Legal / Policy Items ----
+  {
+    q: 'How does the payment process work?',
+    a: 'To get started, we take a 50% advance so we can reserve your project slot. The remaining amount is due at completion before final delivery.'
+  },
+  {
+    q: 'Do you offer refunds?',
+    a: 'We try our best to make sure you’re happy with the work. Once the project has started, refunds aren’t available, but we always handle concerns promptly.'
+  },
+  {
+    q: 'Who owns the website after it’s completed?',
+    a: 'Once the project is fully paid, the website and all approved assets are completely yours.'
+  },
+  {
+    q: 'What if I need extra features later?',
+    a: 'No problem — we can add anything you need. Extra features are simply billed separately with a clear estimate before we start.'
+  },
+  {
+    q: 'Is hosting or domain included?',
+    a: 'Hosting and domain are purchased separately so you stay in full control. If you need help choosing a provider, we’ll guide you.'
+  },
+  {
+    q: 'Do you provide any warranty?',
+    a: 'Yes, we include a free 30-day support window after launch for small fixes or adjustments.'
+  }
+];
 
 const FAQ = () => {
-  const items = [
-    {
-      q: 'How long does a website project take?',
-      a: 'Most landing pages take 1-2 weeks. Multi-page business sites usually take 3-5 weeks depending on content readiness.'
-    },
-    {
-      q: 'Do you provide content and images?',
-      a: 'We guide your copy and structure. We can use royalty-free images or work with your assets.'
-    },
-    {
-      q: 'Is SEO included?',
-      a: 'All plans include on-page SEO best practices like meta tags, semantic HTML, performance and mobile optimization.'
-    },
-    {
-      q: 'Can you maintain the site after launch?',
-      a: 'Yes, we offer affordable monthly care plans for updates, backups, monitoring, and enhancements.'
-    }
-  ];
+  const location = useLocation();
+  const isStandalonePage = location?.pathname === '/faq';
+  const items = useMemo(() => (isStandalonePage ? FAQ_ITEMS : FAQ_ITEMS.slice(0, 3)), [isStandalonePage]);
+
 
   const [openIndex, setOpenIndex] = useState(0);
   const contentRefs = useRef([]);
@@ -41,8 +73,16 @@ const FAQ = () => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    if (isStandalonePage) {
+      window.scrollTo(0, 0);
+    }
+  }, [isStandalonePage]);
+
+  useEffect(() => {
+    if (openIndex >= items.length) {
+      setOpenIndex(items.length ? 0 : -1);
+    }
+  }, [items.length, openIndex]);
 
   return (
     <section id="faq" className="bg-[#fafafa] section-padding reveal-up mt-10">

@@ -1,4 +1,5 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useCallback } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   ArrowLeft,
   Clock,
@@ -51,6 +52,47 @@ const BlogPage = (props) => {
   const blogId = props.blogId || 1;
   const blog = blogPosts.find(post => post.id == blogId);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const backTarget = useMemo(() => {
+    if (location.state?.from) {
+      return location.state.from;
+    }
+    if (document.referrer && !document.referrer.includes(window.location.origin)) {
+      return document.referrer;
+    }
+    return '/blog';
+  }, [location.state?.from]);
+
+  const handleBack = useCallback(() => {
+    if (window.history.length > 1) {
+      navigate(-1);
+      return;
+    }
+
+    if (backTarget.startsWith('http') && backTarget.includes(window.location.origin)) {
+      navigate(backTarget.replace(window.location.origin, ''));
+      return;
+    }
+
+    if (backTarget.startsWith('http')) {
+      window.location.href = backTarget;
+      return;
+    }
+
+    if (backTarget) {
+      navigate(backTarget);
+      return;
+    }
+
+    if (props.onBackToHome) {
+      props.onBackToHome();
+    } else {
+      navigate('/');
+    }
+  }, [backTarget, navigate, props.onBackToHome]);
+
   const relatedPosts = useMemo(() => {
     if (!blog) return [];
     return blogPosts
@@ -91,7 +133,7 @@ const BlogPage = (props) => {
       <nav className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-[#D9E4F2]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <button
-            onClick={() => props.onBackToHome && props.onBackToHome()}
+            onClick={handleBack}
             className="inline-flex items-center gap-2 text-sm font-semibold text-[#6E7787] hover:text-[#1A3A6F] transition-colors"
           >
             <ArrowLeft size={16} />

@@ -1,13 +1,49 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo, useCallback } from 'react';
 import { domains } from '../data/projects';
 import ScreenshotPlaceholder from './ScreenshotPlaceholder';
 import { ArrowLeft, ExternalLink, Layers, ShieldCheck, TrendingUp, ChevronRight } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-const BackButton = React.memo(function BackButton({ onClick }) {
+const BackButton = React.memo(function BackButton({ fallbackToHome = true }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const backTarget = useMemo(() => {
+    if (location.state?.from) {
+      return location.state.from;
+    }
+    if (document.referrer && !document.referrer.includes(window.location.origin)) {
+      return document.referrer;
+    }
+    return fallbackToHome ? '/' : null;
+  }, [location.state?.from, fallbackToHome]);
+
+  const handleBack = useCallback(() => {
+    if (window.history.length > 1) {
+      navigate(-1);
+      return;
+    }
+
+    if (backTarget?.startsWith('http') && backTarget.includes(window.location.origin)) {
+      navigate(backTarget.replace(window.location.origin, ''));
+      return;
+    }
+
+    if (backTarget?.startsWith('http')) {
+      window.location.href = backTarget;
+      return;
+    }
+
+    if (backTarget) {
+      navigate(backTarget);
+      return;
+    }
+  }, [backTarget, navigate]);
+
   return (
     <button
       type="button"
-      onClick={onClick}
+      onClick={handleBack}
       className="group inline-flex items-center gap-2 rounded-full border border-[#1A3A6F]/10 bg-white px-5 py-2 text-sm font-semibold text-[#1A3A6F] shadow-sm transition-all duration-200 hover:border-[#1A3A6F]/30 hover:bg-[#D9E4F2]/50 hover:pl-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2DA3DB] focus-visible:ring-offset-2"
     >
       <ArrowLeft size={16} className="transition-transform duration-200 group-hover:-translate-x-0.5" />
@@ -55,7 +91,7 @@ const PortfolioPage = (props) => {
 
           {/* Header Section */}
           <div className="flex flex-col items-center text-center">
-            <BackButton onClick={props.onBackToHome} />
+            <BackButton fallbackToHome={Boolean(props.onBackToHome)} />
 
             <div className="mt-10 inline-flex items-center gap-2 rounded-full border border-[#2DA3DB]/20 bg-[#2DA3DB]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.15em] text-[#1A3A6F]">
               <span>Strategic Portfolio</span>
@@ -109,9 +145,9 @@ const PortfolioPage = (props) => {
                   <ScreenshotPlaceholder
                     label={domain.name}
                     className="h-full w-full transition-transform duration-500 group-hover:scale-105"
+                    imageSrc={domain.imageSrc}
                   />
                 </div>
-
                 {/* Content */}
                 <div className="mt-6 flex flex-1 flex-col">
                   <h3 className="text-xl font-bold text-[#1C1F26] group-hover:text-[#2DA3DB] transition-colors">

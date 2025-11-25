@@ -78,7 +78,7 @@ function App() {
 
   const navigateToPortfolio = () => {
     homeScrollPosRef.current = window.scrollY || 0;
-    navigate('/portfolio');
+    navigate('/portfolio', { state: { from: pathName } });
   };
 
   const navigateToHome = () => {
@@ -87,7 +87,7 @@ function App() {
 
   const navigateToBlog = (blogId) => {
     homeScrollPosRef.current = window.scrollY || 0;
-    navigate(`/blog/${blogId}`);
+    navigate(`/blog/${blogId}`, { state: { from: pathName } });
   };
 
   const navigateToCaseStudies = () => {

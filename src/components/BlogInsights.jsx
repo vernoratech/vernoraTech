@@ -1,25 +1,29 @@
 import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { blogPosts } from '../data/blogPosts';
 import { ArrowRight, BookOpen, Calendar, ChevronRight, Clock, Tag, User } from 'lucide-react';
 
 const BlogInsights = (props) => {
+  const location = useLocation();
+  const isStandalonePage = location?.pathname === '/blog';
+
   const categories = ['All', 'Technology Trends', 'Development', 'Design', 'Performance', 'Security', 'Mobile'];
-  const [activeCategory, setActiveCategory] = React.useState('All');
+  const [activeCategory, setActiveCategory] = React.useState(props.initialCategory || 'All');
 
   const filteredPosts = React.useMemo(() => {
     if (activeCategory === 'All') return blogPosts;
     return blogPosts.filter(post => post.category === activeCategory);
   }, [activeCategory]);
 
-  const featuredPosts = React.useMemo(
-    () => filteredPosts.filter(post => post.featured),
-    [filteredPosts]
-  );
+  const featuredPosts = React.useMemo(() => {
+    const posts = filteredPosts.filter(post => post.featured);
+    return isStandalonePage ? posts : posts.slice(0, 2);
+  }, [filteredPosts, isStandalonePage]);
 
-  const regularPosts = React.useMemo(
-    () => filteredPosts.filter(post => !post.featured),
-    [filteredPosts]
-  );
+  const regularPosts = React.useMemo(() => {
+    const posts = filteredPosts.filter(post => !post.featured);
+    return isStandalonePage ? posts : posts.slice(0, 3);
+  }, [filteredPosts, isStandalonePage]);
   const BlogImagePlaceholder = ({ className = '', src, title }) => (
     <div className={`relative w-full h-full min-h-[240px] bg-[#1A3A6F] overflow-hidden ${className}`}>
       {typeof src === 'string' && (src.startsWith('http') || src.startsWith('data:image')) ? (
@@ -45,7 +49,7 @@ const BlogInsights = (props) => {
   }, []);
 
   return (
-    <section className="py-10 bg-gray-50">
+    <section className={`py-10 bg-gray-50 ${isStandalonePage ? 'mt-20' : ''}`}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-[#1A3A6F] mb-4">
