@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { blogPosts } from '../data/blogPosts';
 import { ArrowRight, BookOpen, Calendar, ChevronRight, Clock, Tag, User } from 'lucide-react';
 
@@ -40,6 +40,10 @@ const BlogInsights = (props) => {
     </div>
   );
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   return (
     <section className="py-10 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -69,7 +73,7 @@ const BlogInsights = (props) => {
           ))}
         </div>
 
-       
+
 
         {featuredPosts.length > 0 && (
           <div className="mb-16 flex flex-col gap-8">
@@ -139,7 +143,7 @@ const BlogInsights = (props) => {
           </div>
         )}
 
-        {regularPosts.length > 0 ? (  
+        {regularPosts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {regularPosts.map((post) => (
               <article

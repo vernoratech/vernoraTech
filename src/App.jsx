@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useParams, useNavigate, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import PortfolioPage from './components/PortfolioPage';
 import BlogPage from './components/BlogPage';
@@ -10,6 +10,7 @@ import LoadingOverlay from './components/LoadingOverlay';
 import Home from './components/Home';
 import Pricing from './components/Pricing';
 import FAQ from './components/FAQ';
+import BlogInsights from './components/BlogInsights';
 
 function App() {
   const [isTermsOpen, setIsTermsOpen] = React.useState(false);
@@ -27,28 +28,18 @@ function App() {
   const homeScrollPosRef = React.useRef(0);
   const welcomeResetTimerRef = React.useRef(null);
 
-  React.useEffect(() => {
-    const handlePopState = () => {
-      const path = window.location.pathname;
-      if (path.startsWith('/blog/')) {
-        const blogId = path.replace('/blog/', '');
-        setCurrentBlogId(blogId);
-        setCurrentPage('blog');
-      } else if (path === '/case-studies') {
-        setCurrentPage('caseStudies');
-      } else if (path === '/portfolio') {
-        homeScrollPosRef.current = window.scrollY || 0;
-        setCurrentPage('portfolio');
-      } else {
-        setCurrentPage('home');
-      }
-    };
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    const path = window.location.pathname;
+  React.useEffect(() => {
+    const path = location.pathname;
     if (path.startsWith('/blog/')) {
       const blogId = path.replace('/blog/', '');
       setCurrentBlogId(blogId);
       setCurrentPage('blog');
+    } else if (path === '/blog') {
+      setCurrentBlogId(null);
+      setCurrentPage('blogList');
     } else if (path === '/case-studies') {
       setCurrentPage('caseStudies');
     } else if (path === '/portfolio') {
@@ -57,10 +48,7 @@ function App() {
     } else {
       setCurrentPage('home');
     }
-
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
+  }, [location.pathname]);
 
   React.useEffect(() => {
     if (currentPage === 'home') {
@@ -108,25 +96,25 @@ function App() {
 
   const navigateToPortfolio = () => {
     homeScrollPosRef.current = window.scrollY || 0;
-    window.history.pushState({}, '', '/portfolio');
+    navigate('/portfolio');
     setCurrentPage('portfolio');
   };
 
   const navigateToHome = () => {
-    window.history.pushState({}, '', '/');
+    navigate('/');
     setCurrentPage('home');
   };
 
   const navigateToBlog = (blogId) => {
     homeScrollPosRef.current = window.scrollY || 0;
-    window.history.pushState({}, '', `/blog/${blogId}`);
+    navigate(`/blog/${blogId}`);
     setCurrentBlogId(blogId);
     setCurrentPage('blog');
   };
 
   const navigateToCaseStudies = () => {
     homeScrollPosRef.current = window.scrollY || 0;
-    window.history.pushState({}, '', '/case-studies');
+    navigate('/case-studies');
     setCurrentPage('caseStudies');
   };
 
@@ -238,6 +226,17 @@ function App() {
     </div>
   );
 
+  const BlogDetailRoute = () => {
+    const { blogId } = useParams();
+    return (
+      <BlogPage
+        blogId={blogId}
+        onBackToHome={navigateToHome}
+        onNavigateToBlog={navigateToBlog}
+      />
+    );
+  };
+
   const isBlogView = currentPage === 'blog';
 
   return (
@@ -249,6 +248,8 @@ function App() {
       <Routes>
         <Route path="/test" element={testRouteContent} />
         <Route path="/faq" element={<FAQ />} />
+        <Route path="/blog" element={<BlogInsights onReadBlog={navigateToBlog} />} />
+        <Route path="/blog/:blogId" element={<BlogDetailRoute />} />
         <Route path="/pricing" element={<Pricing onTermsClick={openTerms} />} />
         <Route path="*" element={mainAppContent} />
       </Routes>

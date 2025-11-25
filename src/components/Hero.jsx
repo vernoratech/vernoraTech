@@ -106,7 +106,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="relative pt-24 pb-20 min-h-[95vh] mt-1 md:mt-10 overflow-hidden bg-[#FAFAFA]">
+    <section id="home" className="relative pt-32 pb-20 min-h-[95vh] overflow-hidden bg-[#FAFAFA]">
       
       {/* --- Video Background Layer --- */}
       <div className="absolute inset-0 h-full w-full overflow-hidden">
@@ -217,7 +217,7 @@ const Hero = () => {
         </div>
 
         {/* --- "Why Trust Us" Cards --- */}
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="mt-20  grid-cols-1 md:grid-cols-3 gap-6 md:grid hidden">
            {/* Card 1 */}
            <div className="group rounded-2xl border border-[#D9E4F2] bg-white p-6 shadow-sm transition-all hover:border-[#2DA3DB]/30 hover:shadow-lg hover:shadow-[#1A3A6F]/5">
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#2DA3DB]/10 text-[#2DA3DB] group-hover:bg-[#2DA3DB] group-hover:text-white transition-colors">
