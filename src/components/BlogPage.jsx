@@ -1,214 +1,4 @@
-// import React from 'react';
-// import Header from './Header';
-// import Footer from './Footer';
-import { blogPosts } from '../data/blogPosts';
-
-// const BlogPage = (props) => {
-//   const { blogId } = props;
-//   const blog = blogPosts.find(post => post.id === blogId);
-
-//   const isImageSource = (value) =>
-//     typeof value === 'string' && (value.startsWith('http') || value.startsWith('data:image'));
-
-//   const BlogMedia = ({
-//     src,
-//     title,
-//     className = '',
-//     imageClassName = '',
-//     emojiClassName = '',
-//     asCard = false,
-//   }) => {
-//     const baseClasses = `relative overflow-hidden bg-[#1A3A6F] ${asCard ? 'rounded-3xl shadow-2xl shadow-[#1A3A6F]/20' : ''}`;
-
-//     if (isImageSource(src)) {
-//       return (
-//         <div className={`${baseClasses} ${className}`}>
-//           <img
-//             src={src}
-//             alt={title ? `${title} cover` : ''}
-//             className={`absolute inset-0 w-full h-full object-cover ${imageClassName}`}
-//           />
-//         </div>
-//       );
-//     }
-
-//     return (
-//       <div className={`${baseClasses} ${className}`}>
-//         <span
-//           className={`absolute inset-0 flex items-center justify-center text-6xl text-white/70 ${emojiClassName}`}
-//           role="img"
-//           aria-label={title ? `${title} illustration` : 'Article illustration'}
-//         >
-//           {src || '📰'}
-//         </span>
-//       </div>
-//     );
-//   };
-
-//   React.useEffect(() => {
-//     window.scrollTo({ top: 0, behavior: 'auto' });
-//   }, [blogId]);
-
-//   if (!blog) {
-//     return (
-//       <div className="min-h-screen bg-gray-50">
-//         {/* <Header /> */}
-//         <main className="pt-20">
-//           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-//             <div className="text-center">
-//               <h1 className="text-4xl font-bold text-gray-900 mb-4">Blog Not Found</h1>
-//               <p className="text-xl text-gray-600 mb-8">The blog post you're looking for doesn't exist.</p>
-//               <button
-//                 onClick={props.onBackToHome}
-//                 className="inline-flex items-center text-white hover:text-primary-dark font-medium transition-colors duration-200 cursor-pointer px-8 py-3 bg-blue-500 rounded-md"
-//               >
-//                 ← Back to Home
-//               </button>
-//             </div>
-//           </div>
-//         </main>
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div className="min-h-screen bg-gray-50">
-//       {/* <Header /> */}
-
-//       <main className="pt-20">
-//         <article className="bg-white">
-//           {/* Hero Section */}
-//           <div className="relative bg-gradient-to-br from-blue-500 to-purple-600 py-16 overflow-hidden">
-//             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-//               <button
-//                 onClick={props.onBackToHome}
-//                 className="inline-flex items-center text-white/90 hover:text-white font-medium transition-colors duration-200 cursor-pointer mb-8"
-//               >
-//                 ← Back to Home
-//               </button>
-
-//               <div className="flex items-center gap-4 mb-6">
-//                 <span className="px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-sm rounded-full font-medium">
-//                   {blog.category}
-//                 </span>
-//                 <span className="text-white/90 text-sm">{blog.readTime}</span>
-//               </div>
-
-//               <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-//                 {blog.title}
-//               </h1>
-
-//               <div className="flex items-center gap-4 text-white/90">
-//                 <div className="flex items-center gap-3">
-//                   <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-2xl">
-//                     👤
-//                   </div>
-//                   <div>
-//                     <p className="font-medium text-white">{blog.author}</p>
-//                     <p className="text-sm text-white/80">{blog.date}</p>
-//                   </div>
-//                 </div>
-//               </div>
-
-//               <div className="mt-10">
-//                 <BlogMedia
-//                   src={blog.image}
-//                   title={blog.title}
-//                   asCard
-//                   className="h-64 sm:h-72 md:h-80"
-//                   imageClassName="scale-105"
-//                   emojiClassName="text-7xl"
-//                 />
-//               </div>
-//             </div>
-//           </div>
-
-//           {/* Blog Content */}
-//           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-
-//             {/* Excerpt */}
-//             <div className="mb-12">
-//               <p className="text-xl text-gray-700 leading-relaxed italic border-l-4 border-blue-500 pl-6">
-//                 {blog.excerpt}
-//               </p>
-//             </div>
-
-//             {/* Main Content */}
-//             <div className="prose prose-lg max-w-none">
-//               {blog.content && blog.content.map((paragraph, index) => (
-//                 <p key={index} className="text-gray-700 leading-relaxed mb-6">
-//                   {paragraph}
-//                 </p>
-//               ))}
-//             </div>
-
-//             {/* Author Bio */}
-//             <div className="mt-16 pt-8 border-t border-gray-200">
-//               <div className="flex items-start gap-4">
-//                 <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-3xl flex-shrink-0">
-//                   👤
-//                 </div>
-//                 <div>
-//                   <h3 className="text-xl font-bold text-gray-900 mb-2">About {blog.author}</h3>
-//                   <p className="text-gray-600">
-//                     {blog.author} is a passionate writer and expert in {blog.category.toLowerCase()},
-//                     sharing insights and best practices with the development community.
-//                   </p>
-//                 </div>
-//               </div>
-//             </div>
-
-//             {/* Back Button */}
-//             <div className="mt-12 text-center">
-//               <button
-//                 onClick={props.onBackToHome}
-//                 className="inline-flex items-center text-white hover:text-primary-dark font-medium transition-colors duration-200 cursor-pointer px-8 py-3 bg-blue-500 rounded-md"
-//               >
-//                 ← Back to Home
-//               </button>
-//             </div>
-//           </div>
-
-//           {/* Related Posts */}
-//           <div className="bg-gray-50 py-16">
-//             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-//               <h2 className="text-3xl font-bold text-gray-900 mb-8">Related Articles</h2>
-//               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-//                 {blogPosts?.filter(post => post.id !== blog.id && post.category === blog.category)
-//                   .slice(0, 2)
-//                   .map((post, index) => (
-//                     <div
-//                       key={index}
-//                       onClick={() => props.onNavigateToBlog(post.id)}
-//                       className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer p-6"
-//                     >
-//                       <BlogMedia
-//                         src={post.image}
-//                         title={post.title}
-//                         className="h-40 rounded-2xl mb-4"
-//                         emojiClassName="text-5xl"
-//                       />
-//                       <h3 className="text-xl font-bold text-gray-900 mb-2">{post.title}</h3>
-//                       <p className="text-gray-600 mb-4">{post.excerpt}</p>
-//                       <div className="flex items-center justify-between">
-//                         <span className="text-sm text-gray-500">{post.readTime}</span>
-//                         <span className="text-blue-600 font-medium text-sm">Read →</span>
-//                       </div>
-//                     </div>
-//                   ))}
-//               </div>
-//             </div>
-//           </div>
-//         </article>
-//       </main>
-//     </div>
-//   );
-// };
-
-// export default BlogPage;
-
-
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import {
   ArrowLeft,
   Clock,
@@ -221,6 +11,7 @@ import {
   Tag
 } from 'lucide-react';
 
+import { blogPosts } from '../data/blogPosts';
 
 // --- Sub-component: BlogMedia ---
 const BlogMedia = ({ src, category, className }) => {
@@ -259,6 +50,13 @@ const BlogPage = (props) => {
   // FIX: Use loose equality (==) to handle string vs number ID mismatches
   const blogId = props.blogId || 1;
   const blog = blogPosts.find(post => post.id == blogId);
+
+  const relatedPosts = useMemo(() => {
+    if (!blog) return [];
+    return blogPosts
+      .filter(post => post.id !== blog.id && post.category === blog.category)
+      .slice(0, 3);
+  }, [blog]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' });
@@ -413,10 +211,8 @@ const BlogPage = (props) => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {blogPosts
-                .blogPosts?.filter(post => post.id !== blog.id && post.category === blog.category) // Exclude current post
-                .slice(0, 3) // Show 3 related
-                .map((post) => (
+              {relatedPosts.length > 0 ? (
+                relatedPosts.map((post) => (
                   <div
                     key={post.id}
                     onClick={() => props.onNavigateToBlog && props.onNavigateToBlog(post.id)}
@@ -435,6 +231,7 @@ const BlogPage = (props) => {
                       </div>
                     </div>
 
+
                     <div className="p-6 flex flex-col flex-1">
                       <h3 className="text-lg font-bold text-[#1C1F26] mb-2 group-hover:text-[#2DA3DB] transition-colors line-clamp-2">
                         {post.title}
@@ -450,7 +247,12 @@ const BlogPage = (props) => {
                       </div>
                     </div>
                   </div>
-                ))}
+                ))
+              ) : (
+                <div className="col-span-full text-center py-12 bg-[#FAFAFA] border border-dashed border-[#D9E4F2] rounded-2xl text-[#6E7787]">
+                  No related articles yet. Explore other categories for more insights.
+                </div>
+              )}
             </div>
           </div>
         </div>
