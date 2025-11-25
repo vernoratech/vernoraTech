@@ -11,6 +11,7 @@ import Home from './components/Home';
 import Pricing from './components/Pricing';
 import FAQ from './components/FAQ';
 import BlogInsights from './components/BlogInsights';
+import New_Faq from './components/New_Faq';
 
 function App() {
   const [isTermsOpen, setIsTermsOpen] = React.useState(false);
@@ -207,7 +208,7 @@ function App() {
 
       <Routes>
         <Route path="/test" element={testRouteContent} />
-        <Route path="/faq" element={<FAQ />} />
+        <Route path="/faq" element={<New_Faq />} />
         <Route path="/blog" element={<BlogInsights onReadBlog={navigateToBlog} />} />
         <Route path="/blog/:blogId" element={<BlogDetailRoute />} />
         <Route path="/portfolio" element={<PortfolioPage onBackToHome={navigateToHome} />} />
