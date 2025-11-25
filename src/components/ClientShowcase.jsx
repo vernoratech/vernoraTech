@@ -389,7 +389,7 @@ const ClientShowcase = (props) => {
               <button
                 type="button"
                 onClick={handleStartProject}
-                className="relative z-10 mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#1A3A6F] hover:bg-[#2DA3DB] hover:text-white transition-all duration-300 shadow-lg"
+                className="relative z-10 mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#1A3A6F] hover:bg-[#2DA3DB] hover:text-white transition-all duration-300 cursor-pointer shadow-lg"
               >
                 Reserve a spot
                 <ArrowRight className="h-4 w-4" />
@@ -506,14 +506,14 @@ const ClientShowcase = (props) => {
             <button
               type="button"
               onClick={handleStartProject}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1A3A6F] px-8 py-3 text-sm font-bold text-white shadow-lg shadow-[#1A3A6F]/20 transition-all hover:bg-[#2DA3DB] hover:shadow-[#2DA3DB]/30 hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1A3A6F] px-8 py-3 text-sm font-bold text-white shadow-lg shadow-[#1A3A6F]/20 transition-all hover:bg-[#2DA3DB] hover:shadow-[#2DA3DB]/30 hover:-translate-y-0.5 cursor-pointer"
             >
               Start Your Project
               <ArrowRight size={16} />
             </button>
             <button
               type="button"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-bold text-[#1C1F26] border border-[#D9E4F2] shadow-sm transition-all hover:bg-[#FAFAFA] hover:border-[#1A3A6F]/30"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-bold text-[#1C1F26] border border-[#D9E4F2] shadow-sm transition-all hover:bg-[#FAFAFA] hover:border-[#1A3A6F]/30 cursor-pointer"
             >
               <Play size={16} className="text-[#2DA3DB] fill-[#2DA3DB]" />
               Request Preview Deck

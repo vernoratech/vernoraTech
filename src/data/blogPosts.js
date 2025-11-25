@@ -39,7 +39,7 @@ export const blogPosts = [
     readTime: '6 min read',
     date: '2025-01-08',
     author: 'Brijesh Vishwakarma',
-    image: '🎨',
+    image: 'https://www.glinfotech.net/blog/wp-content/uploads/2024/10/Main-Banner-1-1.png',
     featured: false,
     content: [
       'Design systems are evolving to prioritize inclusivity and adaptability. Components now account for variable inputs, dynamic data, and assistive technologies from the start, ensuring experiences scale gracefully across audiences.',
@@ -95,20 +95,20 @@ export const blogPosts = [
       'A culture of security awareness is essential. Regular training, clear incident response plans, and post-incident reviews ensure lessons become institutional knowledge.'
     ]
   },
-  {
-    id: 'rise-of-pwas',
-    title: 'The Rise of Progressive Web Apps',
-    excerpt: 'How PWAs are changing the mobile web experience and why you should consider them.',
-    category: 'Mobile',
-    readTime: '6 min read',
-    date: '2025-01-01',
-    author: 'Harsh Tiwari',
-    image: '📱',
-    featured: false,
-    content: [
-      'Progressive Web Apps combine the reach of the web with the capabilities of native applications. Offline caching, background sync, and push notifications allow teams to deliver app-like experiences directly from the browser.',
-      'For organizations, PWAs reduce the burden of maintaining multiple codebases while still offering users a seamless experience. Installation prompts, icon support, and deeper OS integrations continue to mature across major platforms.',
-      'As device and network fragmentation persists, PWAs present a compelling strategy for delivering consistent, high-quality experiences without sacrificing agility.'
-    ]
-  }
+  // {
+  //   id: 'rise-of-pwas',
+  //   title: 'The Rise of Progressive Web Apps',
+  //   excerpt: 'How PWAs are changing the mobile web experience and why you should consider them.',
+  //   category: 'Mobile',
+  //   readTime: '6 min read',
+  //   date: '2025-01-01',
+  //   author: 'Harsh Tiwari',
+  //   image: '📱',
+  //   featured: false,
+  //   content: [
+  //     'Progressive Web Apps combine the reach of the web with the capabilities of native applications. Offline caching, background sync, and push notifications allow teams to deliver app-like experiences directly from the browser.',
+  //     'For organizations, PWAs reduce the burden of maintaining multiple codebases while still offering users a seamless experience. Installation prompts, icon support, and deeper OS integrations continue to mature across major platforms.',
+  //     'As device and network fragmentation persists, PWAs present a compelling strategy for delivering consistent, high-quality experiences without sacrificing agility.'
+  //   ]
+  // }
 ];

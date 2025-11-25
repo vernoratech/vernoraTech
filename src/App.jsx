@@ -238,16 +238,18 @@ function App() {
     </div>
   );
 
+  const isBlogView = currentPage === 'blog';
+
   return (
     <div className="App">
       <LoadingOverlay isVisible={showLoading} />
 
-      <Header />
+      {!isBlogView && <Header />}
 
       <Routes>
         <Route path="/test" element={testRouteContent} />
         <Route path="/faq" element={<FAQ />} />
-        <Route path="/pricing" element={<Pricing onTermsClick={openTerms}/>} />
+        <Route path="/pricing" element={<Pricing onTermsClick={openTerms} />} />
         <Route path="*" element={mainAppContent} />
       </Routes>
 
