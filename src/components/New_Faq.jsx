@@ -8,6 +8,7 @@ import {
   Code2,
   ArrowRight
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const New_Faq = () => {
   const [openIndex, setOpenIndex] = useState(0);
@@ -58,6 +59,8 @@ const New_Faq = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const navigate = useNavigate();
 
   return (
     <section id="faq" className="relative py-24 bg-white overflow-hidden mt-10">
@@ -140,8 +143,8 @@ const New_Faq = () => {
             We’d be happy to hop on a quick call and clarify your specific requirements.
           </p>
           <a
-            href="#contact"
-            className="inline-flex items-center gap-2 text-[#1A3A6F] font-bold hover:text-[#2DA3DB] transition-colors"
+            onClick={()=>navigate('/contact')}
+            className="inline-flex items-center gap-2 text-[#1A3A6F] font-bold hover:text-[#2DA3DB] transition-colors cursor-pointer"
           >
             Chat with our lead engineer
             <ArrowRight size={18} />

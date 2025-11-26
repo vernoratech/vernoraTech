@@ -21,7 +21,7 @@ const Home = ({
   <>
     <Hero />
     <Stats />
-    <Services />
+    {/* <Services /> */}
     <TechnologyStack/>
     {/* <Process /> */}
     <BuildProcess />

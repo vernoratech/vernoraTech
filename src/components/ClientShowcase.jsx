@@ -12,7 +12,8 @@ import {
   CheckCircle2,
   Play,
   Home,
-  Sparkles
+  Sparkles,
+  Layers
 } from 'lucide-react';
 
 import ScreenshotPlaceholder from './ScreenshotPlaceholder'
@@ -141,24 +142,41 @@ const ClientShowcase = (props) => {
               </ul>
             </div>
 
-            {/* Dark CTA Box */}
-            <div className="rounded-2xl bg-[#1A3A6F] text-white px-8 py-10 shadow-xl shadow-[#1A3A6F]/20 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 -mt-10 -mr-10 h-32 w-32 rounded-full bg-[#2DA3DB] blur-3xl opacity-20 transition-opacity group-hover:opacity-40" />
-
-              <h3 className="relative z-10 text-xl font-bold tracking-tight text-[#D9E4F2]">Want your brand on the next release?</h3>
-              <p className="relative z-10 mt-3 text-[#D9E4F2]/80 text-sm leading-relaxed max-w-md">
-                Partner with us now and we’ll include your journey in the upcoming client premiere deck.
-              </p>
-
-              <button
-                type="button"
-                onClick={handleStartProject}
-                className="relative z-10 mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#1A3A6F] hover:bg-[#2DA3DB] hover:text-white transition-all duration-300 cursor-pointer shadow-lg"
-              >
-                Reserve a spot
-                <ArrowRight className="h-4 w-4" />
-              </button>
+            <div className="grid gap-6 sm:grid-cols-2">
+              <div className="rounded-2xl border border-[#D9E4F2] bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[#2DA3DB]/10 text-[#2DA3DB]">
+                  <Layers size={20} />
+                </div>
+                <h3 className="text-base font-bold text-[#1C1F26] mb-4">How we collaborate</h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-2.5 text-sm text-[#6E7787]">
+                    <CheckCircle2 className="h-5 w-5 text-[#2DA3DB] shrink-0" />
+                    Weekly milestone reviews with your stakeholders
+                  </li>
+                  <li className="flex items-start gap-2.5 text-sm text-[#6E7787]">
+                    <CheckCircle2 className="h-5 w-5 text-[#2DA3DB] shrink-0" />
+                    Shared playbooks for copy, visuals, and capture forms
+                  </li>
+                </ul>
+              </div>
+              <div className="rounded-2xl border border-[#D9E4F2] bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[#2DA3DB]/10 text-[#2DA3DB]">
+                  <Sparkles size={20} />
+                </div>
+                <h3 className="text-base font-bold text-[#1C1F26] mb-4">What you can expect</h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-2.5 text-sm text-[#6E7787]">
+                    <CheckCircle2 className="h-5 w-5 text-[#2DA3DB] shrink-0" />
+                    Transparent build timeline and deliverable tracker
+                  </li>
+                  <li className="flex items-start gap-2.5 text-sm text-[#6E7787]">
+                    <CheckCircle2 className="h-5 w-5 text-[#2DA3DB] shrink-0" />
+                    Optional add-ons for analytics and nurture flows
+                  </li>
+                </ul>
+              </div>
             </div>
+
           </div>
 
           {/* Right Column: Cards */}
