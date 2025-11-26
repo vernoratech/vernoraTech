@@ -289,10 +289,10 @@ const TechnologyStack = () => {
         </p>
       </div>
 
-      <div className="space-y-5 sm:space-y-6">
+      <div className="space-y-6 sm:space-y-10">
         {/* Row 1: Frontend */}
         <div className="relative">
-          <div className="absolute left-1/2 -translate-x-1/2 -top-3 z-10">
+          <div className="absolute left-1/2 -translate-x-1/2 -top-5 z-10">
             <span className="bg-[#FAFAFA] px-2 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-[#6E7787]">Frontend</span>
           </div>
           <MarqueeRow
@@ -306,7 +306,7 @@ const TechnologyStack = () => {
 
         {/* Row 2: Backend */}
         <div className="relative">
-          <div className="absolute left-1/2 -translate-x-1/2 -top-3 z-10">
+          <div className="absolute left-1/2 -translate-x-1/2 -top-5 z-10">
             <span className="bg-[#FAFAFA] px-2 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-[#6E7787]">Backend</span>
           </div>
           <MarqueeRow
@@ -320,7 +320,7 @@ const TechnologyStack = () => {
 
         {/* Row 3: Infrastructure & Data */}
         <div className="relative">
-          <div className="absolute left-1/2 -translate-x-1/2 -top-3 z-10">
+          <div className="absolute left-1/2 -translate-x-1/2 -top-5 z-10">
             <span className="bg-[#FAFAFA] px-2 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-[#6E7787]">Infrastructure & Data</span>
           </div>
           <MarqueeRow
