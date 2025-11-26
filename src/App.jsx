@@ -20,6 +20,17 @@ function App() {
   const [activePlan, setActivePlan] = React.useState(null);
   const [isWelcomeOpen, setIsWelcomeOpen] = React.useState(false);
   const [showLoading, setShowLoading] = React.useState(true);
+  const [showCookieConsent, setShowCookieConsent] = React.useState(() => {
+    if (typeof window === 'undefined') {
+      return false;
+    }
+    const consent = window.localStorage.getItem('vernoratech_cookie_consent');
+    if (!consent) return true;
+    const timestamp = parseInt(consent, 10);
+    const now = Date.now();
+    return (now - timestamp) > 24 * 60 * 60 * 1000; // 24 hours
+  });
+  const [cookieBannerVisible, setCookieBannerVisible] = React.useState(false);
   const [hasVisited, setHasVisited] = React.useState(() => {
     if (typeof window === 'undefined') {
       return false;
@@ -78,6 +89,31 @@ function App() {
     setIsWelcomeOpen(false);
     return undefined;
   }, []);
+
+  React.useEffect(() => {
+    if (showCookieConsent && !showLoading) {
+      const timer = setTimeout(() => setCookieBannerVisible(true), 600);
+      return () => clearTimeout(timer);
+    } else {
+      setCookieBannerVisible(false);
+    }
+  }, [showCookieConsent, showLoading]);
+
+  const handleAcceptCookies = () => {
+    setCookieBannerVisible(false);
+    setTimeout(() => {
+      window.localStorage.setItem('vernoratech_cookie_consent', Date.now().toString());
+      setShowCookieConsent(false);
+    }, 300);
+  };
+
+  const handleDeclineCookies = () => {
+    setCookieBannerVisible(false);
+    setTimeout(() => {
+      window.localStorage.setItem('vernoratech_cookie_consent', Date.now().toString());
+      setShowCookieConsent(false);
+    }, 300);
+  };
 
   const navigateToPortfolio = () => {
     homeScrollPosRef.current = window.scrollY || 0;
@@ -258,6 +294,31 @@ function App() {
             <div className="mt-6 flex items-center justify-end gap-3">
               <button className="btn-secondary" onClick={closeTerms}>Close</button>
               <a href="#contact" className="btn-primary" onClick={goToContact}>Contact us</a>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showCookieConsent && (
+        <div className={`fixed bottom-0 left-0 right-0 bg-[#1C1F26] text-white z-50 shadow-lg transform transition-transform duration-300 ease-out ${cookieBannerVisible ? 'translate-y-0' : 'translate-y-full'
+          }`}>
+          <div className="container mx-auto px-4 py-2 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p className="text-xs text-[#D9E4F2]/90 max-w-3xl">
+              This site uses cookies to improve your user experience.
+            </p>
+            <div className="flex gap-2">
+              <button
+                onClick={handleAcceptCookies}
+                className="px-3 py-1 bg-[#2DA3DB] text-white rounded font-medium text-xs hover:bg-[#1A3A6F] transition-colors"
+              >
+                Accept
+              </button>
+              <button
+                onClick={handleDeclineCookies}
+                className="px-3 py-1 bg-transparent text-[#D9E4F2] border border-[#D9E4F2]/30 rounded font-medium text-xs hover:bg-white/10 transition-colors"
+              >
+                Decline
+              </button>
             </div>
           </div>
         </div>
