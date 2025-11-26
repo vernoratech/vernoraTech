@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { 
-  Plus, 
-  Minus, 
-  MessageCircle, 
-  ShieldCheck, 
-  CreditCard, 
-  Code2, 
-  ArrowRight 
+import React, { useEffect, useState } from 'react';
+import {
+  Plus,
+  Minus,
+  MessageCircle,
+  ShieldCheck,
+  CreditCard,
+  Code2,
+  ArrowRight
 } from 'lucide-react';
 
 const New_Faq = () => {
@@ -55,6 +55,10 @@ const New_Faq = () => {
 
   const filteredFaqs = faqs.filter(f => f.category === activeCategory);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <section id="faq" className="relative py-24 bg-white overflow-hidden mt-10">
       {/* Background Decor */}
@@ -62,7 +66,7 @@ const New_Faq = () => {
       <div className="absolute right-0 top-1/4 w-64 h-64 bg-[#2DA3DB]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="text-center mb-16">
           <span className="inline-flex items-center gap-2 rounded-full bg-[#1A3A6F]/5 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#1A3A6F] border border-[#1A3A6F]/10 mb-6">
@@ -83,11 +87,10 @@ const New_Faq = () => {
             <button
               key={cat}
               onClick={() => { setActiveCategory(cat); setOpenIndex(0); }}
-              className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-200 border ${
-                activeCategory === cat
+              className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-200 border ${activeCategory === cat
                   ? 'bg-[#1A3A6F] text-white border-[#1A3A6F] shadow-lg shadow-[#1A3A6F]/20'
                   : 'bg-white text-[#6E7787] border-[#D9E4F2] hover:border-[#2DA3DB] hover:text-[#1A3A6F]'
-              }`}
+                }`}
             >
               {cat}
             </button>
@@ -99,32 +102,28 @@ const New_Faq = () => {
           {filteredFaqs.map((faq, index) => (
             <div
               key={index}
-              className={`group rounded-2xl border transition-all duration-300 overflow-hidden ${
-                openIndex === index
+              className={`group rounded-2xl border transition-all duration-300 overflow-hidden ${openIndex === index
                   ? 'bg-white border-[#2DA3DB] shadow-xl shadow-[#1A3A6F]/5'
                   : 'bg-[#FAFAFA] border-transparent hover:bg-white hover:border-[#D9E4F2]'
-              }`}
+                }`}
             >
               <button
                 onClick={() => setOpenIndex(index === openIndex ? -1 : index)}
                 className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
               >
-                <span className={`text-lg font-bold transition-colors ${
-                  openIndex === index ? 'text-[#1A3A6F]' : 'text-[#1C1F26]'
-                }`}>
+                <span className={`text-lg font-bold transition-colors ${openIndex === index ? 'text-[#1A3A6F]' : 'text-[#1C1F26]'
+                  }`}>
                   {faq.question}
                 </span>
-                <span className={`ml-4 flex-shrink-0 p-2 rounded-full transition-colors ${
-                  openIndex === index ? 'bg-[#1A3A6F] text-white' : 'bg-[#D9E4F2] text-[#1A3A6F] group-hover:bg-[#2DA3DB] group-hover:text-white'
-                }`}>
+                <span className={`ml-4 flex-shrink-0 p-2 rounded-full transition-colors ${openIndex === index ? 'bg-[#1A3A6F] text-white' : 'bg-[#D9E4F2] text-[#1A3A6F] group-hover:bg-[#2DA3DB] group-hover:text-white'
+                  }`}>
                   {openIndex === index ? <Minus size={16} /> : <Plus size={16} />}
                 </span>
               </button>
-              
+
               <div
-                className={`transition-all duration-300 ease-in-out ${
-                  openIndex === index ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
-                }`}
+                className={`transition-all duration-300 ease-in-out ${openIndex === index ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
+                  }`}
               >
                 <div className="px-6 pb-6 text-[#6E7787] leading-relaxed">
                   {faq.answer}
@@ -140,8 +139,8 @@ const New_Faq = () => {
           <p className="text-[#6E7787] mb-6">
             We’d be happy to hop on a quick call and clarify your specific requirements.
           </p>
-          <a 
-            href="#contact" 
+          <a
+            href="#contact"
             className="inline-flex items-center gap-2 text-[#1A3A6F] font-bold hover:text-[#2DA3DB] transition-colors"
           >
             Chat with our lead engineer

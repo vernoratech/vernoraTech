@@ -32,7 +32,7 @@ const Home = ({
       onViewCaseStudies={onNavigateToCaseStudies}
     />
     {/* <Testimonials /> */}
-    <Awards />
+    {/* <Awards /> */}
     <BlogInsights onReadBlog={onNavigateToBlog} />
     <FAQ />
     <About />
