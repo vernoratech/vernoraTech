@@ -7,12 +7,14 @@ import { FaPhone } from "react-icons/fa6";
 import { IoLocationOutline } from "react-icons/io5";
 import { LuClock4 } from "react-icons/lu";
 import { IoRocketOutline } from "react-icons/io5";
+import { useNavigate } from 'react-router-dom';
 
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <footer className="bg-[#fafafa] text-[#1A3A6F] reveal-up">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
           {/* Company Info */}
           <div className="col-span-2">
@@ -152,14 +154,14 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between text-sm text-[#1A3A6F] gap-4">
+        <div className="border-t border-gray-800 mt-8 pt-5 flex flex-col sm:flex-row items-center justify-between text-sm text-[#1A3A6F] gap-4">
           <p className='text-[#1A3A6F]'>&copy; 2025 VernoraTech. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-3">
-            <a href="#faq" className="hover:text-[#1A3A6F] transition duration-300">FAQs</a>
+            <p onClick={() => navigate('/faq')} className="hover:text-[#1A3A6F] cursor-pointer transition duration-300">FAQs</p>
             <span className="text-[#1A3A6F]">|</span>
-            <a href="#contact" className="hover:text-[#1A3A6F] transition duration-300">Support</a>
+            <p onClick={() => navigate('/support')} className="hover:text-[#1A3A6F] cursor-pointer transition duration-300">Support</p>
             <span className="text-[#1A3A6F]">|</span>
-            <a href="#pricing" className="hover:text-[#1A3A6F] transition duration-300">Pricing</a>
+            <p onClick={() => navigate('/pricing')} className="hover:text-[#1A3A6F] cursor-pointer transition duration-300">Pricing</p>
           </div>
         </div>
       </div>

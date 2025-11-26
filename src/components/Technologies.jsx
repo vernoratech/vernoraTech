@@ -317,7 +317,7 @@ const techCategories = [
   };
 
   return (
-    <section className="relative min-h-screen py-12 sm:py-16 md:py-20 lg:py-24 bg-[#FAFAFA] text-[#1C1F26]">
+    <section className="relative min-h-screen py-12 mt-16 sm:py-16 md:py-20 lg:py-24 bg-[#FAFAFA] text-[#1C1F26]">
       
       {/* Background Decor */}
       <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">

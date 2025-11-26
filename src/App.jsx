@@ -12,6 +12,8 @@ import Pricing from './components/Pricing';
 import FAQ from './components/FAQ';
 import BlogInsights from './components/BlogInsights';
 import New_Faq from './components/New_Faq';
+import Technologies from './components/Technologies';
+import Contact from './components/Contact';
 
 function App() {
   const [isTermsOpen, setIsTermsOpen] = React.useState(false);
@@ -214,6 +216,8 @@ function App() {
         <Route path="/portfolio" element={<PortfolioPage onBackToHome={navigateToHome} />} />
         <Route path="/case-studies" element={<CaseStudiesPage onBackToHome={navigateToHome} />} />
         <Route path="/pricing" element={<Pricing onTermsClick={openTerms} />} />
+        <Route path="/technologies" element={<Technologies />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/" element={homeElement} />
         <Route path="*" element={homeElement} />
       </Routes>

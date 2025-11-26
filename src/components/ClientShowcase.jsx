@@ -55,15 +55,15 @@ const ClientShowcase = (props) => {
         'Parents can browse classes and book demo sessions without messaging us repeatedly. It makes us look like a much bigger team.',
       representative: 'Founder'
     },
-    {
-      name: 'FreshCrate Organics',
-      industry: 'Farm-to-Home Produce',
-      icon: <Leaf className="h-5 w-5" />,
-      color: 'bg-green-100 text-green-700',
-      testimonial:
-        'Weekly orders increased because customers can pre-book their vegetable baskets online. It’s simple and works every time.',
-      representative: 'Farm Partner'
-    }
+    // {
+    //   name: 'FreshCrate Organics',
+    //   industry: 'Farm-to-Home Produce',
+    //   icon: <Leaf className="h-5 w-5" />,
+    //   color: 'bg-green-100 text-green-700',
+    //   testimonial:
+    //     'Weekly orders increased because customers can pre-book their vegetable baskets online. It’s simple and works every time.',
+    //   representative: 'Farm Partner'
+    // }
   ];
 
 

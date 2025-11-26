@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, ArrowRight } from 'lucide-react';
 
 const Header = () => {
@@ -21,9 +21,17 @@ const Header = () => {
     { name: 'Portfolio', href: '/portfolio' },
     { name: 'Pricing', href: '/pricing' },
     { name: 'Blog', href: '/blog' },
-    // { name: 'Contact', href: '/contact' },
+    { name: 'Technologies', href: '/technologies' },
+    { name: 'Contact', href: '/contact' },
     { name: 'FAQ', href: '/faq' },
   ];
+
+  const navigate = useNavigate();
+
+  const handleGetQuote = () => {
+    navigate('/contact');
+    setIsMenuOpen(false);
+  };
 
   return (
     <>
@@ -68,13 +76,13 @@ const Header = () => {
 
             {/* Desktop CTA */}
             <div className="hidden md:flex items-center gap-4">
-              <a
-                href="#contact"
+              <button
+                onClick={() => handleGetQuote()}
                 className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-white bg-[#1A3A6F] rounded-full hover:bg-[#2DA3DB] transition-colors shadow-lg shadow-[#1A3A6F]/20"
               >
                 Get Quote
                 <ArrowRight size={16} />
-              </a>
+              </button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -107,14 +115,13 @@ const Header = () => {
               </Link>
             ))}
             <div className="pt-4 mt-2 border-t border-[#D9E4F2]">
-              <a
-                href="#contact"
-                onClick={() => setIsMenuOpen(false)}
+              <button
+                onClick={() => handleGetQuote()}
                 className="flex items-center justify-center gap-2 w-full px-5 py-3 text-sm font-bold text-white bg-[#1A3A6F] rounded-xl hover:bg-[#2DA3DB] transition-colors shadow-md"
               >
                 Get Quote
                 <ArrowRight size={16} />
-              </a>
+              </button>
             </div>
           </div>
         </div>

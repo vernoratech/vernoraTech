@@ -72,7 +72,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="bg-gray-50 section-padding reveal-up">
+    <section id="contact" className="bg-gray-50 section-padding reveal-up mt-10 md:mt-20">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 reveal-up">
           <h2 className="text-4xl font-bold text-[#1A3A6F] mb-4">

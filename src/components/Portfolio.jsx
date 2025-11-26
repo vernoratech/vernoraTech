@@ -4,7 +4,7 @@ import { domains } from '../data/projects';
 
 const Portfolio = (props) => {
 
-  const visibleDomains = domains.slice(0, 4);
+  const visibleDomains = domains.slice(0, 2);
 
   return (
     <section id="portfolio" className="bg-gray-50 section-padding reveal-up">

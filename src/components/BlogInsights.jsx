@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { blogPosts } from '../data/blogPosts';
 import { ArrowRight, BookOpen, Calendar, ChevronRight, Clock, Tag, User } from 'lucide-react';
 
@@ -17,7 +17,7 @@ const BlogInsights = (props) => {
 
   const featuredPosts = React.useMemo(() => {
     const posts = filteredPosts.filter(post => post.featured);
-    return isStandalonePage ? posts : posts.slice(0, 2);
+    return isStandalonePage ? posts : posts.slice(0, 1);
   }, [filteredPosts, isStandalonePage]);
 
   const regularPosts = React.useMemo(() => {
@@ -47,6 +47,8 @@ const BlogInsights = (props) => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
+
+  const navigate = useNavigate();
 
   return (
     <section className={`py-10 bg-gray-50 ${isStandalonePage ? 'mt-20' : ''}`}>
