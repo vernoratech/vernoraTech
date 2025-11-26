@@ -239,7 +239,28 @@ const ClientShowcase = (props) => {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full md:w-auto">
+              <div className="relative no-scrollbar flex gap-4 overflow-x-auto px-4 pb-6 md:hidden snap-x snap-mandatory touch-pan-x scroll-smooth w-full">
+                {/* Scroll hint gradient */}
+                <div className="pointer-events-none absolute right-0 top-0 bottom-6 w-8 bg-gradient-to-l from-[#1C1F26] to-transparent z-10" />
+                {metrics.map((metric, index) => (
+                  <div
+                    key={index}
+                    className="snap-center group rounded-2xl border border-white/5 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/10 hover:-translate-y-1 w-[85vw] min-w-[280px] max-w-sm flex-none"
+                  >
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#1A3A6F]/50 border border-[#2DA3DB]/20 text-[#2DA3DB]">
+                      {metric.icon}
+                    </div>
+                    <div className="text-3xl font-bold text-white mb-1">{metric.value}</div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-[#D9E4F2]/60 mb-3">{metric.label}</div>
+                    <p className="text-xs text-[#D9E4F2]/50 leading-relaxed">
+                      {metric.description}
+                    </p>
+                  </div>
+                ))}
+                <div aria-hidden="true" className="flex-none w-4" />
+              </div>
+
+              <div className="hidden md:grid grid-cols-1 sm:grid-cols-3 gap-6 w-full md:w-auto">
                 {metrics.map((metric, index) => (
                   <div
                     key={index}
