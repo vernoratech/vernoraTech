@@ -77,10 +77,13 @@ function App() {
     }
 
     const hasSeen = window.localStorage.getItem('vernoratech_welcome_seen');
+    const timestamp = parseInt(hasSeen || '0', 10);
+    const now = Date.now();
 
-    if (!hasSeen) {
+    if (!hasSeen || (now - timestamp) > 21 * 60 * 60 * 1000) {
       const timer = window.setTimeout(() => {
         setIsWelcomeOpen(true);
+        window.localStorage.setItem('vernoratech_welcome_seen', now.toString());
       }, 7000);
 
       return () => window.clearTimeout(timer);
