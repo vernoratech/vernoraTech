@@ -26,7 +26,7 @@ const Portfolio = (props) => {
               className="snap-center bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 reveal-up w-[85vw] min-w-[320px] max-w-sm flex-none"
               style={{ transitionDelay: `${80 + index * 60}ms` }}
             >
-              <div className="p-6 h-full flex flex-col gap-5">
+              <div className="p-4 h-full flex flex-col gap-5">
                 <ScreenshotPlaceholder
                   label={domain.name}
                   title={`${domain.name} showcase`}
@@ -34,16 +34,16 @@ const Portfolio = (props) => {
                   imageSrc={domain.imageSrc}
                   className="bg-gradient-to-br from-slate-900/5 via-primary/5 to-indigo-200/10"
                 />
-                <div className="text-sm text-primary font-semibold mb-2 uppercase tracking-wide">
-                  {domain.name}
-                </div>
-                <h3 className="text-xl font-semibold text-primary mb-3">
+                {/* <div className="text-sm text-primary font-semibold mb-2 uppercase tracking-wide">
+                  {domain.name} 
+                </div> */}
+                <h3 className="text-xl font-semibold text-primary">
                   {domain.headline}
                 </h3>
-                <p className="text-primary mb-4 flex-1">
+                <p className="text-primary">
                   {domain.summary}
                 </p>
-                <ul className="space-y-2 text-primary text-sm">
+                <ul className="space-y-1 text-primary text-sm">
                   {domain.focusAreas.map((item, itemIndex) => (
                     <li key={itemIndex} className="flex gap-2">
                       <span className="text-primary leading-6">•</span>
@@ -51,7 +51,7 @@ const Portfolio = (props) => {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-6 pt-4 border-t border-gray-100 text-sm text-primary font-medium">
+                <div className="border-t pt-4 border-gray-200 text-sm text-primary font-medium">
                   {domain.results}
                 </div>
               </div>
@@ -74,16 +74,16 @@ const Portfolio = (props) => {
                   imageSrc={domain.imageSrc}
                   className="bg-gradient-to-br from-slate-900/5 via-primary/5 to-indigo-200/10"
                 />
-                <div className="text-sm text-primary font-semibold mb-2 uppercase tracking-wide">
+                {/* <div className="text-sm text-primary font-semibold mb-2 uppercase tracking-wide">
                   {domain.name}
-                </div>
-                <h3 className="text-xl font-semibold text-primary mb-3">
+                </div> */}
+                <h3 className="text-xl font-semibold text-primary">
                   {domain.headline}
                 </h3>
-                <p className="text-primary mb-4 flex-1">
+                <p className="text-primary flex-1">
                   {domain.summary}
                 </p>
-                <ul className="space-y-2 text-primary text-sm">
+                <ul className="space-y-1 text-primary text-sm">
                   {domain.focusAreas.map((item, itemIndex) => (
                     <li key={itemIndex} className="flex gap-2">
                       <span className="text-primary leading-6">•</span>
@@ -91,7 +91,7 @@ const Portfolio = (props) => {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-6 pt-4 border-t border-gray-100 text-sm text-primary font-medium">
+                <div className="pt-4 border-t border-gray-200 text-sm text-primary font-medium">
                   {domain.results}
                 </div>
               </div>

@@ -31,7 +31,7 @@ const Home = ({
       onStartProject={onNavigateToContactSection}
       onViewCaseStudies={onNavigateToCaseStudies}
     />
-    <Testimonials />
+    {/* <Testimonials /> */}
     <Awards />
     <BlogInsights onReadBlog={onNavigateToBlog} />
     <FAQ />
