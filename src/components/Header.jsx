@@ -313,8 +313,8 @@ const Header = () => {
 
           {/* Drawer */}
           <div className={`absolute inset-0 flex flex-col bg-[#F8F9FA] shadow-2xl transition-transform duration-300 ease-in-out 
-  ${animateDrawer ? 'translate-x-0' : 'translate-x-full'}
-`}
+          ${animateDrawer ? 'translate-x-0' : 'translate-x-full'}
+          `}
           >
 
             <div className="flex items-center justify-between p-4 border-b border-[#D9E4F2] bg-[#F8F9FA]">
@@ -337,11 +337,11 @@ const Header = () => {
 
             <div
               className="
-    flex-1 
-    overflow-y-auto 
-    pb-[env(safe-area-inset-bottom)]
-    bg-white p-4 space-y-2
-  "
+                  flex-1 
+                  overflow-y-auto 
+                    pb-[env(safe-area-inset-bottom)]
+                  bg-white p-4 space-y-2
+                "
               style={{ WebkitOverflowScrolling: 'touch' }}
             >
 
@@ -397,7 +397,7 @@ const Header = () => {
                   ) : (
                     <Link
                       to={item.href}
-                      className="block px-4 py-3 text-base font-medium text-[#1C1F26] hover:text-[#1A3A6F] hover:bg-[#F0F7FF] rounded-xl transition-colors"
+                      className="block px-4 py-3 text-base font-medium text-[#1C1F26] hover:text-[#1A3A6F] hover:bg-[#F0F7FF] rounded-xl transition-colors "
                       onClick={(e) => {
                         e.preventDefault();
                         setIsMenuOpen(false);
