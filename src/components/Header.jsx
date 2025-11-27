@@ -96,58 +96,71 @@ const Header = () => {
           ctaText: "Explore All Services",
           ctaLink: "/services"
         },
-        columns :[
+        columns: [
           {
             title: "Development",
             icon: <Code2 className="w-5 h-5" />,
-            description: "Fast, reliable builds for websites, apps, and small products.",
-            items: [
-              { name: "Website Development", href: "/services/web-development" },
-              { name: "Landing Page Builds", href: "/services/landing-pages" },
-              { name: "Mobile App Development", href: "/services/mobile-apps" },
-              { name: "Custom Feature Development", href: "/services/custom-features" }
-            ]
+            first_link_description: "Fast, reliable builds for websites, apps, and small products.",
+            second_link_description: "Custom feature development for existing apps.",
+            items: {
+              first: [
+                { name: "Website Development", href: "/services/web-development" },
+                { name: "Landing Page Builds", href: "/services/landing-pages" },
+                { name: "Mobile App Development", href: "/services/mobile-apps" },
+                { name: "Custom Feature Development", href: "/services/custom-features" }
+              ],
+              second: [
+                { name: "Mobile App Development", href: "/services/mobile-apps" },
+                { name: "Custom Feature Development", href: "/services/custom-features" },
+                { name: "Custom Feature Development", href: "/services/custom-features" },
+                { name: "Custom Feature Development", href: "/services/custom-features" }
+              ]
+            }
+
           },
           {
             title: "Brand & Content",
             icon: <Layout className="w-5 h-5" />,
-            description: "Give your business a clean, credible online presence.",
-            items: [
-              { name: "Branding & Logo Starter Kit", href: "/services/branding" },
-              { name: "Content Writing (Web + SEO)", href: "/services/content" },
-              { name: "Product Photos & Media Prep", href: "/services/media" },
-              { name: "UI/UX Cleanup & Improvements", href: "/services/uiux" }
-            ]
+            first_link_description: "Give your business a clean, credible online presence.",
+            items: {
+              first: [
+                { name: "Branding & Logo Starter Kit", href: "/services/branding" },
+                { name: "Content Writing (Web + SEO)", href: "/services/content" },
+                { name: "Product Photos & Media Prep", href: "/services/media" },
+                { name: "UI/UX Cleanup & Improvements", href: "/services/uiux" }
+              ]
+            }
           },
           {
             title: "Care & Support",
             icon: <Server className="w-5 h-5" />,
-            description: "Ongoing help to keep your site or app running smoothly.",
-            items: [
-              { name: "Website Maintenance", href: "/services/maintenance" },
-              { name: "Performance & Speed Fixes", href: "/services/performance" },
-              { name: "Hosting & Deployment Help", href: "/services/hosting" },
-              { name: "Small Fixes & Monthly Support", href: "/services/support" }
-            ]
+            first_link_description: "Ongoing help to keep your site or app running smoothly.",
+            items: {
+              first: [
+                { name: "Website Maintenance", href: "/services/maintenance" },
+                { name: "Performance & Speed Fixes", href: "/services/performance" },
+                { name: "Hosting & Deployment Help", href: "/services/hosting" },
+                { name: "Small Fixes & Monthly Support", href: "/services/support" }
+              ]
+            }
           }
         ]
-
       }
     },
     { name: 'Portfolio', href: '/portfolio' },
     { name: 'Pricing', href: '/pricing' },
     { name: 'Blog', href: '/blog' },
     { name: 'Technologies', href: '/technologies' },
-    // { name: 'Contact', href: '/contact' },
+    { name: 'Contact', href: '/contact' },
     { name: 'FAQ', href: '/faq' },
   ];
+
+  const navigate = useNavigate();
 
   const handleGetQuote = () => {
     navigate('/contact');
     setIsMenuOpen(false);
   };
-
-  const navigate = useNavigate();
 
   const MegaMenuContent = ({ item, activeCategory, setActiveCategory, setActiveDropdown, activeDropdown }) => {
     if (activeDropdown !== 'Services') return null;
@@ -181,72 +194,112 @@ const Header = () => {
             </ul>
           </div>
 
-          {/* RIGHT SIDE */}
-          <div className="flex flex-col p-8">
-            <h3 className="text-lg font-semibold text-[#1A3A6F]">
-              {services.columns[activeCategory].title}
-            </h3>
 
-            <p className="text-xs text-[#6E7787] leading-relaxed mt-2">
-              {services.columns[activeCategory].description}
-            </p>
 
-            <ul className="space-y-2 mt-4">
-              {services.columns[activeCategory].items.map((sub, i) => (
-                <li key={i}>
-                  <Link
-                    to={sub.href}
-                    onClick={() => setActiveDropdown(null)}
-                    className="flex items-center text-sm text-[#3A4353] hover:text-[#2DA3DB] transition"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#D9E4F2] mr-2" />
-                    {sub.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
 
-          {/* <div className='absolute right-0'>
+          <div className="flex-1 flex">
+            {/* FIRST MIDDLE CONTENT AREA */}
+
             {
-              services.featured && (
-                <div className="w-[260px] bg-[#F7FAFF] border-r border-[#E5EAF3] py-6 px-4">
-                  <h3 className="text-xs font-semibold text-[#6E7787] tracking-wide mb-4 px-2">FEATURED</h3>
-
-                  <div>
-                    <img src={services.featured.image} alt="" className='w-8 h-full object-cover'/>
-                  </div>
-
+              services.columns[activeCategory].items.first.length > 0 && (
+                <div className="flex-1 flex flex-col p-8">
                   <h3 className="text-lg font-semibold text-[#1A3A6F]">
-                    {services.featured.title}
+                    {services.columns[activeCategory].title}
                   </h3>
 
                   <p className="text-xs text-[#6E7787] leading-relaxed mt-2">
+                    {services.columns[activeCategory].first_link_description}
+                  </p>
+
+                  <ul className="space-y-2 mt-4">
+                    {services.columns[activeCategory].items.first.map((sub, i) => (
+                      <li key={i}>
+                        <Link
+                          to={sub.href}
+                          onClick={() => setActiveDropdown(null)}
+                          className="flex items-center text-sm text-[#3A4353] hover:text-[#2DA3DB] transition"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#D9E4F2] mr-2" />
+                          {sub.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+
+                </div>
+              )
+            }
+
+            {/* SECOND MIDDLE CONTENT AREA */}
+            {Array.isArray(services.columns[activeCategory].items?.second) &&
+              services.columns[activeCategory].items.second.length > 0 && (
+                <div className="flex-1 flex flex-col p-8">
+                  {/* <h3 className="text-lg font-semibold text-[#1A3A6F]">
+              {services.columns[activeCategory].title}
+            </h3> */}
+
+                  <p className="text-xs text-[#6E7787] leading-relaxed mt-10">
+                    {services.columns[activeCategory].second_link_description}
+                  </p>
+
+                  <ul className="space-y-2 mt-4">
+                    {services.columns[activeCategory].items.second.map((sub, i) => (
+                      <li key={i}>
+                        <Link
+                          to={sub.href}
+                          onClick={() => setActiveDropdown(null)}
+                          className="flex items-center text-sm text-[#3A4353] hover:text-[#2DA3DB] transition"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#D9E4F2] mr-2" />
+                          {sub.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            }
+
+
+            {/* RIGHT FEATURED SECTION */}
+            <div className="w-[260px] bg-[#F7FAFF] border-l border-[#E5EAF3] py-6 px-4">
+              {services.featured && (
+                <>
+                  <h3 className="text-xs font-semibold text-[#6E7787] tracking-wide mb-4 px-2">FEATURED</h3>
+
+                  <div className="w-full h-32 rounded-lg overflow-hidden mb-4">
+                    <img
+                      src={services.featured.image}
+                      alt={services.featured.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  <h3 className="text-lg font-semibold text-[#1A3A6F] mb-2">
+                    {services.featured.title}
+                  </h3>
+
+                  <p className="text-xs text-[#6E7787] leading-relaxed mb-4">
                     {services.featured.description}
                   </p>
 
                   <Link
                     to={services.featured.ctaLink}
                     onClick={() => setActiveDropdown(null)}
-                    className="flex items-center text-sm text-[#3A4353] hover:text-[#2DA3DB] transition"
+                    className="inline-flex items-center text-sm font-medium text-[#3A4353] hover:text-[#2DA3DB] transition-colors"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-[#D9E4F2] mr-2" />
                     {services.featured.ctaText}
                   </Link>
-                </div>
-              )
-            }
-          </div> */}
+                </>
+              )}
+            </div>
 
-
-
+          </div>
         </div>
       </div>
-
     );
   };
-
-
 
   return (
     <>
@@ -303,7 +356,6 @@ const Header = () => {
                   </button>
 
                   {/* Mega Menu Dropdown */}
-
                   <MegaMenuContent item={item} activeCategory={activeCategory} setActiveCategory={setActiveCategory} setActiveDropdown={setActiveDropdown} />
 
 
@@ -364,9 +416,8 @@ const Header = () => {
 
           {/* Drawer */}
           <div className={`absolute inset-0 flex flex-col bg-[#F8F9FA] shadow-2xl transition-transform duration-300 ease-in-out 
-          ${animateDrawer ? 'translate-x-0' : 'translate-x-full'}
-          `}
-          >
+            ${animateDrawer ? 'translate-x-0' : 'translate-x-full'}
+          }`}>
 
             <div className="flex items-center justify-between p-4 border-b border-[#D9E4F2] bg-[#F8F9FA]">
               <div className="flex items-center gap-2">
@@ -388,11 +439,11 @@ const Header = () => {
 
             <div
               className="
-                  flex-1 
-                  overflow-y-auto 
-                    pb-[env(safe-area-inset-bottom)]
-                  bg-white p-4 space-y-2
-                "
+                flex-1 
+                overflow-y-auto 
+                pb-[env(safe-area-inset-bottom)]
+                bg-white p-4 space-y-2
+              "
               style={{ WebkitOverflowScrolling: 'touch' }}
             >
 
@@ -422,23 +473,39 @@ const Header = () => {
                                 <h5 className="font-bold text-sm text-[#1C1F26]">{col.title}</h5>
                               </div>
                               <ul className="space-y-1 pl-6">
-                                {col.items.map((subItem, subIdx) => (
-                                  <li key={subIdx}>
-                                    <Link
-                                      to={subItem.href}
-                                      className="block py-2 text-sm text-[#6E7787] hover:text-[#2DA3DB] transition-colors"
-                                      onClick={() => {
-                                        setIsMenuOpen(false);
-                                        // Navigate after closing drawer
-                                        setTimeout(() => {
-                                          navigate(subItem.href);
-                                        }, 300);
-                                      }}
-                                    >
-                                      {subItem.name}
-                                    </Link>
-                                  </li>
-                                ))}
+                                {/* FIRST GROUP */}
+                                {Array.isArray(col.items?.first) &&
+                                  col.items.first.map((subItem, subIdx) => (
+                                    <li key={`first-${subIdx}`}>
+                                      <Link
+                                        to={subItem.href}
+                                        className="block py-2 text-sm text-[#6E7787] hover:text-[#2DA3DB] transition-colors"
+                                        onClick={() => {
+                                          setIsMenuOpen(false);
+                                          setTimeout(() => navigate(subItem.href), 300);
+                                        }}
+                                      >
+                                        {subItem.name}
+                                      </Link>
+                                    </li>
+                                  ))}
+
+                                {/* SECOND GROUP */}
+                                {Array.isArray(col.items?.second) &&
+                                  col.items.second.map((subItem, subIdx) => (
+                                    <li key={`second-${subIdx}`}>
+                                      <Link
+                                        to={subItem.href}
+                                        className="block py-2 text-sm text-[#6E7787] hover:text-[#2DA3DB] transition-colors"
+                                        onClick={() => {
+                                          setIsMenuOpen(false);
+                                          setTimeout(() => navigate(subItem.href), 300);
+                                        }}
+                                      >
+                                        {subItem.name}
+                                      </Link>
+                                    </li>
+                                  ))}
                               </ul>
                             </div>
                           ))}
@@ -480,9 +547,6 @@ const Header = () => {
                 </button>
               </div>
             </div>
-
-            {/* keep your EXACT drawer content */}
-            {/* {drawerContent} */}
           </div>
         </div>
       )}
