@@ -335,7 +335,17 @@ const Header = () => {
               </button>
             </div>
 
-            <div className="flex flex-col h-[calc(100vh-64px)] overflow-y-auto bg-white p-4 space-y-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitScrollbar: 'none' }}>
+<div
+  className="
+    flex flex-col flex-1
+    max-h-[calc(100dvh-64px-env(safe-area-inset-bottom))]
+    pb-[env(safe-area-inset-bottom)]
+    overflow-y-auto
+    bg-white p-4 space-y-2
+  "
+  style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
+>
+
               {navItems.map((item) => (
                 <div key={item.name}>
                   {item.type === 'mega' ? (
