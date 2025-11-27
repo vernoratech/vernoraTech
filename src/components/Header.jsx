@@ -312,9 +312,9 @@ const Header = () => {
           />
 
           {/* Drawer */}
-          <div className={`absolute inset-0 h-full w-full bg-[#F8F9FA] shadow-2xl transition-transform duration-300 ease-in-out 
-              ${animateDrawer ? 'translate-x-0' : 'translate-x-full'}
-            `}
+          <div className={`absolute inset-0 flex flex-col bg-[#F8F9FA] shadow-2xl transition-transform duration-300 ease-in-out 
+  ${animateDrawer ? 'translate-x-0' : 'translate-x-full'}
+`}
           >
 
             <div className="flex items-center justify-between p-4 border-b border-[#D9E4F2] bg-[#F8F9FA]">
@@ -335,16 +335,15 @@ const Header = () => {
               </button>
             </div>
 
-<div
-  className="
-    flex flex-col flex-1
-    max-h-[calc(100dvh-64px-env(safe-area-inset-bottom))]
+            <div
+              className="
+    flex-1 
+    overflow-y-auto 
     pb-[env(safe-area-inset-bottom)]
-    overflow-y-auto
     bg-white p-4 space-y-2
   "
-  style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
->
+              style={{ WebkitOverflowScrolling: 'touch' }}
+            >
 
               {navItems.map((item) => (
                 <div key={item.name}>
@@ -415,7 +414,7 @@ const Header = () => {
               ))}
 
               {/* Mobile CTA */}
-              <div className="pt-4 mt-6 border-t border-[#D9E4F2]">
+              <div className="pt-4 mt-6 mb-5 border-t border-[#D9E4F2]">
                 <button
                   onClick={() => {
                     setIsMenuOpen(false);
