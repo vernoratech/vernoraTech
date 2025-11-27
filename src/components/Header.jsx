@@ -172,7 +172,7 @@ const Header = () => {
     const services = item.megaData;
 
     return (
-      <div className="absolute top-[110px] left-1/2 -translate-x-1/2 w-full max-w-[1450px] bg-white border border-[#E5EAF3] rounded-2xl shadow-2xl shadow-black/5 animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden z-[999]">
+      <div className="absolute top-[90px] left-1/2 -translate-x-1/2 w-full max-w-[1450px] bg-white border border-[#E5EAF3] rounded-2xl shadow-2xl shadow-black/5 animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden z-[999]">
 
         <div className="flex relative min-h-[280px]">
           {/* LEFT CATEGORY LIST */}
