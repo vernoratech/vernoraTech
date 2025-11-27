@@ -15,10 +15,11 @@ import {
   Sparkles,
   Layers
 } from 'lucide-react';
-
+import { useNavigate } from 'react-router-dom';
 import ScreenshotPlaceholder from './ScreenshotPlaceholder'
 
 const ClientShowcase = (props) => {
+  const navigate = useNavigate();
   const clients = [
     {
       name: 'UrbanNest Interiors',
@@ -92,14 +93,7 @@ const ClientShowcase = (props) => {
   ];
 
   const handleStartProject = () => {
-    if (props.onStartProject) {
-      props.onStartProject();
-      return;
-    }
-    const contactSection = document.querySelector('#contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    navigate('/contact');
   };
 
   return (
@@ -236,71 +230,10 @@ const ClientShowcase = (props) => {
               ))}
             </div>
           </div>
-        </div>
-
-        {/* Metrics Section */}
-        <div className="mt-24">
-          <div className="relative overflow-hidden rounded-3xl bg-[#1C1F26] px-8 py-12 sm:px-12 sm:py-16 shadow-2xl shadow-[#1A3A6F]/20">
-            {/* Dark Background Effects */}
-            <div className="absolute top-0 right-0 -mt-20 -mr-20 h-96 w-96 rounded-full bg-[#1A3A6F] blur-[100px] opacity-50" />
-            <div className="absolute bottom-0 left-0 -mb-20 -ml-20 h-80 w-80 rounded-full bg-[#2DA3DB] blur-[100px] opacity-20" />
-
-            <div className="relative z-10 flex flex-col md:flex-row gap-12 items-start md:items-center justify-between">
-
-              <div className="max-w-xl">
-                <span className="inline-flex items-center justify-center px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] bg-white/5 text-[#2DA3DB] border border-white/10 mb-6">
-                  Proof in the numbers
-                </span>
-                <h3 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">Our Client Success Metrics</h3>
-                <p className="text-[#D9E4F2]/70 text-lg leading-relaxed">
-                  Performance dashboards keep every engagement accountable — we foreground the metrics that matter to your leadership team.
-                </p>
-              </div>
-
-              <div className="relative no-scrollbar flex gap-4 overflow-x-auto px-4 pb-6 md:hidden snap-x snap-mandatory touch-pan-x scroll-smooth w-full">
-                {/* Scroll hint gradient */}
-                <div className="pointer-events-none absolute right-0 top-0 bottom-6 w-8 bg-gradient-to-l from-[#1C1F26] to-transparent z-10" />
-                {metrics.map((metric, index) => (
-                  <div
-                    key={index}
-                    className="snap-center group rounded-2xl border border-white/5 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/10 hover:-translate-y-1 w-[85vw] min-w-[280px] max-w-sm flex-none"
-                  >
-                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#1A3A6F]/50 border border-[#2DA3DB]/20 text-[#2DA3DB]">
-                      {metric.icon}
-                    </div>
-                    <div className="text-3xl font-bold text-white mb-1">{metric.value}</div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-[#D9E4F2]/60 mb-3">{metric.label}</div>
-                    <p className="text-xs text-[#D9E4F2]/50 leading-relaxed">
-                      {metric.description}
-                    </p>
-                  </div>
-                ))}
-                <div aria-hidden="true" className="flex-none w-4" />
-              </div>
-
-              <div className="hidden md:grid grid-cols-1 sm:grid-cols-3 gap-6 w-full md:w-auto">
-                {metrics.map((metric, index) => (
-                  <div
-                    key={index}
-                    className="group rounded-2xl border border-white/5 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/10 hover:-translate-y-1"
-                  >
-                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#1A3A6F]/50 border border-[#2DA3DB]/20 text-[#2DA3DB]">
-                      {metric.icon}
-                    </div>
-                    <div className="text-3xl font-bold text-white mb-1">{metric.value}</div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-[#D9E4F2]/60 mb-3">{metric.label}</div>
-                    <p className="text-xs text-[#D9E4F2]/50 leading-relaxed">
-                      {metric.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+        </div>        
 
         {/* Final CTA */}
-        <div className="mt-24 text-center">
+        <div className="mt-16 text-center">
           <h3 className="text-2xl font-bold text-[#1C1F26] mb-4">
             Ready to open your own spotlight?
           </h3>
