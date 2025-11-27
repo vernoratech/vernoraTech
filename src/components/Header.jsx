@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Menu,
   X,
@@ -140,10 +141,12 @@ const Header = () => {
   ];
 
   const handleGetQuote = () => {
-    // Using window.location instead of useNavigate to avoid Router context errors in preview
-    window.location.href = '/contact';
+    navigate('/contact');
     setIsMenuOpen(false);
   };
+
+  const navigate = useNavigate();
+
 
   return (
     <>
@@ -159,7 +162,7 @@ const Header = () => {
 
             {/* Logo Area */}
             <div className="flex-shrink-0 flex items-center gap-2">
-              <a href="/" className="flex items-center gap-2 group">
+              <Link to="/" className="flex items-center gap-2 group">
                 {/* Logo Placeholder - Replace src with your actual logo path */}
                 <div className="h-8 w-8 sm:h-10 sm:w-10 bg-[#1A3A6F] text-white rounded-lg flex items-center justify-center font-bold text-xl">
                   V
@@ -167,7 +170,7 @@ const Header = () => {
                 <span className="font-bold text-xl tracking-tight text-[#1C1F26] group-hover:text-[#1A3A6F] transition-colors">
                   Vernora<span className="text-[#2DA3DB]">Tech</span>
                 </span>
-              </a>
+              </Link>
             </div>
 
             {/* Desktop Nav */}
@@ -188,7 +191,7 @@ const Header = () => {
                         setActiveDropdown(activeDropdown === item.name ? null : item.name);
                       } else {
                         // Navigate to non-mega items
-                        window.location.href = item.href;
+                        navigate(item.href);
                         setActiveDropdown(null);
                       }
                     }}
@@ -221,14 +224,14 @@ const Header = () => {
                             <p className="text-sm text-[#6E7787] mb-6 leading-relaxed flex-1">
                               {item.megaData.featured.description}
                             </p>
-                            <a
-                              href={item.megaData.featured.ctaLink}
+                            <Link
+                              to={item.megaData.featured.ctaLink}
                               onClick={() => setActiveDropdown(null)}
                               className="inline-flex items-center text-sm font-bold text-[#2DA3DB] hover:text-[#1A3A6F] transition-colors group"
                             >
                               {item.megaData.featured.ctaText}
                               <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                            </a>
+                            </Link>
                           </div>
                           {/* Decor */}
                           <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#2DA3DB]/10 rounded-full blur-2xl -mr-10 -mb-10" />
@@ -250,14 +253,14 @@ const Header = () => {
                               <ul className="space-y-2">
                                 {col.items.map((subItem, subIdx) => (
                                   <li key={subIdx}>
-                                    <a
-                                      href={subItem.href}
+                                    <Link
+                                      to={subItem.href}
                                       onClick={() => setActiveDropdown(null)}
                                       className="flex items-center text-sm text-[#6E7787] hover:text-[#2DA3DB] transition-colors py-1"
                                     >
                                       <span className="w-1.5 h-1.5 rounded-full bg-[#D9E4F2] mr-2 hover:bg-[#2DA3DB]" />
                                       {subItem.name}
-                                    </a>
+                                    </Link>
                                   </li>
                                 ))}
                               </ul>
@@ -295,10 +298,11 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Drawer */}
+
 
       </header>
 
+      {/* Mobile Drawer */}
       {(isMenuOpen || drawerVisible) && (
         <div className="fixed inset-0 z-50 md:hidden">
           {/* Backdrop */}
@@ -360,20 +364,19 @@ const Header = () => {
                               <ul className="space-y-1 pl-6">
                                 {col.items.map((subItem, subIdx) => (
                                   <li key={subIdx}>
-                                    <a
-                                      href={subItem.href}
+                                    <Link
+                                      to={subItem.href}
                                       className="block py-2 text-sm text-[#6E7787] hover:text-[#2DA3DB] transition-colors"
-                                      onClick={(e) => {
-                                        e.preventDefault();
+                                      onClick={() => {
                                         setIsMenuOpen(false);
                                         // Navigate after closing drawer
                                         setTimeout(() => {
-                                          window.location.href = subItem.href;
+                                          navigate(subItem.href);
                                         }, 300);
                                       }}
                                     >
                                       {subItem.name}
-                                    </a>
+                                    </Link>
                                   </li>
                                 ))}
                               </ul>
@@ -383,20 +386,20 @@ const Header = () => {
                       </div>
                     </div>
                   ) : (
-                    <a
-                      href={item.href}
+                    <Link
+                      to={item.href}
                       className="block px-4 py-3 text-base font-medium text-[#1C1F26] hover:text-[#1A3A6F] hover:bg-[#F0F7FF] rounded-xl transition-colors"
                       onClick={(e) => {
                         e.preventDefault();
                         setIsMenuOpen(false);
                         // Navigate after closing drawer
                         setTimeout(() => {
-                          window.location.href = item.href;
+                          navigate(item.href);
                         }, 300);
                       }}
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   )}
                 </div>
               ))}
@@ -407,7 +410,7 @@ const Header = () => {
                   onClick={() => {
                     setIsMenuOpen(false);
                     setTimeout(() => {
-                      window.location.href = '/contact';
+                      navigate('/contact');
                     }, 300);
                   }}
                   className="flex items-center justify-center gap-2 w-full px-5 py-3 text-sm font-bold text-white bg-[#1A3A6F] rounded-xl hover:bg-[#2DA3DB] transition-colors shadow-md"
