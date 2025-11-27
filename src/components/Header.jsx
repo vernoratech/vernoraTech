@@ -47,6 +47,7 @@ const Header = () => {
   const [activeDropdown, setActiveDropdown] = useState(null); // Track active dropdown by name
   const [isServicesExpanded, setIsServicesExpanded] = useState(false); // Track Services expansion in drawer
   const [activeCategory, setActiveCategory] = useState(0);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
   // Handle scroll effect for glassmorphism intensity
   useEffect(() => {
@@ -94,7 +95,7 @@ const Header = () => {
           description:
             "Launch your first website for free. Fast, responsive, and professionally designed.",
           image:
-            "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=600",
+            "/offer_img_2.png",
           ctaText: "Claim Your Free Slot",
           ctaLink: "/contact"
         }
@@ -268,9 +269,12 @@ const Header = () => {
             <div className="w-[260px] bg-[#F7FAFF] border-l border-[#E5EAF3] py-6 px-4">
               {services.featured && (
                 <>
-                  <h3 className="text-xs font-semibold text-[#6E7787] tracking-wide mb-4 px-2">O</h3>
+                  <h3 className="text-xs font-semibold text-[#6E7787] tracking-wide mb-4 px-2">LIMITED OFFER - CLICK TO VIEW</h3>
 
-                  <div className="w-full h-32 rounded-lg overflow-hidden mb-4">
+                  <div
+                    className="w-full h-32 rounded-lg overflow-hidden mb-4 cursor-pointer hover:opacity-90 transition-opacity"
+                    onClick={() => setIsImageModalOpen(true)}
+                  >
                     <img
                       src={services.featured.image}
                       alt={services.featured.title}
@@ -554,6 +558,59 @@ const Header = () => {
         </div>
       )}
 
+      {/* Image Modal */}
+      {isImageModalOpen && (() => {
+        const servicesItem = navItems.find(item => item.name === 'Services');
+        return servicesItem?.megaData?.featured;
+      })() && (
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
+            <div className="relative max-w-4xl max-h-[90vh] p-4 animate-in zoom-in-95 duration-200">
+              {/* Close Button */}
+              <button
+                onClick={() => setIsImageModalOpen(false)}
+                className="absolute -top-2 -right-2 z-10 p-2 bg-white rounded-full shadow-lg hover:bg-gray-100 transition-colors"
+                aria-label="Close image"
+              >
+                <X size={20} className="text-gray-700" />
+              </button>
+
+              {/* Image */}
+              <img
+                src={(() => {
+                  const servicesItem = navItems.find(item => item.name === 'Services');
+                  return servicesItem?.megaData?.featured?.image;
+                })()}
+                alt={(() => {
+                  const servicesItem = navItems.find(item => item.name === 'Services');
+                  return servicesItem?.megaData?.featured?.title;
+                })()}
+                className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+              />
+
+              {/* Image Info */}
+              <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg p-3 shadow-lg">
+                <h4 className="text-sm font-semibold text-[#1A3A6F] mb-1">
+                  {(() => {
+                    const servicesItem = navItems.find(item => item.name === 'Services');
+                    return servicesItem?.megaData?.featured?.title;
+                  })()}
+                </h4>
+                <p className="text-xs text-[#6E7787] line-clamp-2">
+                  {(() => {
+                    const servicesItem = navItems.find(item => item.name === 'Services');
+                    return servicesItem?.megaData?.featured?.description;
+                  })()}
+                </p>
+              </div>
+            </div>
+
+            {/* Backdrop */}
+            <div
+              className="absolute inset-0"
+              onClick={() => setIsImageModalOpen(false)}
+            />
+          </div>
+        )}
     </>
   );
 };
