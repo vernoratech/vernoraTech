@@ -2,8 +2,6 @@ import React from 'react';
 import Hero from './Hero';
 import Stats from './Stats';
 import Services from './Services';
-import Technologies from './Technologies';
-import Process from './Process';
 import BuildProcess from './BuildProcess';
 import Portfolio from './Portfolio';
 import ClientShowcase from './ClientShowcase';
@@ -12,21 +10,20 @@ import Awards from './Awards';
 import BlogInsights from './BlogInsights';
 import FAQ from './FAQ';
 import About from './About';
-import Contact from './Contact';
+import TechnologyStack from './TechnologyStack';
 
 const Home = ({
   onNavigateToPortfolio,
   onNavigateToContactSection,
   onNavigateToCaseStudies,
-  onOpenTerms,
   onNavigateToBlog,
 }) => (
   <>
     <Hero />
     <Stats />
-    <Services />
-    <Technologies />
-    <Process />
+    {/* <Services /> */}
+    <TechnologyStack/>
+    {/* <Process /> */}
     <BuildProcess />
     <Portfolio onSeeAllProjects={onNavigateToPortfolio} />
     {/* <Team /> */}
@@ -34,12 +31,12 @@ const Home = ({
       onStartProject={onNavigateToContactSection}
       onViewCaseStudies={onNavigateToCaseStudies}
     />
-    <Testimonials />
-    <Awards />
+    {/* <Testimonials /> */}
+    {/* <Awards /> */}
     <BlogInsights onReadBlog={onNavigateToBlog} />
     <FAQ />
     <About />
-    <Contact />
+    {/* <Contact /> */}
   </>
 );
 

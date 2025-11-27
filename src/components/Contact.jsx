@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { BsWhatsapp } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 import { LuClock2 } from "react-icons/lu";
+import { useNavigate } from 'react-router-dom';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -71,8 +72,14 @@ const Contact = () => {
     }
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const navigate = useNavigate();
+
   return (
-    <section id="contact" className="bg-gray-50 section-padding reveal-up">
+    <section id="contact" className="bg-gray-50 section-padding reveal-up mt-10 md:mt-20">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 reveal-up">
           <h2 className="text-4xl font-bold text-[#1A3A6F] mb-4">

@@ -30,14 +30,49 @@ const ScreenshotPlaceholder = ({
   aspectClass = 'aspect-[16/10]',
   className = ''
 }) => {
-  const src = imageSrc || defaultPlaceholder;
+  const resolvedSrc = imageSrc || defaultPlaceholder;
   const alt = imageAlt || title;
+  const [currentSrc, setCurrentSrc] = React.useState(resolvedSrc);
+  const [isImageLoaded, setIsImageLoaded] = React.useState(!imageSrc);
+
+  React.useEffect(() => {
+    setCurrentSrc(resolvedSrc);
+    setIsImageLoaded(!imageSrc);
+  }, [resolvedSrc, imageSrc]);
+
+  const handleImageLoad = React.useCallback(() => {
+    setIsImageLoaded(true);
+  }, []);
+
+  const handleImageError = React.useCallback(() => {
+    if (currentSrc !== defaultPlaceholder) {
+      setCurrentSrc(defaultPlaceholder);
+    }
+    setIsImageLoaded(true);
+  }, [currentSrc]);
 
   return (
     <figure
       className={`relative overflow-hidden rounded-[26px] border border-white/10 bg-white/5 shadow-[0_25px_60px_-30px_rgba(15,23,42,0.45)] ${aspectClass} ${className}`.trim()}
     >
-      <img src={src} alt={alt} className="h-full w-full object-cover" loading="lazy" />
+      <img
+        src={currentSrc}
+        alt={alt}
+        className={`h-full w-full object-cover transition-opacity duration-500 ${isImageLoaded ? 'opacity-100' : 'opacity-0'}`}
+        loading="lazy"
+        onLoad={handleImageLoad}
+        onError={handleImageError}
+      />
+      <div
+        aria-hidden="true"
+        className={`pointer-events-none absolute inset-0 transform-gpu rounded-[26px] border border-[#D9E4F2]/60 bg-gradient-to-br from-[#D9E4F2] via-[#E8F1FC] to-[#F5F7FB] transition-opacity duration-500 ${isImageLoaded ? 'opacity-0' : 'opacity-100'}`}
+      >
+        <div className="flex h-full w-full flex-col justify-end gap-2 p-6">
+          <div className="h-3 w-1/3 rounded-full bg-white/70" />
+          <div className="h-3 w-2/3 rounded-full bg-white/50" />
+          <div className="h-3 w-1/2 rounded-full bg-white/40" />
+        </div>
+      </div>
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900/0 via-slate-900/0 to-slate-900/20" aria-hidden="true" />
       {(label || title) && (
         <figcaption className="absolute inset-x-0 bottom-0 flex justify-start px-4 pb-4">

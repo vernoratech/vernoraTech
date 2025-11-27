@@ -105,17 +105,17 @@ const Awards = () => {
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        {/* <div className="text-center mb-16">
+        <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Awards & Recognition
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Our commitment to excellence has been recognized by industry leaders and organizations worldwide.
           </p>
-        </div> */}
+        </div>
 
         {/* Awards Grid */}
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {awards.map((award, index) => (
             <div
               key={index}
@@ -142,10 +142,10 @@ const Awards = () => {
               </div>
             </div>
           ))}
-        </div> */}
+        </div>
 
         {/* Certifications Section */}
-        {/* <div className="bg-gray-50 rounded-2xl p-8 mb-16">
+        <div className="bg-gray-50 rounded-2xl p-8 mb-16">
           <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
             Professional Certifications
           </h3>
@@ -162,10 +162,10 @@ const Awards = () => {
               </div>
             ))}
           </div>
-        </div> */}
+        </div>
 
         {/* Milestones Timeline */}
-        {/* <div className="mb-16">
+        <div className="mb-16">
           <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
             Company Milestones
           </h3>
@@ -195,10 +195,10 @@ const Awards = () => {
               ))}
             </div>
           </div>
-        </div> */}
+        </div>
 
         {/* CTA Section */}
-        {/* <div className="text-center">
+        <div className="text-center">
           <div className="bg-gradient-to-r from-[#1A3A6F] to-[#1A3A6F] rounded-2xl p-8 text-white">
             <h3 className="text-2xl font-bold mb-4">
               Ready to Work with an Award-Winning Team?
@@ -215,7 +215,7 @@ const Awards = () => {
               </button>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </section>
   );

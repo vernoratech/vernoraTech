@@ -76,7 +76,7 @@ const Stats = () => {
     <section className="relative py-24 overflow-hidden bg-[#FAFAFA]">
       {/* Background Decor */}
       <div className="absolute inset-0 pointer-events-none">
-         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#2DA3DB]/5 via-transparent to-transparent" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#2DA3DB]/5 via-transparent to-transparent" />
       </div>
 
       <div className="relative container mx-auto px-6 lg:px-12">
@@ -93,41 +93,62 @@ const Stats = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="group relative overflow-hidden rounded-3xl border border-[#D9E4F2] bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#2DA3DB]/30 hover:shadow-xl hover:shadow-[#1A3A6F]/5"
-            >
-              <div className="relative flex flex-col items-center text-center">
-                {/* Icon Circle */}
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#1A3A6F] text-white shadow-lg shadow-[#1A3A6F]/20 transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#2DA3DB]">
-                  {stat.icon}
-                </div>
-                
-                {/* Number */}
-                <div className="text-4xl font-black text-[#1C1F26] mb-2 tracking-tight">
-                  {stat.number}
-                </div>
-                
-                {/* Label */}
-                <h3 className="text-sm font-bold uppercase tracking-wider text-[#2DA3DB] mb-4">
-                  {stat.label}
-                </h3>
-                
-                {/* Description */}
-                <p className="text-[#6E7787] text-sm leading-relaxed mb-6">
-                  {stat.description}
-                </p>
-                
-                {/* Detail Badge */}
-                <div className="mt-auto inline-flex items-center gap-2 rounded-full bg-[#FAFAFA] border border-[#D9E4F2] px-3 py-1.5 text-xs font-semibold text-[#1A3A6F]">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#2DA3DB] animate-pulse" />
-                  {stat.detail}
+        <div className="-mx-6 xl:mx-0">
+          <div className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 sm:pb-6 xl:hidden">
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className="group relative flex-shrink-0 snap-center overflow-hidden rounded-3xl border border-[#D9E4F2] bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#2DA3DB]/30 hover:shadow-xl hover:shadow-[#1A3A6F]/5 w-72 sm:w-80"
+              >
+                <div className="relative flex flex-col items-center text-center">
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#1A3A6F] text-white shadow-lg shadow-[#1A3A6F]/20 transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#2DA3DB]">
+                    {stat.icon}
+                  </div>
+                  <div className="text-4xl font-black text-[#1C1F26] mb-2 tracking-tight">
+                    {stat.number}
+                  </div>
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-[#2DA3DB] mb-4">
+                    {stat.label}
+                  </h3>
+                  <p className="text-[#6E7787] text-sm leading-relaxed mb-6">
+                    {stat.description}
+                  </p>
+                  <div className="mt-auto inline-flex items-center gap-2 rounded-full bg-[#FAFAFA] border border-[#D9E4F2] px-3 py-1.5 text-xs font-semibold text-[#1A3A6F]">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#2DA3DB] animate-pulse" />
+                    {stat.detail}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          <div className="hidden xl:grid xl:grid-cols-4 xl:gap-6">
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className="group relative overflow-hidden rounded-3xl border border-[#D9E4F2] bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#2DA3DB]/30 hover:shadow-xl hover:shadow-[#1A3A6F]/5"
+              >
+                <div className="relative flex flex-col items-center text-center">
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#1A3A6F] text-white shadow-lg shadow-[#1A3A6F]/20 transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#2DA3DB]">
+                    {stat.icon}
+                  </div>
+                  <div className="text-4xl font-black text-[#1C1F26] mb-2 tracking-tight">
+                    {stat.number}
+                  </div>
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-[#2DA3DB] mb-4">
+                    {stat.label}
+                  </h3>
+                  <p className="text-[#6E7787] text-sm leading-relaxed mb-6">
+                    {stat.description}
+                  </p>
+                  <div className="mt-auto inline-flex items-center gap-2 rounded-full bg-[#FAFAFA] border border-[#D9E4F2] px-3 py-1.5 text-xs font-semibold text-[#1A3A6F]">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#2DA3DB] animate-pulse" />
+                    {stat.detail}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

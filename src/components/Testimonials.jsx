@@ -23,7 +23,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <section id="testimonials" className="bg-white section-padding reveal-up">
+    <section id="testimonials" className="bg-white ">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 reveal-up">
           <h2 className="text-4xl font-bold text-primary mb-4">What Clients Say</h2>
