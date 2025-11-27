@@ -313,96 +313,98 @@ const Header = () => {
       {/* Header Container */}
       <header
         className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[98%] max-w-[1600px] transition-all duration-300 ${isScrolled
-          ? 'bg-white/95 backdrop-blur-xl shadow-lg shadow-[#1A3A6F]/5 border border-[#D9E4F2]'
-          : 'bg-white/80 backdrop-blur-md border border-white/20'
+            ? 'bg-white/95 backdrop-blur-xl shadow-lg shadow-[#1A3A6F]/5 border border-[#D9E4F2]'
+            : 'bg-white/80 backdrop-blur-md border border-white/20'
           } rounded-2xl`}
       >
-        <div className="px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 sm:h-20">
+        {/* IMPORTANT: relative wrapper */}
+        <div className="relative w-full">
 
-            {/* Logo Area */}
-            <div className="flex-shrink-0 flex items-center gap-2">
-              <Link to="/" className="flex items-center gap-2 group">
-                {/* Logo Placeholder - Replace src with your actual logo path */}
-                <div className="h-8 w-8 sm:h-10 sm:w-10 bg-[#1A3A6F] text-white rounded-lg flex items-center justify-center font-bold text-xl">
-                  V
-                </div>
-                <span className="font-bold text-xl tracking-tight text-[#1C1F26] group-hover:text-[#1A3A6F] transition-colors">
-                  Vernora<span className="text-[#2DA3DB]">Tech</span>
-                </span>
-              </Link>
-            </div>
+          {/* Header Row */}
+          <div className="px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-16 sm:h-20">
 
-            {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center space-x-1 lg:space-x-2 h-full">
-              {navItems.map((item) => (
-                <div
-                  key={item.name}
-                  className="relative h-full flex items-center"
+              {/* Logo */}
+              <div className="flex-shrink-0 flex items-center gap-2">
+                <Link to="/" className="flex items-center gap-2 group">
+                  <div className="h-8 w-8 sm:h-10 sm:w-10 bg-[#1A3A6F] text-white rounded-lg flex items-center justify-center font-bold text-xl">
+                    V
+                  </div>
+                  <span className="font-bold text-xl tracking-tight text-[#1C1F26] group-hover:text-[#1A3A6F] transition-colors">
+                    Vernora<span className="text-[#2DA3DB]">Tech</span>
+                  </span>
+                </Link>
+              </div>
+
+              {/* Desktop Nav */}
+              <nav className="hidden md:flex items-center space-x-1 lg:space-x-2 h-full">
+                {navItems.map((item) => (
+                  <div key={item.name} className="relative h-full flex items-center">
+                    <button
+                      className={`flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 cursor-pointer ${activeDropdown === item.name
+                          ? 'text-[#1A3A6F] bg-[#F0F7FF]'
+                          : 'text-[#6E7787] hover:text-[#1A3A6F] hover:bg-[#F0F7FF]'
+                        }`}
+                      onClick={() => {
+                        if (item.type === 'mega') {
+                          setActiveDropdown(activeDropdown === item.name ? null : item.name);
+                        } else {
+                          navigate(item.href);
+                          setActiveDropdown(null);
+                        }
+                      }}
+                    >
+                      {item.name}
+                      {item.type === 'mega' && (
+                        <ChevronDown
+                          size={14}
+                          className={`transition-transform duration-200 ${activeDropdown === item.name ? 'rotate-180' : ''
+                            }`}
+                        />
+                      )}
+                    </button>
+                  </div>
+                ))}
+              </nav>
+
+              {/* CTA */}
+              <div className="hidden md:flex items-center gap-4">
+                <button
+                  onClick={handleGetQuote}
+                  className="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-bold text-white bg-[#1A3A6F] rounded-full hover:bg-[#2DA3DB] transition-colors shadow-lg shadow-[#1A3A6F]/20 hover:shadow-[#2DA3DB]/30 hover:-translate-y-0.5"
                 >
-                  <button
-                    className={`flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 cursor-pointer ${activeDropdown === item.name
-                      ? 'text-[#1A3A6F] bg-[#F0F7FF]'
-                      : 'text-[#6E7787] hover:text-[#1A3A6F] hover:bg-[#F0F7FF]'
-                      }`}
-                    onClick={() => {
-                      if (item.type === 'mega') {
-                        // Toggle dropdown if it's the same item, close if different item
-                        setActiveDropdown(activeDropdown === item.name ? null : item.name);
-                      } else {
-                        // Navigate to non-mega items
-                        navigate(item.href);
-                        setActiveDropdown(null);
-                      }
-                    }}
-                  >
-                    {item.name}
-                    {item.type === 'mega' && (
-                      <ChevronDown size={14} className={`transition-transform duration-200 ${activeDropdown === item.name ? 'rotate-180' : ''}`} />
-                    )}
-                  </button>
+                  Get Quote
+                  <ArrowRight size={16} />
+                </button>
+              </div>
 
-                  {/* Mega Menu Dropdown */}
-                  <MegaMenuContent item={item} activeCategory={activeCategory} setActiveCategory={setActiveCategory} setActiveDropdown={setActiveDropdown} />
+              {/* Mobile Menu Button */}
+              <div className="flex md:hidden">
+                <button
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className="p-2 rounded-lg text-[#1C1F26] hover:bg-[#F0F7FF] hover:text-[#1A3A6F] transition-colors focus:outline-none"
+                  aria-label="Toggle menu"
+                >
+                  {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
+              </div>
 
-
-
-
-
-                </div>
-              ))}
-            </nav>
-
-            {/* Desktop CTA */}
-            <div className="hidden md:flex items-center gap-4">
-              <button
-                onClick={handleGetQuote}
-                className="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-bold text-white bg-[#1A3A6F] rounded-full hover:bg-[#2DA3DB] transition-colors shadow-lg shadow-[#1A3A6F]/20 hover:shadow-[#2DA3DB]/30 hover:-translate-y-0.5"
-              >
-                Get Quote
-                <ArrowRight size={16} />
-              </button>
             </div>
-
-            {/* Mobile Menu Button */}
-            <div className="flex md:hidden">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2 rounded-lg text-[#1C1F26] hover:bg-[#F0F7FF] hover:text-[#1A3A6F] transition-colors focus:outline-none"
-                aria-label="Toggle menu"
-              >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
-
           </div>
+
+          {/* REAL WORKING Mega Menu */}
+          <MegaMenuContent
+            item={navItems.find((n) => n.name === 'Services')}
+            activeCategory={activeCategory}
+            setActiveCategory={setActiveCategory}
+            activeDropdown={activeDropdown}
+            setActiveDropdown={setActiveDropdown}
+          />
         </div>
-
-
-
       </header>
 
-      {activeDropdown === "Services" && (
+
+      {/* {activeDropdown === "Services" && (
         <MegaMenuContent
           item={navItems.find(n => n.name === "Services")}
           activeCategory={activeCategory}
@@ -410,7 +412,7 @@ const Header = () => {
           activeDropdown={activeDropdown}
           setActiveDropdown={setActiveDropdown}
         />
-      )}
+      )} */}
 
       {/* Mobile Drawer */}
       {(isMenuOpen || drawerVisible) && (
