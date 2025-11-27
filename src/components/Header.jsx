@@ -46,6 +46,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null); // Track active dropdown by name
   const [isServicesExpanded, setIsServicesExpanded] = useState(false); // Track Services expansion in drawer
+  const [activeCategory, setActiveCategory] = useState(0);
 
   // Handle scroll effect for glassmorphism intensity
   useEffect(() => {
@@ -95,41 +96,42 @@ const Header = () => {
           ctaText: "Explore All Services",
           ctaLink: "/services"
         },
-        columns: [
+        columns :[
           {
             title: "Development",
             icon: <Code2 className="w-5 h-5" />,
-            description: "Accelerate growth with scalable, secure solutions.",
+            description: "Fast, reliable builds for websites, apps, and small products.",
             items: [
-              { name: "AI/ML Integration", href: "/services/ai-ml" },
+              { name: "Website Development", href: "/services/web-development" },
+              { name: "Landing Page Builds", href: "/services/landing-pages" },
               { name: "Mobile App Development", href: "/services/mobile-apps" },
-              { name: "Web Platform Engineering", href: "/services/web-development" },
-              { name: "DevOps Services", href: "/services/devops" },
+              { name: "Custom Feature Development", href: "/services/custom-features" }
             ]
           },
           {
-            title: "Data & Analytics",
-            icon: <Database className="w-5 h-5" />,
-            description: "Turn data into actionable intelligence.",
+            title: "Brand & Content",
+            icon: <Layout className="w-5 h-5" />,
+            description: "Give your business a clean, credible online presence.",
             items: [
-              { name: "Data Strategy", href: "/services/data-strategy" },
-              { name: "Data Governance", href: "/services/data-governance" },
-              { name: "Data Engineering", href: "/services/data-engineering" },
-              { name: "Visualization", href: "/services/data-visualization" },
+              { name: "Branding & Logo Starter Kit", href: "/services/branding" },
+              { name: "Content Writing (Web + SEO)", href: "/services/content" },
+              { name: "Product Photos & Media Prep", href: "/services/media" },
+              { name: "UI/UX Cleanup & Improvements", href: "/services/uiux" }
             ]
           },
           {
-            title: "Managed Services",
+            title: "Care & Support",
             icon: <Server className="w-5 h-5" />,
-            description: "Proactive services to keep infra performing.",
+            description: "Ongoing help to keep your site or app running smoothly.",
             items: [
-              { name: "App Managed Services", href: "/services/app-management" },
               { name: "Website Maintenance", href: "/services/maintenance" },
-              { name: "Cloud Infrastructure", href: "/services/cloud-infra" },
-              { name: "IT Helpdesk", href: "/services/it-support" },
+              { name: "Performance & Speed Fixes", href: "/services/performance" },
+              { name: "Hosting & Deployment Help", href: "/services/hosting" },
+              { name: "Small Fixes & Monthly Support", href: "/services/support" }
             ]
           }
         ]
+
       }
     },
     { name: 'Portfolio', href: '/portfolio' },
@@ -147,12 +149,110 @@ const Header = () => {
 
   const navigate = useNavigate();
 
+  const MegaMenuContent = ({ item, activeCategory, setActiveCategory, setActiveDropdown, activeDropdown }) => {
+    if (activeDropdown !== 'Services') return null;
+
+    const services = item.megaData;
+
+    return (
+      <div className="absolute top-[110px] left-1/2 -translate-x-1/2 w-full max-w-[1450px] bg-white border border-[#E5EAF3] rounded-2xl shadow-2xl shadow-black/5 animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden z-[999]">
+
+        <div className="flex relative min-h-[280px]">
+          {/* LEFT CATEGORY LIST */}
+          <div className="w-[260px] bg-[#F7FAFF] border-r border-[#E5EAF3] py-6 px-4">
+            <h3 className="text-xs font-semibold text-[#6E7787] tracking-wide mb-4 px-2">CATEGORIES</h3>
+
+            <ul className="space-y-2">
+              {services.columns.map((col, idx) => (
+                <li key={idx}>
+                  <button
+                    onClick={() => setActiveCategory(idx)}
+                    className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition 
+                    ${activeCategory === idx ? "bg-[#EAF3FF] text-[#1A3A6F]" : "text-[#1C1F26] hover:bg-[#EAF3FF]"}
+                  `}
+                  >
+                    <span className="p-1.5 rounded-md bg-[#1A3A6F]/10 text-[#1A3A6F]">
+                      {col.icon}
+                    </span>
+                    {col.title}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* RIGHT SIDE */}
+          <div className="flex flex-col p-8">
+            <h3 className="text-lg font-semibold text-[#1A3A6F]">
+              {services.columns[activeCategory].title}
+            </h3>
+
+            <p className="text-xs text-[#6E7787] leading-relaxed mt-2">
+              {services.columns[activeCategory].description}
+            </p>
+
+            <ul className="space-y-2 mt-4">
+              {services.columns[activeCategory].items.map((sub, i) => (
+                <li key={i}>
+                  <Link
+                    to={sub.href}
+                    onClick={() => setActiveDropdown(null)}
+                    className="flex items-center text-sm text-[#3A4353] hover:text-[#2DA3DB] transition"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#D9E4F2] mr-2" />
+                    {sub.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* <div className='absolute right-0'>
+            {
+              services.featured && (
+                <div className="w-[260px] bg-[#F7FAFF] border-r border-[#E5EAF3] py-6 px-4">
+                  <h3 className="text-xs font-semibold text-[#6E7787] tracking-wide mb-4 px-2">FEATURED</h3>
+
+                  <div>
+                    <img src={services.featured.image} alt="" className='w-8 h-full object-cover'/>
+                  </div>
+
+                  <h3 className="text-lg font-semibold text-[#1A3A6F]">
+                    {services.featured.title}
+                  </h3>
+
+                  <p className="text-xs text-[#6E7787] leading-relaxed mt-2">
+                    {services.featured.description}
+                  </p>
+
+                  <Link
+                    to={services.featured.ctaLink}
+                    onClick={() => setActiveDropdown(null)}
+                    className="flex items-center text-sm text-[#3A4353] hover:text-[#2DA3DB] transition"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#D9E4F2] mr-2" />
+                    {services.featured.ctaText}
+                  </Link>
+                </div>
+              )
+            }
+          </div> */}
+
+
+
+        </div>
+      </div>
+
+    );
+  };
+
+
 
   return (
     <>
       {/* Header Container */}
       <header
-        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl transition-all duration-300 ${isScrolled
+        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[98%] max-w-[1600px] transition-all duration-300 ${isScrolled
           ? 'bg-white/95 backdrop-blur-xl shadow-lg shadow-[#1A3A6F]/5 border border-[#D9E4F2]'
           : 'bg-white/80 backdrop-blur-md border border-white/20'
           } rounded-2xl`}
@@ -203,73 +303,13 @@ const Header = () => {
                   </button>
 
                   {/* Mega Menu Dropdown */}
-                  {item.type === 'mega' && activeDropdown === item.name && (
-                    <div
-                      className="absolute top-[calc(100%+0.5rem)] left-1/8 -translate-x-1/3 w-[900px] lg:w-[1200px] bg-white rounded-3xl shadow-2xl shadow-[#1A3A6F]/10 border border-[#D9E4F2] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 z-50"
-                    >
-                      <div className="flex">
-                        {/* Left Featured Column */}
-                        <div className="w-1/3 bg-[#F0F7FF] p-8 flex flex-col relative overflow-hidden">
-                          <div className="relative z-10 h-full flex flex-col">
-                            <div className="w-full h-40 rounded-xl overflow-hidden mb-6 shadow-md">
-                              <img
-                                src={item.megaData.featured.image}
-                                alt="Featured"
-                                className="w-full h-full object-cover"
-                              />
-                            </div>
-                            <h3 className="text-lg font-bold text-[#1A3A6F] mb-3 leading-tight">
-                              {item.megaData.featured.title}
-                            </h3>
-                            <p className="text-sm text-[#6E7787] mb-6 leading-relaxed flex-1">
-                              {item.megaData.featured.description}
-                            </p>
-                            <Link
-                              to={item.megaData.featured.ctaLink}
-                              onClick={() => setActiveDropdown(null)}
-                              className="inline-flex items-center text-sm font-bold text-[#2DA3DB] hover:text-[#1A3A6F] transition-colors group"
-                            >
-                              {item.megaData.featured.ctaText}
-                              <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                            </Link>
-                          </div>
-                          {/* Decor */}
-                          <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#2DA3DB]/10 rounded-full blur-2xl -mr-10 -mb-10" />
-                        </div>
 
-                        {/* Right Service Columns */}
-                        <div className="w-2/3 p-8 grid grid-cols-3 gap-8">
-                          {item.megaData.columns.map((col, idx) => (
-                            <div key={idx} className="space-y-4">
-                              <div className="flex items-center gap-2 mb-2">
-                                <div className="p-2 rounded-lg bg-[#1A3A6F]/5 text-[#1A3A6F]">
-                                  {col.icon}
-                                </div>
-                                <h4 className="font-bold text-[#1C1F26]">{col.title}</h4>
-                              </div>
-                              <p className="text-xs text-[#6E7787] leading-relaxed mb-3 h-10">
-                                {col.description}
-                              </p>
-                              <ul className="space-y-2">
-                                {col.items.map((subItem, subIdx) => (
-                                  <li key={subIdx}>
-                                    <Link
-                                      to={subItem.href}
-                                      onClick={() => setActiveDropdown(null)}
-                                      className="flex items-center text-sm text-[#6E7787] hover:text-[#2DA3DB] transition-colors py-1"
-                                    >
-                                      <span className="w-1.5 h-1.5 rounded-full bg-[#D9E4F2] mr-2 hover:bg-[#2DA3DB]" />
-                                      {subItem.name}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  <MegaMenuContent item={item} activeCategory={activeCategory} setActiveCategory={setActiveCategory} setActiveDropdown={setActiveDropdown} />
+
+
+
+
+
                 </div>
               ))}
             </nav>
@@ -295,12 +335,23 @@ const Header = () => {
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
             </div>
+
           </div>
         </div>
 
 
 
       </header>
+
+      {activeDropdown === "Services" && (
+        <MegaMenuContent
+          item={navItems.find(n => n.name === "Services")}
+          activeCategory={activeCategory}
+          setActiveCategory={setActiveCategory}
+          activeDropdown={activeDropdown}
+          setActiveDropdown={setActiveDropdown}
+        />
+      )}
 
       {/* Mobile Drawer */}
       {(isMenuOpen || drawerVisible) && (
