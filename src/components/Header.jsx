@@ -90,12 +90,15 @@ const Header = () => {
       type: 'mega', // New type for Mega Menu
       megaData: {
         featured: {
-          title: "Bespoke Solutions for Your Digital Success",
-          description: "We don't just build solutions — we bring your ideas to life with precision. Experience a seamless collaborative journey from concept to launch.",
-          image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600",
-          ctaText: "Explore All Services",
-          ctaLink: "/services"
-        },
+          title: "Build Your First Website — 100% FREE",
+          description:
+            "Launch your first website for free. Fast, responsive, and professionally designed.",
+          image:
+            "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=600",
+          ctaText: "Claim Your Free Slot",
+          ctaLink: "/contact"
+        }
+        ,
         columns: [
           {
             title: "Development",
@@ -265,7 +268,7 @@ const Header = () => {
             <div className="w-[260px] bg-[#F7FAFF] border-l border-[#E5EAF3] py-6 px-4">
               {services.featured && (
                 <>
-                  <h3 className="text-xs font-semibold text-[#6E7787] tracking-wide mb-4 px-2">FEATURED</h3>
+                  <h3 className="text-xs font-semibold text-[#6E7787] tracking-wide mb-4 px-2">O</h3>
 
                   <div className="w-full h-32 rounded-lg overflow-hidden mb-4">
                     <img
@@ -275,7 +278,7 @@ const Header = () => {
                     />
                   </div>
 
-                  <h3 className="text-lg font-semibold text-[#1A3A6F] mb-2">
+                  <h3 className="text-sm font-semibold text-[#1A3A6F] mb-2">
                     {services.featured.title}
                   </h3>
 
@@ -285,7 +288,7 @@ const Header = () => {
 
                   <Link
                     to={services.featured.ctaLink}
-                    onClick={() => setActiveDropdown(null)}
+                    onClick={() => setActiveDropdown(null) && navigate(services.featured.ctaLink)}
                     className="inline-flex items-center text-sm font-medium text-[#3A4353] hover:text-[#2DA3DB] transition-colors"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-[#D9E4F2] mr-2" />
