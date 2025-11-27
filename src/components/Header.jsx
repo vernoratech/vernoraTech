@@ -568,7 +568,7 @@ const Header = () => {
               {/* Close Button */}
               <button
                 onClick={() => setIsImageModalOpen(false)}
-                className="absolute -top-2 -right-2 z-10 p-2 bg-white rounded-full shadow-lg hover:bg-gray-100 transition-colors"
+                className="absolute -top-2 -right-2 z-10 p-2 bg-white rounded-full shadow-lg hover:bg-gray-100 transition-colors cursor-pointer"
                 aria-label="Close image"
               >
                 <X size={20} className="text-gray-700" />
