@@ -14,6 +14,34 @@ import {
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [drawerVisible, setDrawerVisible] = useState(false);
+  const [animateDrawer, setAnimateDrawer] = useState(false);
+
+  // Handle auto-unmount after close animation
+  useEffect(() => {
+    if (isMenuOpen) {
+      // Step 1: Mount drawer
+      setDrawerVisible(true);
+
+      // Step 2: After mount → trigger open animation
+      requestAnimationFrame(() => {
+        setAnimateDrawer(true);
+      });
+
+    } else {
+      // Step 1: Start closing animation
+      setAnimateDrawer(false);
+
+      // Step 2: After animation → unmount
+      const timeout = setTimeout(() => {
+        setDrawerVisible(false);
+      }, 300);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [isMenuOpen]);
+
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null); // Track active dropdown by name
   const [isServicesExpanded, setIsServicesExpanded] = useState(false); // Track Services expansion in drawer
@@ -268,34 +296,34 @@ const Header = () => {
         </div>
 
         {/* Mobile Drawer */}
-        <div
-          className={`fixed inset-0 z-50 md:hidden ${isMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'
-            }`}
-        >
+
+      </header>
+
+      {(isMenuOpen || drawerVisible) && (
+        <div className="fixed inset-0 z-50 md:hidden">
           {/* Backdrop */}
-          <div
-            className={`absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${isMenuOpen ? 'opacity-100' : 'opacity-0'
-              }`}
-            onClick={() => setIsMenuOpen(false)}
+          <div className={`absolute inset-0 bg-[#1A3A6F]/5 backdrop-blur-sm transition-opacity duration-300
+              ${animateDrawer ? 'opacity-100' : 'opacity-0'}
+            `} onClick={() => setIsMenuOpen(false)}
           />
 
           {/* Drawer */}
-          <div
-            className={`absolute top-0 right-0 h-full w-[95vw] max-w-[95vw] bg-[#F8F9FA] shadow-2xl transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-              }`}
+          <div className={`absolute inset-0 h-full w-full bg-[#F8F9FA] shadow-2xl transition-transform duration-300 ease-in-out 
+              ${animateDrawer ? 'translate-x-0' : 'translate-x-full'}
+            `}
           >
-            {/* Drawer Header */}
+
             <div className="flex items-center justify-between p-4 border-b border-[#D9E4F2] bg-[#F8F9FA]">
               <div className="flex items-center gap-2">
-                <div className="h-8 w-8 bg-[#1A3A6F] text-white rounded-lg flex items-center justify-center font-bold text-sm">
+                <div
+                  className="h-8 w-8 bg-[#1A3A6F] text-white rounded-lg flex items-center justify-center font-bold text-sm">
                   V
                 </div>
                 <span className="font-bold text-lg text-[#1C1F26]">
                   Vernora<span className="text-[#2DA3DB]">Tech</span>
                 </span>
               </div>
-              <button
-                onClick={() => setIsMenuOpen(false)}
+              <button onClick={() => setIsMenuOpen(false)}
                 className="p-2 rounded-lg text-[#6E7787] hover:bg-[#F0F7FF] hover:text-[#1A3A6F] transition-colors"
                 aria-label="Close menu"
               >
@@ -303,8 +331,7 @@ const Header = () => {
               </button>
             </div>
 
-            {/* Drawer Content */}
-            <div className="h-[calc(100vh-80px)] overflow-y-auto bg-white p-4 space-y-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitScrollbar: 'none' }}>
+            <div className="flex flex-col h-[calc(100vh-64px)] overflow-y-auto bg-white p-4 space-y-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitScrollbar: 'none' }}>
               {navItems.map((item) => (
                 <div key={item.name}>
                   {item.type === 'mega' ? (
@@ -391,9 +418,12 @@ const Header = () => {
               </div>
             </div>
 
+            {/* keep your EXACT drawer content */}
+            {/* {drawerContent} */}
           </div>
         </div>
-      </header>
+      )}
+
     </>
   );
 };
