@@ -104,50 +104,63 @@ const Header = () => {
           {
             title: "Development",
             icon: <Code2 className="w-5 h-5" />,
-            first_link_description: "Fast, reliable builds for websites, apps, and small products.",
-            second_link_description: "Custom feature development for existing apps.",
+            first_link_description: "We build fast, modern websites that convert visitors into customers.",
+            second_link_description: "We also fix, upgrade, and scale existing apps.",
             items: {
               first: [
-                { name: "Website Development", href: "/services/web-development" },
-                { name: "Landing Page Builds", href: "/services/landing-pages" },
-                { name: "Mobile App Development", href: "/services/mobile-apps" },
-                { name: "Custom Feature Development", href: "/services/custom-features" }
+                { name: "Business Website Development", href: "/services/business-website" },
+                { name: "E-Commerce Store Setup (Shopify / Custom)", href: "/services/ecommerce" },
+                { name: "Landing Page For Ads (High Conversion)", href: "/services/landing-pages" },
+                { name: "Booking / Appointment System", href: "/services/booking-system" },
+                { name: "Portfolio & Personal Branding Sites", href: "/services/portfolio-sites" },
               ],
               second: [
-                { name: "Mobile App Development", href: "/services/mobile-apps" },
-                { name: "Custom Feature Development", href: "/services/custom-features" },
-                { name: "Custom Feature Development", href: "/services/custom-features" },
-                { name: "Custom Feature Development", href: "/services/custom-features" }
-              ]
-            }
-
-          },
-          {
-            title: "Brand & Content",
-            icon: <Layout className="w-5 h-5" />,
-            first_link_description: "Give your business a clean, credible online presence.",
-            items: {
-              first: [
-                { name: "Branding & Logo Starter Kit", href: "/services/branding" },
-                { name: "Content Writing (Web + SEO)", href: "/services/content" },
-                { name: "Product Photos & Media Prep", href: "/services/media" },
-                { name: "UI/UX Cleanup & Improvements", href: "/services/uiux" }
-              ]
-            }
-          },
-          {
-            title: "Care & Support",
-            icon: <Server className="w-5 h-5" />,
-            first_link_description: "Ongoing help to keep your site or app running smoothly.",
-            items: {
-              first: [
-                { name: "Website Maintenance", href: "/services/maintenance" },
-                { name: "Performance & Speed Fixes", href: "/services/performance" },
-                { name: "Hosting & Deployment Help", href: "/services/hosting" },
-                { name: "Small Fixes & Monthly Support", href: "/services/support" }
+                { name: "Fix Slow Website (Speed Optimization)", href: "/services/speed" },
+                { name: "Bug Fixes & Feature Enhancements", href: "/services/bug-fixes" },
+                { name: "Mobile App Development (Basic to Mid)", href: "/services/mobile-apps" },
+                { name: "Custom API Development (CRM/ERP)", href: "/services/api-dev" },
               ]
             }
           }
+          ,
+          {
+            title: "Business Tools  ",
+            icon: <Cpu className="w-5 h-5" />,
+            first_link_description: "Custom tools that simplify daily business operations.",
+            items: {
+              first: [
+                { name: "Inventory & Order Tracking System", href: "/services/inventory-system" },
+                { name: "Invoice & Billing Generator", href: "/services/invoice-tool" },
+                { name: "Client Management System (Mini CRM)", href: "/services/mini-crm" },
+                { name: "Staff Attendance / Timesheet", href: "/services/timesheet" },
+                { name: "Custom Dashboard & Reports", href: "/services/dashboard" }
+              ]
+            }
+          }
+          ,
+          {
+            title: "Care & Support",
+            icon: <Server className="w-5 h-5" />,
+            first_link_description: "We keep your website running smoothly, updated, and secure.",
+            items: {
+              first: [
+                { name: "Monthly Website Maintenance", href: "/services/maintenance" },
+                { name: "Fix Hosting Issues / Migration", href: "/services/hosting-fix" },
+                { name: "Speed Optimization (Core Web Vitals)", href: "/services/speed" },
+                { name: "Malware Cleanup & Security Hardening", href: "/services/security" },
+                { name: "Broken Pages / Layout Fixes", href: "/services/fixes" },
+                { name: "Small Tasks & Support Plan", href: "/services/support" }
+              ],
+              second: [
+                { name: "Website Care Plan", href: "/services/maintenance" },
+                { name: "Bug Fixes & Updates", href: "/services/bug-fixes" },
+                { name: "Plugin / Library Upgrades", href: "/services/upgrades" },
+                { name: "Emergency Restore Support", href: "/services/restore" },
+                { name: "Small Monthly Changes", href: "/services/small-changes" }
+              ]
+            }
+          }
+
         ]
       }
     },
@@ -313,8 +326,8 @@ const Header = () => {
       {/* Header Container */}
       <header
         className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[98%] max-w-[1600px] transition-all duration-300 ${isScrolled
-            ? 'bg-white/95 backdrop-blur-xl shadow-lg shadow-[#1A3A6F]/5 border border-[#D9E4F2]'
-            : 'bg-white/80 backdrop-blur-md border border-white/20'
+          ? 'bg-white/95 backdrop-blur-xl shadow-lg shadow-[#1A3A6F]/5 border border-[#D9E4F2]'
+          : 'bg-white/80 backdrop-blur-md border border-white/20'
           } rounded-2xl`}
       >
         {/* IMPORTANT: relative wrapper */}
@@ -342,8 +355,8 @@ const Header = () => {
                   <div key={item.name} className="relative h-full flex items-center">
                     <button
                       className={`flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 cursor-pointer ${activeDropdown === item.name
-                          ? 'text-[#1A3A6F] bg-[#F0F7FF]'
-                          : 'text-[#6E7787] hover:text-[#1A3A6F] hover:bg-[#F0F7FF]'
+                        ? 'text-[#1A3A6F] bg-[#F0F7FF]'
+                        : 'text-[#6E7787] hover:text-[#1A3A6F] hover:bg-[#F0F7FF]'
                         }`}
                       onClick={() => {
                         if (item.type === 'mega') {
