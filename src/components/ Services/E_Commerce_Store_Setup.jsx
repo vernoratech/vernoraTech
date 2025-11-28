@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { 
-  ShoppingBag, 
-  CreditCard, 
-  Truck, 
-  BarChart3, 
-  Store, 
-  ShieldCheck, 
-  Rocket, 
-  ArrowRight, 
-  Check, 
-  X, 
-  Zap, 
+import React, { useEffect, useState } from 'react';
+import {
+  ShoppingBag,
+  CreditCard,
+  Truck,
+  BarChart3,
+  Store,
+  ShieldCheck,
+  Rocket,
+  ArrowRight,
+  Check,
+  X,
+  Zap,
   Globe,
   Package,
   Layers,
@@ -108,16 +108,23 @@ const E_Commerce_Store_Setup = () => {
     { icon: <Users className="text-white" />, title: "Loyalty Programs", desc: "Points and referral systems to increase LTV." },
   ];
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
+  })
+
   return (
     <div className="min-h-screen bg-white font-sans text-[#1C1F26]">
-      
+
       {/* --- distinctive HERO: Dashboard Vibe --- */}
       <section className="relative pt-32 pb-32 lg:pt-48 lg:pb-64 overflow-hidden bg-[#1A3A6F]">
         {/* Abstract "Receipt" Pattern Background */}
-        <div className="absolute inset-0 opacity-5" 
-             style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
+        <div className="absolute inset-0 opacity-5"
+          style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
         </div>
-        
+
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#2DA3DB] rounded-full blur-[150px] opacity-20 -translate-y-1/2 translate-x-1/3" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
@@ -138,7 +145,7 @@ const E_Commerce_Store_Setup = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 mb-16">
             <a href="#platform-choice" className="btn-primary bg-[#2DA3DB] hover:bg-white hover:text-[#1A3A6F] text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg shadow-[#2DA3DB]/20 flex items-center gap-2">
-              Start Selling <ArrowRight size={18}/>
+              Start Selling <ArrowRight size={18} />
             </a>
           </div>
 
@@ -158,7 +165,7 @@ const E_Commerce_Store_Setup = () => {
               <div className="p-4 sm:p-6 grid grid-cols-3 gap-4 sm:gap-6 h-[300px] lg:h-[400px]">
                 {/* Stat Cards */}
                 <div className="col-span-3 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-                  {[1,2,3,4].map(i => (
+                  {[1, 2, 3, 4].map(i => (
                     <div key={i} className="bg-[#FAFAFA] rounded-xl p-3 sm:p-4 border border-[#D9E4F2]">
                       <div className="h-2 sm:h-3 w-8 sm:w-12 bg-[#1A3A6F]/20 rounded mb-2" />
                       <div className="h-4 sm:h-6 w-16 sm:w-20 bg-[#1A3A6F] rounded" />
@@ -167,18 +174,18 @@ const E_Commerce_Store_Setup = () => {
                 </div>
                 {/* Main Graph Area */}
                 <div className="col-span-3 sm:col-span-2 bg-[#FAFAFA] rounded-xl border border-[#D9E4F2] relative overflow-hidden flex items-end px-4 pb-4 gap-2">
-                   {[40, 60, 45, 70, 50, 80, 65, 90].map((h, i) => (
-                     <div key={i} style={{ height: `${h}%` }} className="flex-1 bg-[#2DA3DB] rounded-t-sm opacity-80" />
-                   ))}
+                  {[40, 60, 45, 70, 50, 80, 65, 90].map((h, i) => (
+                    <div key={i} style={{ height: `${h}%` }} className="flex-1 bg-[#2DA3DB] rounded-t-sm opacity-80" />
+                  ))}
                 </div>
                 {/* Side Panel (Hidden on very small mobile) */}
                 <div className="hidden sm:block col-span-1 bg-[#FAFAFA] rounded-xl border border-[#D9E4F2] p-4 space-y-3">
-                   {[1,2,3,4].map(i => (
-                     <div key={i} className="flex gap-2 items-center">
-                       <div className="w-8 h-8 rounded bg-[#D9E4F2]" />
-                       <div className="flex-1 h-3 bg-[#D9E4F2] rounded" />
-                     </div>
-                   ))}
+                  {[1, 2, 3, 4].map(i => (
+                    <div key={i} className="flex gap-2 items-center">
+                      <div className="w-8 h-8 rounded bg-[#D9E4F2]" />
+                      <div className="flex-1 h-3 bg-[#D9E4F2] rounded" />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -198,7 +205,7 @@ const E_Commerce_Store_Setup = () => {
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Shopify Card */}
-            <div 
+            <div
               className={`relative overflow-hidden rounded-3xl p-8 border-2 transition-all cursor-pointer ${activePlatform === 'shopify' ? 'border-[#96bf48] bg-white shadow-xl' : 'border-transparent bg-white hover:border-[#96bf48]/30'}`}
               onClick={() => setActivePlatform('shopify')}
             >
@@ -220,7 +227,7 @@ const E_Commerce_Store_Setup = () => {
             </div>
 
             {/* Custom Card */}
-            <div 
+            <div
               className={`relative overflow-hidden rounded-3xl p-8 border-2 transition-all cursor-pointer ${activePlatform === 'custom' ? 'border-[#1A3A6F] bg-white shadow-xl scale-[1.02]' : 'border-transparent bg-white hover:border-[#1A3A6F]/30'}`}
               onClick={() => setActivePlatform('custom')}
             >
@@ -247,7 +254,7 @@ const E_Commerce_Store_Setup = () => {
       {/* --- ZIG-ZAG Features Section --- */}
       <section className="py-24 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32">
-          
+
           {/* Feature 1: Payments */}
           <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-16">
             <div className="w-full md:w-1/2 relative">
@@ -301,7 +308,7 @@ const E_Commerce_Store_Setup = () => {
               <div className="relative bg-[#FAFAFA] rounded-3xl border border-[#D9E4F2] p-6 sm:p-8 shadow-lg">
                 {/* Visual Representation of Inventory */}
                 <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                  {[1,2,3,4].map(i => (
+                  {[1, 2, 3, 4].map(i => (
                     <div key={i} className="bg-white p-3 rounded-xl border border-[#D9E4F2] flex flex-col items-center text-center">
                       <div className="w-12 h-12 bg-[#F0F7FF] rounded-lg mb-3 shrink-0" />
                       <div className="h-2 w-16 bg-[#D9E4F2] rounded mb-2" />
@@ -372,7 +379,7 @@ const E_Commerce_Store_Setup = () => {
             <div className="order-2 lg:order-1">
               <span className="text-[#2DA3DB] font-bold text-sm uppercase tracking-widest mb-2 block">Mobile First</span>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#1C1F26] mb-6">
-                79% of Users Buy on Mobile. <br/> Is Your Store Ready?
+                79% of Users Buy on Mobile. <br /> Is Your Store Ready?
               </h2>
               <p className="text-lg text-[#6E7787] mb-8 leading-relaxed">
                 Most themes break on mobile. Ours fly. We implement thumb-friendly navigation, sticky "Add to Cart" buttons, and one-tap checkout to capture impulse buys.
@@ -421,19 +428,19 @@ const E_Commerce_Store_Setup = () => {
           <p className="text-[#6E7787] font-semibold uppercase tracking-widest text-sm">Powering your store with best-in-class tools</p>
         </div>
         <div className="flex justify-center gap-8 sm:gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-500 flex-wrap px-4">
-           <span className="text-xl sm:text-2xl font-bold text-[#1C1F26]">Shopify</span>
-           <span className="text-xl sm:text-2xl font-bold text-[#1C1F26]">Stripe</span>
-           <span className="text-xl sm:text-2xl font-bold text-[#1C1F26]">PayPal</span>
-           <span className="text-xl sm:text-2xl font-bold text-[#1C1F26]">WooCommerce</span>
-           <span className="text-xl sm:text-2xl font-bold text-[#1C1F26]">Razorpay</span>
+          <span className="text-xl sm:text-2xl font-bold text-[#1C1F26]">Shopify</span>
+          <span className="text-xl sm:text-2xl font-bold text-[#1C1F26]">Stripe</span>
+          <span className="text-xl sm:text-2xl font-bold text-[#1C1F26]">PayPal</span>
+          <span className="text-xl sm:text-2xl font-bold text-[#1C1F26]">WooCommerce</span>
+          <span className="text-xl sm:text-2xl font-bold text-[#1C1F26]">Razorpay</span>
         </div>
       </section>
 
       {/* --- Final CTA --- */}
       <section className="py-24 bg-[#1C1F26] relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-full h-full bg-[#1A3A6F] opacity-20" 
-             style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 80%)' }} />
-        
+        <div className="absolute top-0 right-0 w-full h-full bg-[#1A3A6F] opacity-20"
+          style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 80%)' }} />
+
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">
             Stop Guessing, Start Selling.
@@ -456,16 +463,16 @@ const E_Commerce_Store_Setup = () => {
 // Helper for check icon
 function CheckCircle2({ size = 24, className }) {
   return (
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      width={size} 
-      height={size} 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
-      strokeLinejoin="round" 
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className={className}
     >
       <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />

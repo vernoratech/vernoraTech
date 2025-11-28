@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { 
-  Smartphone, 
-  Search, 
-  ShieldCheck, 
-  Rocket, 
-  BarChart3, 
-  ArrowRight, 
-  Layout, 
-  Code2, 
-  Zap, 
-  MessageSquare, 
-  X, 
+import React, { useEffect, useState } from 'react';
+import {
+  Smartphone,
+  Search,
+  ShieldCheck,
+  Rocket,
+  BarChart3,
+  ArrowRight,
+  Layout,
+  Code2,
+  Zap,
+  MessageSquare,
+  X,
   Check,
   ChevronDown
 } from 'lucide-react';
@@ -93,9 +93,16 @@ const Business_Website_Development = () => {
     }
   ];
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
+  })
+
   return (
     <div className="min-h-screen bg-[#FAFAFA] font-sans text-[#1C1F26]">
-      
+
       {/* --- Hero Section --- */}
       <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-40 overflow-hidden bg-[#1A3A6F]">
         {/* Background Decor */}
@@ -129,15 +136,15 @@ const Business_Website_Development = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="#contact" 
+            <a
+              href="#contact"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-[#2DA3DB] px-8 py-4 text-sm font-bold text-white shadow-lg shadow-[#2DA3DB]/20 transition-all hover:bg-white hover:text-[#1A3A6F] hover:-translate-y-1"
             >
               Start Your Project
               <ArrowRight size={18} />
             </a>
-            <a 
-              href="#comparison" 
+            <a
+              href="#comparison"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 py-4 text-sm font-bold text-white backdrop-blur-sm transition-all hover:bg-white/10"
             >
               Why Choose Custom?
@@ -156,16 +163,16 @@ const Business_Website_Development = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="group relative bg-[#FAFAFA] rounded-3xl p-8 border border-[#D9E4F2] transition-all duration-300 hover:shadow-xl hover:shadow-[#1A3A6F]/5 hover:bg-white overflow-hidden"
               >
                 <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${feature.color.replace('bg-', 'from-')}/20 to-transparent rounded-bl-full -mr-4 -mt-4 opacity-50`} />
-                
+
                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-md ${feature.color}`}>
                   {feature.icon}
                 </div>
-                
+
                 <h3 className="text-xl font-bold text-[#1C1F26] mb-3 group-hover:text-[#1A3A6F] transition-colors">
                   {feature.title}
                 </h3>
@@ -182,7 +189,7 @@ const Business_Website_Development = () => {
       <section className="py-20 bg-white overflow-hidden border-t border-[#FAFAFA]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            
+
             {/* Left Content */}
             <div>
               <span className="text-[#2DA3DB] font-bold text-sm uppercase tracking-widest mb-2 block">Why It Matters</span>
@@ -237,7 +244,7 @@ const Business_Website_Development = () => {
                       <div className="w-1/3 bg-[#D9E4F2] rounded-xl h-32 opacity-50" />
                     </div>
                     <div className="grid grid-cols-3 gap-4">
-                      {[1,2,3].map(k => (
+                      {[1, 2, 3].map(k => (
                         <div key={k} className="h-24 bg-[#F0F7FF] rounded-xl border border-[#D9E4F2]" />
                       ))}
                     </div>
@@ -253,7 +260,7 @@ const Business_Website_Development = () => {
       {/* --- Comparison Section (The "VernoraTech Advantage") --- */}
       <section id="comparison" className="py-20 bg-[#F0F7FF] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2DA3DB]/10 rounded-full blur-[80px] -mr-20 -mt-20" />
-        
+
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
             <span className="text-[#2DA3DB] font-bold text-xs uppercase tracking-widest bg-white px-4 py-1.5 rounded-full border border-[#2DA3DB]/20 shadow-sm">
@@ -273,7 +280,7 @@ const Business_Website_Development = () => {
               <div className="col-span-1 text-center text-[#2DA3DB]">VernoraTech</div>
               <div className="col-span-1 text-center text-gray-400">DIY / Templates</div>
             </div>
-            
+
             {comparisonData.map((item, idx) => (
               <div key={idx} className="grid grid-cols-3 py-5 px-6 border-b border-[#F0F7FF] hover:bg-[#FAFAFA] transition-colors last:border-0 items-center">
                 <div className="col-span-1 font-semibold text-[#1C1F26] text-sm sm:text-base">{item.feature}</div>
@@ -332,8 +339,8 @@ const Business_Website_Development = () => {
           </h2>
           <div className="space-y-4">
             {faqs.map((faq, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className={`bg-white border border-[#D9E4F2] rounded-2xl overflow-hidden transition-all duration-300 ${openFaqIndex === idx ? 'shadow-md border-[#2DA3DB]' : 'hover:border-[#2DA3DB]/50'}`}
               >
                 <button
@@ -346,7 +353,7 @@ const Business_Website_Development = () => {
                   </h4>
                   <ChevronDown size={20} className={`text-[#6E7787] transition-transform duration-300 ${openFaqIndex === idx ? 'rotate-180 text-[#1A3A6F]' : ''}`} />
                 </button>
-                
+
                 <div className={`px-6 pb-6 text-[#6E7787] leading-relaxed pl-[3.25rem] transition-all duration-300 ${openFaqIndex === idx ? 'block' : 'hidden'}`}>
                   {faq.a}
                 </div>
@@ -360,25 +367,25 @@ const Business_Website_Development = () => {
       <section className="py-24 bg-[#1A3A6F] relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10" />
         <div className="absolute right-0 top-0 w-96 h-96 bg-[#2DA3DB] rounded-full blur-[150px] opacity-20" />
-        
+
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
-            Ready to Upgrade Your <br/> Digital Presence?
+            Ready to Upgrade Your <br /> Digital Presence?
           </h2>
           <p className="text-lg text-[#D9E4F2] mb-10 max-w-2xl mx-auto">
             Get a custom quote tailored to your specific needs. No hidden fees, just results.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a 
-              href="/contact" 
+            <a
+              href="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-[#2DA3DB] px-8 py-4 text-base font-bold text-white shadow-xl hover:bg-white hover:text-[#1A3A6F] hover:-translate-y-1 transition-all"
             >
               Get Your Free Quote
               <Rocket size={20} />
             </a>
-            <a 
-              href="https://wa.me/917397825850" 
-              target="_blank" 
+            <a
+              href="https://wa.me/917397825850"
+              target="_blank"
               rel="noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 py-4 text-base font-bold text-white hover:bg-white/10 transition-all"
             >

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   MousePointer2, 
   TrendingUp, 
@@ -112,6 +112,14 @@ const Landing_Page_For_Ads = () => {
       a: "We provide a simplified CMS dashboard or handle requests via our support plan, so you can run A/B tests on headlines without touching code."
     }
   ];
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
+  })
+    
 
   return (
     <div className="min-h-screen bg-white font-sans text-[#1C1F26]">
