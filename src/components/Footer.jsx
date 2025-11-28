@@ -73,10 +73,10 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4 text-[#1A3A6F]">Services</h4>
             <ul className="space-y-2 text-[#1A3A6F]">
-              <li><a href="#services" className="hover:text-[#1A3A6F] transition duration-300">Landing Page Sprints</a></li>
-              <li><a href="#pricing" className="hover:text-[#1A3A6F] transition duration-300">Website Care Plans</a></li>
-              <li><a href="#process" className="hover:text-[#1A3A6F] transition duration-300">Launch Process</a></li>
-              <li><a href="#technologies" className="hover:text-[#1A3A6F] transition duration-300">Technology Stack</a></li>
+              <li><a href="#services" className="hover:text-[#1A3A6F] transition duration-300 cursor-pointer">Landing Page Sprints</a></li>
+              <li><a href="#pricing" className="hover:text-[#1A3A6F] transition duration-300 cursor-pointer">Website Care Plans</a></li>
+              <li><a href="#process" className="hover:text-[#1A3A6F] transition duration-300 cursor-pointer">Launch Process</a></li>
+              <li><a onClick={() => navigate('/technologies')} className="hover:text-[#1A3A6F] transition duration-300 cursor-pointer">Technology Stack</a></li>
             </ul>
           </div>
 

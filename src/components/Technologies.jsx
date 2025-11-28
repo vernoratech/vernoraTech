@@ -223,7 +223,7 @@
 
 
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Puzzle, Rocket, Handshake } from 'lucide-react';
 
 import { FaReact } from "react-icons/fa";
@@ -315,6 +315,10 @@ const techCategories = [
       contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   return (
     <section className="relative min-h-screen py-12 mt-16 sm:py-16 md:py-20 lg:py-24 bg-[#FAFAFA] text-[#1C1F26]">
