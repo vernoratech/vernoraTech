@@ -18,7 +18,10 @@ import {
   LayoutGrid,
   Zap,
   TrendingUp,
-  Menu
+  Menu,
+  MapPin,
+  ShoppingBag,
+  BarChart3
 } from 'lucide-react';
 
 const Mobile_App_Development = () => {
@@ -53,21 +56,89 @@ const Mobile_App_Development = () => {
     }
   ];
 
+  // Visual components for different app types
+  const EcommerceVisual = () => (
+    <div className="bg-white h-full w-full flex flex-col">
+      <div className="h-32 bg-gray-100 m-4 rounded-xl mb-2" />
+      <div className="px-4 space-y-2">
+        <div className="h-3 w-3/4 bg-gray-200 rounded" />
+        <div className="h-3 w-1/4 bg-[#2DA3DB] rounded" />
+      </div>
+      <div className="mt-auto m-4 h-8 bg-[#1C1F26] rounded-lg flex items-center justify-center text-white text-[10px] font-bold">Add to Cart</div>
+    </div>
+  );
+
+  const OnDemandVisual = () => (
+    <div className="bg-gray-100 h-full w-full relative overflow-hidden">
+      {/* Map Dots */}
+      <div className="absolute top-4 left-8 w-2 h-2 bg-gray-300 rounded-full" />
+      <div className="absolute top-12 right-12 w-2 h-2 bg-gray-300 rounded-full" />
+      <div className="absolute bottom-20 left-4 w-2 h-2 bg-gray-300 rounded-full" />
+      {/* Route Line */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none">
+        <path d="M40 40 Q 90 90 60 150" stroke="#2DA3DB" strokeWidth="3" fill="none" strokeDasharray="4 4" />
+      </svg>
+      {/* Car Pin */}
+      <div className="absolute top-[140px] left-[50px] bg-[#1C1F26] p-1.5 rounded-full shadow-lg">
+         <Rocket size={12} className="text-white" />
+      </div>
+      {/* Bottom Sheet */}
+      <div className="absolute bottom-0 left-0 w-full bg-white p-4 rounded-t-xl shadow-lg">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 bg-gray-200 rounded-full" />
+          <div>
+            <div className="h-2 w-20 bg-gray-800 rounded mb-1" />
+            <div className="h-2 w-12 bg-gray-400 rounded" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const InternalToolsVisual = () => (
+    <div className="bg-white h-full w-full p-4 flex flex-col">
+      <div className="flex justify-between items-center mb-4">
+        <div className="h-3 w-16 bg-gray-800 rounded" />
+        <div className="h-6 w-6 bg-gray-100 rounded-full" />
+      </div>
+      <div className="space-y-2 flex-1">
+        {[1,2,3].map(i => (
+          <div key={i} className="h-10 border border-gray-100 rounded-lg flex items-center px-2 gap-2">
+             <div className="w-4 h-4 rounded bg-[#2DA3DB]/20" />
+             <div className="h-2 w-16 bg-gray-200 rounded" />
+          </div>
+        ))}
+      </div>
+      <div className="mt-2 h-20 bg-[#F0F7FF] rounded-lg border border-[#2DA3DB]/20 flex items-end justify-around pb-2 px-2">
+         <div className="w-3 h-8 bg-[#2DA3DB] rounded-t-sm opacity-40" />
+         <div className="w-3 h-12 bg-[#2DA3DB] rounded-t-sm opacity-60" />
+         <div className="w-3 h-6 bg-[#2DA3DB] rounded-t-sm opacity-40" />
+         <div className="w-3 h-10 bg-[#2DA3DB] rounded-t-sm" />
+      </div>
+    </div>
+  );
+
   const appTypes = [
     {
       title: "E-Commerce Apps",
       desc: "Full shopping experience with cart, wishlist, and Apple Pay.",
-      tags: ["Shopify API", "Stripe", "Real-time Stock"]
+      visual: <EcommerceVisual />,
+      color: "border-[#2DA3DB]",
+      icon: <ShoppingBag size={20} />
     },
     {
       title: "On-Demand Services",
       desc: "Uber-style booking for cleaners, tutors, or technicians.",
-      tags: ["Maps Integration", "Live Tracking", "Chat"]
+      visual: <OnDemandVisual />,
+      color: "border-[#1A3A6F]",
+      icon: <MapPin size={20} />
     },
     {
       title: "Internal Business Tools",
       desc: "Streamline field operations with custom inventory or CRM apps.",
-      tags: ["Offline Mode", "Barcode Scanning", "Secure Login"]
+      visual: <InternalToolsVisual />,
+      color: "border-emerald-500",
+      icon: <BarChart3 size={20} />
     }
   ];
 
@@ -179,9 +250,7 @@ const Mobile_App_Development = () => {
               
               {/* Left Phone (Android Style) */}
               <div className="absolute left-0 top-16 w-[220px] h-[440px] bg-[#1C1F26] rounded-[24px] border-[4px] border-[#333] shadow-2xl transform -rotate-[12deg] -translate-x-4 opacity-60 scale-90 z-0 hidden sm:block">
-                {/* Hole Punch Camera */}
                 <div className="absolute top-4 left-1/2 -translate-x-1/2 w-3 h-3 bg-black rounded-full z-20" />
-                {/* Content */}
                 <div className="w-full h-full bg-white rounded-[20px] overflow-hidden flex flex-col">
                   <div className="h-14 bg-emerald-500 w-full flex items-center px-4">
                     <Menu className="text-white" size={16} />
@@ -196,7 +265,6 @@ const Mobile_App_Development = () => {
 
               {/* Right Phone (Compact/Grid Style) */}
               <div className="absolute right-0 top-24 w-[220px] h-[440px] bg-[#1C1F26] rounded-[30px] border-[4px] border-[#333] shadow-2xl transform rotate-[12deg] translate-x-4 opacity-60 scale-90 z-0 hidden sm:block">
-                {/* Notch */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-5 bg-black rounded-b-lg z-20" />
                 <div className="w-full h-full bg-white rounded-[26px] overflow-hidden flex flex-col">
                    <div className="h-full w-full bg-[#F0F7FF] p-3 grid grid-cols-2 gap-2 pt-8">
@@ -209,12 +277,8 @@ const Mobile_App_Development = () => {
 
               {/* Center Phone (Modern iPhone - Main Focus) */}
               <div className="relative w-[260px] h-[520px] bg-white rounded-[40px] border-[8px] border-[#1C1F26] shadow-2xl overflow-hidden transform rotate-[-3deg] hover:rotate-0 transition-transform duration-500 z-10">
-                {/* Dynamic Island / Notch */}
                 <div className="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-7 bg-[#1C1F26] rounded-full z-20" />
-                
-                {/* App UI */}
                 <div className="h-full flex flex-col">
-                  {/* Header */}
                   <div className="h-32 bg-[#1A3A6F] p-6 flex flex-col justify-end">
                     <div className="flex justify-between items-center text-white">
                       <div>
@@ -226,10 +290,7 @@ const Mobile_App_Development = () => {
                       </div>
                     </div>
                   </div>
-                  
-                  {/* Body */}
                   <div className="flex-1 bg-[#FAFAFA] p-5 space-y-4">
-                    {/* Stats Scroll */}
                     <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
                       <div className="min-w-[100px] h-24 bg-white rounded-2xl shadow-sm border border-[#D9E4F2] p-3 flex flex-col justify-between">
                         <div className="w-8 h-8 rounded-full bg-[#E0F2FE] flex items-center justify-center text-[#2DA3DB]"><Rocket size={14} /></div>
@@ -240,8 +301,6 @@ const Mobile_App_Development = () => {
                         <div className="h-2 w-12 bg-[#E5E7EB] rounded" />
                       </div>
                     </div>
-
-                    {/* Activity Feed */}
                     <div className="space-y-3">
                       <div className="text-xs font-bold text-[#6E7787] uppercase tracking-wider">Live Updates</div>
                       {[1, 2, 3].map(i => (
@@ -255,8 +314,6 @@ const Mobile_App_Development = () => {
                       ))}
                     </div>
                   </div>
-
-                  {/* Nav Bar */}
                   <div className="h-20 bg-white border-t border-[#E5E7EB] flex justify-around items-start pt-4 px-4">
                     {[1, 2, 3, 4].map(i => (
                       <div key={i} className={`w-8 h-8 rounded-lg flex items-center justify-center ${i === 1 ? 'text-[#1A3A6F]' : 'text-[#9CA3AF]'}`}>
@@ -309,7 +366,7 @@ const Mobile_App_Development = () => {
         </div>
       </section>
 
-      {/* --- App Types Section --- */}
+      {/* --- App Types Section (Enhanced Visuals) --- */}
       <section id="types" className="py-24 bg-[#FAFAFA] border-y border-[#D9E4F2]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -319,23 +376,28 @@ const Mobile_App_Development = () => {
 
           <div className="grid md:grid-cols-3 gap-8">
             {appTypes.map((type, i) => (
-              <div key={i} className="bg-white p-8 rounded-3xl shadow-sm border border-[#D9E4F2] hover:border-[#2DA3DB] transition-all hover:shadow-md group">
-                <div className="mb-6 flex justify-between items-start">
-                  <div className="p-3 bg-[#F0F7FF] rounded-2xl text-[#1A3A6F] group-hover:bg-[#1A3A6F] group-hover:text-white transition-colors">
-                    {i === 0 ? <CreditCard size={24} /> : i === 1 ? <Globe size={24} /> : <LayoutGrid size={24} />}
-                  </div>
-                  <div className="text-[#D9E4F2] group-hover:text-[#2DA3DB] transition-colors">
-                    <ArrowRight size={24} />
+              <div key={i} className="group bg-white rounded-[32px] shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-[#D9E4F2] flex flex-col">
+                
+                {/* Phone Mockup Header */}
+                <div className="relative h-64 bg-[#F3F4F6] flex items-end justify-center pt-8 overflow-hidden">
+                  <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50" />
+                  <div className={`relative w-[180px] h-[340px] bg-[#1C1F26] rounded-[24px] border-[6px] border-[#1C1F26] shadow-xl transform translate-y-8 transition-transform duration-500 group-hover:translate-y-4 ${type.color} border-b-0`}>
+                     {/* Inner Screen */}
+                     <div className="w-full h-full bg-white rounded-t-[18px] overflow-hidden">
+                        {type.visual}
+                     </div>
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-[#1C1F26] mb-3">{type.title}</h3>
-                <p className="text-[#6E7787] text-sm mb-6 leading-relaxed">{type.desc}</p>
-                <div className="flex flex-wrap gap-2">
-                  {type.tags.map((tag, t) => (
-                    <span key={t} className="px-3 py-1 bg-[#FAFAFA] border border-[#E5E7EB] text-[#4B5563] text-xs font-semibold rounded-full">
-                      {tag}
-                    </span>
-                  ))}
+
+                {/* Content */}
+                <div className="p-8 relative z-10 bg-white">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2 bg-[#F0F7FF] rounded-lg text-[#1A3A6F]">
+                      {type.icon}
+                    </div>
+                    <h3 className="text-xl font-bold text-[#1C1F26]">{type.title}</h3>
+                  </div>
+                  <p className="text-[#6E7787] text-sm mb-6 leading-relaxed">{type.desc}</p>
                 </div>
               </div>
             ))}
