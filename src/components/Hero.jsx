@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Play, ArrowRight, CheckCircle2, ChevronRight, Timer, ShieldCheck, BarChart3, Rocket } from 'lucide-react';
 import ScreenshotPlaceholder from './ScreenshotPlaceholder';
+import { useNavigate } from 'react-router-dom';
 
 const OFFER_DEADLINE = new Date('2025-12-31T23:59:59');
 
@@ -19,6 +20,9 @@ const OFFER_DEADLINE = new Date('2025-12-31T23:59:59');
 // );
 
 const Hero = () => {
+
+  const navigate = useNavigate();
+
   const videoSources = [
     'https://res.cloudinary.com/ddo1qupzg/video/upload/v1763360505/AI_Video_of_Future_Technologies_ojhxwi.mp4',
     'https://res.cloudinary.com/ddo1qupzg/video/upload/v1763360505/Tech_Background_Video_Generated_ln9mxx.mp4',
@@ -147,15 +151,15 @@ const Hero = () => {
 
           <div className="flex flex-col sm:flex-row gap-4">
             <a 
-              href="#portfolio" 
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1A3A6F] px-8 py-4 text-sm font-bold text-white shadow-lg shadow-[#1A3A6F]/20 transition-all hover:bg-[#2DA3DB] hover:shadow-[#2DA3DB]/30 hover:-translate-y-1"
+              onClick={() => navigate('/portfolio')} 
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1A3A6F] px-8 py-4 text-sm font-bold text-white shadow-lg shadow-[#1A3A6F]/20 transition-all hover:bg-[#2DA3DB] hover:shadow-[#2DA3DB]/30 hover:-translate-y-1 cursor-pointer hover:scale-105"
             >
               View Our Work
               <ArrowRight size={16} />
             </a>
             <a 
-              href="#contact" 
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold text-[#1C1F26] border border-[#D9E4F2] shadow-sm transition-all hover:border-[#1A3A6F]/30 hover:bg-[#FAFAFA]"
+              onClick={() => navigate('/contact')} 
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold text-[#1C1F26] border border-[#D9E4F2] shadow-sm transition-all hover:border-[#1A3A6F]/30 hover:bg-[#FAFAFA] cursor-pointer hover:scale-105 hover:-translate-y-1"
             >
               <Play size={16} className="text-[#2DA3DB] fill-[#2DA3DB]" />
               Start Your Project
