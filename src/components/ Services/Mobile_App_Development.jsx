@@ -13,6 +13,7 @@ import {
   Check, 
   X, 
   ChevronDown, 
+  Code2, 
   ScanFace, 
   CreditCard,
   LayoutGrid,
@@ -250,7 +251,9 @@ const Mobile_App_Development = () => {
               
               {/* Left Phone (Android Style) */}
               <div className="absolute left-0 top-16 w-[220px] h-[440px] bg-[#1C1F26] rounded-[24px] border-[4px] border-[#333] shadow-2xl transform -rotate-[12deg] -translate-x-4 opacity-60 scale-90 z-0 hidden sm:block">
+                {/* Hole Punch Camera */}
                 <div className="absolute top-4 left-1/2 -translate-x-1/2 w-3 h-3 bg-black rounded-full z-20" />
+                {/* Content */}
                 <div className="w-full h-full bg-white rounded-[20px] overflow-hidden flex flex-col">
                   <div className="h-14 bg-emerald-500 w-full flex items-center px-4">
                     <Menu className="text-white" size={16} />
@@ -265,6 +268,7 @@ const Mobile_App_Development = () => {
 
               {/* Right Phone (Compact/Grid Style) */}
               <div className="absolute right-0 top-24 w-[220px] h-[440px] bg-[#1C1F26] rounded-[30px] border-[4px] border-[#333] shadow-2xl transform rotate-[12deg] translate-x-4 opacity-60 scale-90 z-0 hidden sm:block">
+                {/* Notch */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-5 bg-black rounded-b-lg z-20" />
                 <div className="w-full h-full bg-white rounded-[26px] overflow-hidden flex flex-col">
                    <div className="h-full w-full bg-[#F0F7FF] p-3 grid grid-cols-2 gap-2 pt-8">
@@ -277,12 +281,16 @@ const Mobile_App_Development = () => {
 
               {/* Center Phone (Modern iPhone - Main Focus) */}
               <div className="relative w-[260px] h-[520px] bg-white rounded-[40px] border-[8px] border-[#1C1F26] shadow-2xl overflow-hidden transform rotate-[-3deg] hover:rotate-0 transition-transform duration-500 z-10">
+                {/* Dynamic Island / Notch */}
                 <div className="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-7 bg-[#1C1F26] rounded-full z-20" />
+                
+                {/* App UI */}
                 <div className="h-full flex flex-col">
+                  {/* Header */}
                   <div className="h-32 bg-[#1A3A6F] p-6 flex flex-col justify-end">
                     <div className="flex justify-between items-center text-white">
                       <div>
-                        <div className="text-xs opacity-70">Good Morning</div>
+                        <div className="text-xs opacity-70">Welcome back</div>
                         <div className="font-bold text-lg">Alex</div>
                       </div>
                       <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
@@ -290,7 +298,10 @@ const Mobile_App_Development = () => {
                       </div>
                     </div>
                   </div>
+                  
+                  {/* Body */}
                   <div className="flex-1 bg-[#FAFAFA] p-5 space-y-4">
+                    {/* Stats Scroll */}
                     <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
                       <div className="min-w-[100px] h-24 bg-white rounded-2xl shadow-sm border border-[#D9E4F2] p-3 flex flex-col justify-between">
                         <div className="w-8 h-8 rounded-full bg-[#E0F2FE] flex items-center justify-center text-[#2DA3DB]"><Rocket size={14} /></div>
@@ -301,6 +312,8 @@ const Mobile_App_Development = () => {
                         <div className="h-2 w-12 bg-[#E5E7EB] rounded" />
                       </div>
                     </div>
+
+                    {/* Activity Feed */}
                     <div className="space-y-3">
                       <div className="text-xs font-bold text-[#6E7787] uppercase tracking-wider">Live Updates</div>
                       {[1, 2, 3].map(i => (
@@ -314,6 +327,8 @@ const Mobile_App_Development = () => {
                       ))}
                     </div>
                   </div>
+
+                  {/* Nav Bar */}
                   <div className="h-20 bg-white border-t border-[#E5E7EB] flex justify-around items-start pt-4 px-4">
                     {[1, 2, 3, 4].map(i => (
                       <div key={i} className={`w-8 h-8 rounded-lg flex items-center justify-center ${i === 1 ? 'text-[#1A3A6F]' : 'text-[#9CA3AF]'}`}>
@@ -378,12 +393,12 @@ const Mobile_App_Development = () => {
             {appTypes.map((type, i) => (
               <div key={i} className="group bg-white rounded-[32px] shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-[#D9E4F2] flex flex-col">
                 
-                {/* Phone Mockup Header */}
-                <div className="relative h-64 bg-[#F3F4F6] flex items-end justify-center pt-8 overflow-hidden">
+                {/* Phone Mockup Header - Increased Height to reveal full phone */}
+                <div className="relative h-[380px] bg-[#F3F4F6] flex items-end justify-center pt-8 overflow-hidden">
                   <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50" />
-                  <div className={`relative w-[180px] h-[340px] bg-[#1C1F26] rounded-[24px] border-[6px] border-[#1C1F26] shadow-xl transform translate-y-8 transition-transform duration-500 group-hover:translate-y-4 ${type.color} border-b-0`}>
+                  <div className={`relative w-[180px] h-[340px] bg-[#1C1F26] rounded-[24px] border-[6px] border-[#1C1F26] shadow-xl transform translate-y-12 transition-transform duration-500 group-hover:translate-y-6 ${type.color}`}>
                      {/* Inner Screen */}
-                     <div className="w-full h-full bg-white rounded-t-[18px] overflow-hidden">
+                     <div className="w-full h-full bg-white rounded-[18px] overflow-hidden">
                         {type.visual}
                      </div>
                   </div>
