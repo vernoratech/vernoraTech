@@ -14,6 +14,30 @@ import BlogInsights from './components/BlogInsights';
 import New_Faq from './components/New_Faq';
 import Technologies from './components/Technologies';
 import Contact from './components/Contact';
+import Business_Website_Development from './components/ Services/Business_Website_Development';
+import E_Commerce_Store_Setup from './components/ Services/E_Commerce_Store_Setup';
+import Landing_Page_For_Ads from './components/ Services/Landing_Page_For_Ads';
+import Booking_Appointment_System from './components/ Services/Booking_Appointment_System';
+import Portfolio_Personal_Branding_Sites from './components/ Services/Portfolio_Personal_Branding_Sites';
+import Fix_Slow_Website from './components/ Services/Fix_Slow_Website';
+import Bug_Fixes_Feature_Enhancements from './components/ Services/Bug_Fixes_Feature_Enhancements';
+import Mobile_App_Development from './components/ Services/Mobile_App_Development';
+import Custom_API_Development from './components/ Services/Custom_API_Development';
+import Inventory_Order_Tracking_System from './components/ Services/Inventory_Order_Tracking_System';
+import Invoice_Billing_Generator from './components/ Services/Invoice_Billing_Generator';
+import Client_Management_System from './components/ Services/Client_Management_System';
+import Staff_Attendance_Timesheet from './components/ Services/Staff_Attendance_Timesheet';
+import Custom_Dashboard_Reports from './components/ Services/Custom_Dashboard_Reports';
+import Monthly_Website_Maintenance from './components/ Services/Monthly_Website_Maintenance';
+import Fix_Hosting_Issues_Migration from './components/ Services/Fix_Hosting_Issues_Migration';
+import Speed_Optimization from './components/ Services/Speed_Optimization';
+import Malware_Cleanup_Security_Hardening from './components/ Services/Malware_Cleanup_Security_Hardening';
+import Broken_Pages_Layout_Fixes from './components/ Services/Broken_Pages_Layout_Fixes';
+import Small_Tasks_Support_Plan from './components/ Services/Small_Tasks_Support_Plan';
+import Website_Care_Plan from './components/ Services/Website_Care_Plan';
+import Plugin_Library_Upgrades from './components/ Services/Plugin_Library_Upgrades';
+import Emergency_Restore_Support from './components/ Services/Emergency_Restore_Support';
+import Small_Monthly_Changes from './components/ Services/Small_Monthly_Changes';
 
 function App() {
   const [isTermsOpen, setIsTermsOpen] = React.useState(false);
@@ -259,6 +283,29 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/" element={homeElement} />
         <Route path="*" element={homeElement} />
+        {/* Services routes */}
+        <Route path="/services/business-website-development" element={<Business_Website_Development />} />
+        <Route path="/services/ecommerce" element={<E_Commerce_Store_Setup />} />
+        <Route path="/services/landing-pages" element={<Landing_Page_For_Ads />} />
+        <Route path="/services/booking-system" element={<Booking_Appointment_System />} />
+        <Route path="/services/portfolio-sites" element={<Portfolio_Personal_Branding_Sites />} />
+        <Route path="/services/speed" element={<Fix_Slow_Website />} />
+        <Route path="/services/bug-fixes" element={<Bug_Fixes_Feature_Enhancements />} />
+        <Route path="/services/mobile-apps" element={<Mobile_App_Development />} />
+        <Route path="/services/api-dev" element={<Custom_API_Development />} />
+        <Route path="/services/inventory-system" element={<Inventory_Order_Tracking_System />} />
+        <Route path="/services/invoice-tool" element={<Invoice_Billing_Generator />} />
+        <Route path="/services/mini-crm" element={<Client_Management_System />} />
+        <Route path="/services/timesheet" element={<Staff_Attendance_Timesheet />} />
+        <Route path="/services/dashboard" element={<Custom_Dashboard_Reports />} />
+        <Route path="/services/maintenance" element={<Monthly_Website_Maintenance />} />
+        <Route path="/services/hosting-fix" element={<Fix_Hosting_Issues_Migration />} />
+        <Route path="/services/security" element={<Malware_Cleanup_Security_Hardening />} />
+        <Route path="/services/fixes" element={<Broken_Pages_Layout_Fixes />} />
+        <Route path="/services/support" element={<Small_Tasks_Support_Plan />} />
+        <Route path="/services/upgrades" element={<Plugin_Library_Upgrades />} />
+        <Route path="/services/restore" element={<Emergency_Restore_Support />} />
+        <Route path="/services/small-changes" element={<Small_Monthly_Changes />} />
       </Routes>
 
       <Footer />
