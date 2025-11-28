@@ -10,7 +10,8 @@ import {
   Server,
   Layout,
   Cpu,
-  ChevronRight
+  ChevronRight,
+  Rocket
 } from 'lucide-react';
 
 const Header = () => {
@@ -305,12 +306,18 @@ const Header = () => {
 
                   <Link
                     to={services.featured.ctaLink}
-                    onClick={() => setActiveDropdown(null) && navigate(services.featured.ctaLink)}
-                    className="inline-flex items-center text-sm font-medium text-[#3A4353] hover:text-[#2DA3DB] transition-colors"
+                    onClick={() => setActiveDropdown(null)}
+                    className="group inline-flex items-center text-sm font-medium text-[#3A4353] hover:text-[#2DA3DB] transition-colors"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-[#D9E4F2] mr-2" />
-                    {services.featured.ctaText}
+
+                    <span className="flex items-center gap-2">
+                      {services.featured.ctaText}
+                      <Rocket className="w-4 h-4 rotate-315 group-hover:rotate-360 group-hover:-translate-y-3 group-hover:translate-x-2 transition-all duration-200 group-hover:text-[#2DA3DB] group-hover:scale-125" />
+                    </span>
                   </Link>
+
+
                 </>
               )}
             </div>
