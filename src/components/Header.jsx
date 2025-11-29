@@ -148,7 +148,7 @@ const Header = () => {
                 { name: "Monthly Website Maintenance", href: "/services/maintenance" },
                 { name: "Fix Hosting Issues / Migration", href: "/services/hosting-fix" },
                 { name: "Speed Optimization (Core Web Vitals)", href: "/services/speed" },
-                { name: "Malware Cleanup & Security Hardening", href: "/services/security" },
+                // { name: "Malware Cleanup & Security Hardening", href: "/services/security" },
                 { name: "Broken Pages / Layout Fixes", href: "/services/fixes" },
                 { name: "Small Tasks & Support Plan", href: "/services/support" }
               ],
