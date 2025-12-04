@@ -25,6 +25,7 @@ const ClientShowcase = (props) => {
       name: 'UrbanNest Interiors',
       industry: 'Interior Design Studio',
       icon: <Home className="h-5 w-5" />,
+      status: 'In review',
       color: 'bg-slate-100 text-slate-700',
       testimonial:
         'The new portfolio site finally lets us show our projects properly. We’ve had more serious enquiries in the last month than the previous quarter.',
@@ -34,6 +35,7 @@ const ClientShowcase = (props) => {
       name: 'QuickSend Couriers',
       industry: 'Local Delivery Service',
       icon: <Truck className="h-5 w-5" />,
+      status: 'In development',
       color: 'bg-indigo-100 text-indigo-700',
       testimonial:
         'Customers can now request pickups online instead of calling all day. It saves us time and helps us handle more deliveries with the same team.',
@@ -43,6 +45,7 @@ const ClientShowcase = (props) => {
       name: 'GlowCare Skincare',
       industry: 'D2C Beauty Brand',
       icon: <Sparkles className="h-5 w-5" />,
+      status: 'In development',
       color: 'bg-pink-100 text-pink-700',
       testimonial:
         'Our small e-commerce site works perfectly for new launches. We didn’t want something heavy — this gives us exactly what we need to sell smoothly.',
@@ -52,6 +55,7 @@ const ClientShowcase = (props) => {
       name: 'SkillForge Academy',
       industry: 'Online Courses',
       icon: <BookOpen className="h-5 w-5" />,
+      status: 'In testing',
       color: 'bg-blue-100 text-blue-700',
       testimonial:
         'Parents can browse classes and book demo sessions without messaging us repeatedly. It makes us look like a much bigger team.',
@@ -213,8 +217,8 @@ const ClientShowcase = (props) => {
                       {client.icon}
                     </div>
                     <div>
-                      <h3 className="text-sm font-bold text-[#1C1F26] leading-tight">{client.name}</h3>
-                      <p className="text-[10px] font-bold uppercase tracking-wider text-[#2DA3DB] mt-0.5">In production</p>
+                      <h3 className="text-sm font-bold text-[#1C1F26] leading-tight">{client.name}</h3> 
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-[#2DA3DB] mt-0.5">{client.status}</p>
                     </div>
                   </div>
 

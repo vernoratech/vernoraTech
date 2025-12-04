@@ -257,7 +257,7 @@ const FAQ = () => {
                 Still have questions? Chat with us
               </h3>
               <p className="text-sm text-[#4B5563]">
-                Ask follow-up questions in this chat. You can later connect this to your live LLM support bot.
+                Ask follow-up questions in this chat. This assistant is already powered by our live LLM support bot.
               </p>
             </div>
           </div>

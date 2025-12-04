@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Plus,
   Minus,
@@ -9,10 +9,21 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { FAQ_ASSISTANT_SYSTEM_PROMPT } from '../config/aiPrompts';
 
 const New_Faq = () => {
   const [openIndex, setOpenIndex] = useState(0);
   const [activeCategory, setActiveCategory] = useState('General');
+  const [chatMessages, setChatMessages] = useState([
+    {
+      id: 'welcome',
+      sender: 'assistant',
+      text: 'Hi! Ask anything about our services, timelines, pricing, or process.',
+    },
+  ]);
+  const [chatInput, setChatInput] = useState('');
+  const [isChatSending, setIsChatSending] = useState(false);
+  const chatScrollRef = useRef(null);
 
   const categories = ['General', 'Technical', 'Pricing & Legal'];
 
@@ -60,7 +71,114 @@ const New_Faq = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    const el = chatScrollRef.current;
+    if (!el) return;
+    el.scrollTop = el.scrollHeight;
+  }, [chatMessages]);
+
   const navigate = useNavigate();
+
+  const handleChatSubmit = async (event) => {
+    event.preventDefault();
+    const trimmed = chatInput.trim();
+    if (!trimmed || isChatSending) return;
+
+    const userMessage = {
+      id: `user-${Date.now()}`,
+      sender: 'user',
+      text: trimmed,
+    };
+
+    setChatMessages((prev) => [...prev, userMessage]);
+    setChatInput('');
+    setIsChatSending(true);
+
+    const lower = trimmed.toLowerCase();
+    const match = faqs.find(
+      (item) =>
+        item.question.toLowerCase().includes(lower) ||
+        item.answer.toLowerCase().includes(lower)
+    );
+
+    const fallbackReply = match
+      ? `Here's something that might help:\n\n${match.question}\n${match.answer}`
+      : 'Thanks for your question. Our team will review it and get back to you soon.';
+
+    const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+
+    if (!apiKey) {
+      setTimeout(() => {
+        setChatMessages((prev) => [
+          ...prev,
+          {
+            id: `assistant-${Date.now()}`,
+            sender: 'assistant',
+            text: fallbackReply,
+          },
+        ]);
+        setIsChatSending(false);
+      }, 400);
+      return;
+    }
+
+    try {
+      const historyForApi = [
+        ...chatMessages.map((msg) => ({
+          role: msg.sender === 'user' ? 'user' : 'assistant',
+          content: msg.text,
+        })),
+        { role: 'user', content: trimmed },
+      ];
+
+      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model: 'llama-3.1-8b-instant',
+          messages: [
+            {
+              role: 'system',
+              content: FAQ_ASSISTANT_SYSTEM_PROMPT,
+            },
+            ...historyForApi,
+          ],
+          temperature: 0.4,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to call Groq API');
+      }
+
+      const data = await response.json();
+      const replyText =
+        data?.choices?.[0]?.message?.content?.trim() || fallbackReply;
+
+      setChatMessages((prev) => [
+        ...prev,
+        {
+          id: `assistant-${Date.now()}`,
+          sender: 'assistant',
+          text: replyText,
+        },
+      ]);
+    } catch (error) {
+      setChatMessages((prev) => [
+        ...prev,
+        {
+          id: `assistant-${Date.now()}`,
+          sender: 'assistant',
+          text: fallbackReply,
+        },
+      ]);
+    } finally {
+      setIsChatSending(false);
+    }
+  };
 
   return (
     <section id="faq" className="relative py-24 bg-white overflow-hidden mt-10">
@@ -91,8 +209,8 @@ const New_Faq = () => {
               key={cat}
               onClick={() => { setActiveCategory(cat); setOpenIndex(0); }}
               className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-200 border ${activeCategory === cat
-                  ? 'bg-[#1A3A6F] text-white border-[#1A3A6F] shadow-lg shadow-[#1A3A6F]/20'
-                  : 'bg-white text-[#6E7787] border-[#D9E4F2] hover:border-[#2DA3DB] hover:text-[#1A3A6F]'
+                ? 'bg-[#1A3A6F] text-white border-[#1A3A6F] shadow-lg shadow-[#1A3A6F]/20'
+                : 'bg-white text-[#6E7787] border-[#D9E4F2] hover:border-[#2DA3DB] hover:text-[#1A3A6F]'
                 }`}
             >
               {cat}
@@ -106,8 +224,8 @@ const New_Faq = () => {
             <div
               key={index}
               className={`group rounded-2xl border transition-all duration-300 overflow-hidden ${openIndex === index
-                  ? 'bg-white border-[#2DA3DB] shadow-xl shadow-[#1A3A6F]/5'
-                  : 'bg-[#FAFAFA] border-transparent hover:bg-white hover:border-[#D9E4F2]'
+                ? 'bg-white border-[#2DA3DB] shadow-xl shadow-[#1A3A6F]/5'
+                : 'bg-[#FAFAFA] border-transparent hover:bg-white hover:border-[#D9E4F2]'
                 }`}
             >
               <button
@@ -143,12 +261,72 @@ const New_Faq = () => {
             We’d be happy to hop on a quick call and clarify your specific requirements.
           </p>
           <a
-            onClick={()=>navigate('/contact')}
+            onClick={() => navigate('/contact')}
             className="inline-flex items-center gap-2 text-[#1A3A6F] font-bold hover:text-[#2DA3DB] transition-colors cursor-pointer"
           >
             Chat with our lead engineer
             <ArrowRight size={18} />
           </a>
+        </div>
+
+        <div className="mt-12 bg-white rounded-2xl shadow-md border border-[#E2E8F0] p-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+            <div>
+              <h3 className="text-lg sm:text-xl font-semibold text-[#1A3A6F]">
+                Ask more questions in chat
+              </h3>
+              <p className="text-sm text-[#4B5563]">
+                Ask follow-up questions in this chat. This assistant is already powered by our live LLM support bot.
+              </p>
+            </div>
+          </div>
+
+          <div
+            ref={chatScrollRef}
+            className="mb-4 h-56 sm:h-64 rounded-xl border border-[#E2E8F0] bg-[#F8FAFF] overflow-y-auto px-3 py-3 space-y-3"
+          >
+            {chatMessages.map((msg) => (
+              <div
+                key={msg.id}
+                className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+              >
+                <div
+                  className={`max-w-[80%] rounded-2xl px-3 py-2 text-sm whitespace-pre-line ${msg.sender === 'user'
+                      ? 'bg-[#1A3A6F] text-white rounded-br-sm'
+                      : 'bg-white text-[#1A3A6F] border border-[#D9E4F2] rounded-bl-sm'
+                    }`}
+                >
+                  {msg.text}
+                </div>
+              </div>
+            ))}
+
+            {isChatSending && (
+              <div className="flex justify-start">
+                <div className="inline-flex items-center gap-2 rounded-2xl bg-white text-[#6E7787] border border-[#D9E4F2] px-3 py-2 text-xs">
+                  <span className="h-2 w-2 rounded-full bg-[#2DA3DB] animate-pulse" />
+                  <span>Thinking...</span>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <form onSubmit={handleChatSubmit} className="flex flex-col sm:flex-row gap-3">
+            <input
+              type="text"
+              className="flex-1 rounded-full border border-[#D9E4F2] px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2DA3DB] focus:border-transparent"
+              placeholder="Type your question here..."
+              value={chatInput}
+              onChange={(e) => setChatInput(e.target.value)}
+            />
+            <button
+              type="submit"
+              disabled={isChatSending || !chatInput.trim()}
+              className="inline-flex items-center justify-center rounded-full bg-[#1A3A6F] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#2DA3DB] transition disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              Send
+            </button>
+          </form>
         </div>
 
       </div>
