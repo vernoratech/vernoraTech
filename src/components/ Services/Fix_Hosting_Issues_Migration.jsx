@@ -341,9 +341,9 @@ const Fix_Hosting_Issues_Migration = () => {
       {/* --- The Workflow (Step-by-Step) --- */}
       <section id="process" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
 
-            <div className="order-2 lg:order-1">
+            <div className="order-2 lg:order-1 text-center lg:text-left">
               <span className="text-[#2DA3DB] font-bold text-sm uppercase tracking-widest mb-2 block">The Process</span>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#1C1F26] mb-6">
                 Safe, Secure, and <span className="text-[#2DA3DB]">Seamless</span>
@@ -373,7 +373,7 @@ const Fix_Hosting_Issues_Migration = () => {
             </div>
 
             {/* Right Visual: Uptime Graph */}
-            <div className="order-1 lg:order-2 relative">
+            <div className="order-1 lg:order-2 relative mt-10 lg:mt-0">
               <div className="absolute inset-0 bg-[#2DA3DB]/10 rounded-full blur-3xl" />
               <div className="relative bg-white rounded-2xl shadow-xl border border-[#D9E4F2] p-8">
                 <div className="flex justify-between items-center mb-6">
@@ -384,7 +384,7 @@ const Fix_Hosting_Issues_Migration = () => {
                 </div>
 
                 {/* Line Chart Visual */}
-                <div className="h-40 flex items-end justify-between gap-2 relative">
+                <div className="h-32 sm:h-40 flex items-end justify-between gap-1.5 sm:gap-2 relative">
                   {/* Grid Lines */}
                   <div className="absolute inset-0 flex flex-col justify-between opacity-10 pointer-events-none">
                     <div className="w-full h-px bg-[#1C1F26]" />
@@ -394,7 +394,11 @@ const Fix_Hosting_Issues_Migration = () => {
 
                   {/* Before (Slow) */}
                   {[80, 75, 90, 85, 80].map((h, i) => (
-                    <div key={`old-${i}`} style={{ height: `${h}%` }} className="w-6 bg-red-100 rounded-t-sm" />
+                    <div
+                      key={`old-${i}`}
+                      style={{ height: `${h}%` }}
+                      className="w-3 sm:w-4 md:w-6 bg-red-100 rounded-t-sm"
+                    />
                   ))}
 
                   {/* The Switch */}
@@ -402,7 +406,11 @@ const Fix_Hosting_Issues_Migration = () => {
 
                   {/* After (Fast) */}
                   {[20, 15, 18, 15, 12, 15].map((h, i) => (
-                    <div key={`new-${i}`} style={{ height: `${h}%` }} className="w-6 bg-emerald-400 rounded-t-sm animate-[growUp_1s_ease-out]" />
+                    <div
+                      key={`new-${i}`}
+                      style={{ height: `${h}%` }}
+                      className="w-3 sm:w-4 md:w-6 bg-emerald-400 rounded-t-sm animate-[growUp_1s_ease-out]"
+                    />
                   ))}
                 </div>
 
