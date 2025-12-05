@@ -1,6 +1,7 @@
 import React from 'react';
 import ScreenshotPlaceholder from './ScreenshotPlaceholder';
 import { domains } from '../data/projects';
+import { Link } from 'react-router-dom';
 
 const Portfolio = (props) => {
 
@@ -106,9 +107,9 @@ const Portfolio = (props) => {
           >
             Explore All Domains
           </button>
-          <a href="#contact" className="btn-primary w-full md:w-auto">
+          <Link to="/contact" className="btn-primary w-full md:w-auto">
             Start Your Domain Project
-          </a>
+          </Link>
         </div>
       </div>
     </section>

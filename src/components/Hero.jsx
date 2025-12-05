@@ -24,9 +24,11 @@ const Hero = ({ isInitialLoading }) => {
   const navigate = useNavigate();
 
   const videoSources = [
+    'https://res.cloudinary.com/ddo1qupzg/video/upload/v1764908256/Tech_Company_Promotional_Video_Generation_krvf5p.mp4',
+    'https://res.cloudinary.com/ddo1qupzg/video/upload/v1764908256/Premium_Tech_Promo_Video_Generation_plwgrb.mp4',
     'https://res.cloudinary.com/ddo1qupzg/video/upload/v1763360505/AI_Video_of_Future_Technologies_ojhxwi.mp4',
-    'https://res.cloudinary.com/ddo1qupzg/video/upload/v1763360505/Tech_Background_Video_Generated_ln9mxx.mp4',
     'https://res.cloudinary.com/ddo1qupzg/video/upload/v1763360505/Tech_Website_Background_Video_Creation_vwvdye.mp4',
+
   ];
   const videoRef = useRef(null);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
@@ -131,7 +133,7 @@ const Hero = ({ isInitialLoading }) => {
         <div className={`absolute inset-0 bg-[#1A3A6F] transition-opacity duration-700 ${isVideoReady ? 'opacity-0' : 'opacity-100'}`} />
         <video
           ref={videoRef}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${isVideoReady ? 'opacity-30' : 'opacity-0'}`}
+          className={`absolute left-1/2 top-1/2 min-h-full min-w-full -translate-x-1/2 -translate-y-1/2 object-cover transition-opacity duration-1000 ${isVideoReady ? 'opacity-40' : 'opacity-0'}`}
           src={videoSources[currentVideoIndex]}
           autoPlay
           muted

@@ -27,16 +27,18 @@ const ClientShowcase = (props) => {
       icon: <Home className="h-5 w-5" />,
       status: 'In review',
       color: 'bg-slate-100 text-slate-700',
+      image: 'https://res.cloudinary.com/ddo1qupzg/image/upload/v1764906003/UrbanNest_Interiors_0A_mbexu1.jpg',
       testimonial:
         'The new portfolio site finally lets us show our projects properly. We’ve had more serious enquiries in the last month than the previous quarter.',
       representative: 'Creative Director'
     },
     {
-      name: 'QuickSend Couriers',
+      name: 'QuickSend Couriers', 
       industry: 'Local Delivery Service',
       icon: <Truck className="h-5 w-5" />,
       status: 'In development',
       color: 'bg-indigo-100 text-indigo-700',
+      image: 'https://res.cloudinary.com/ddo1qupzg/image/upload/v1764905981/QuickSend_Couriers_0A_envh0g.jpg',
       testimonial:
         'Customers can now request pickups online instead of calling all day. It saves us time and helps us handle more deliveries with the same team.',
       representative: 'Operations Manager'
@@ -47,6 +49,7 @@ const ClientShowcase = (props) => {
       icon: <Sparkles className="h-5 w-5" />,
       status: 'In development',
       color: 'bg-pink-100 text-pink-700',
+      image: 'https://res.cloudinary.com/ddo1qupzg/image/upload/v1764905981/GlowCare_Skincare_hmnd27.jpg',
       testimonial:
         'Our small e-commerce site works perfectly for new launches. We didn’t want something heavy — this gives us exactly what we need to sell smoothly.',
       representative: 'Brand Owner'
@@ -57,6 +60,7 @@ const ClientShowcase = (props) => {
       icon: <BookOpen className="h-5 w-5" />,
       status: 'In testing',
       color: 'bg-blue-100 text-blue-700',
+      image: 'https://res.cloudinary.com/ddo1qupzg/image/upload/v1764905981/SkillForge_Academy_oqik7i.jpg',
       testimonial:
         'Parents can browse classes and book demo sessions without messaging us repeatedly. It makes us look like a much bigger team.',
       representative: 'Founder'
@@ -207,7 +211,7 @@ const ClientShowcase = (props) => {
                       title={`${client.name} preview`}
                       label="In-review snapshot"
                       className="aspect-[16/10]"
-                      imageSrc="https://htmlburger.com/blog/wp-content/uploads/2024/03/beauty-website-design-examples.jpg"
+                      imageSrc={client.image}
                       imageAlt=""
                     />
                   </div>
