@@ -33,11 +33,11 @@ const ScreenshotPlaceholder = ({
   const resolvedSrc = imageSrc || defaultPlaceholder;
   const alt = imageAlt || title;
   const [currentSrc, setCurrentSrc] = React.useState(resolvedSrc);
-  const [isImageLoaded, setIsImageLoaded] = React.useState(!imageSrc);
+  const [isImageLoaded, setIsImageLoaded] = React.useState(false);
 
   React.useEffect(() => {
     setCurrentSrc(resolvedSrc);
-    setIsImageLoaded(!imageSrc);
+    setIsImageLoaded(false);
   }, [resolvedSrc, imageSrc]);
 
   const handleImageLoad = React.useCallback(() => {

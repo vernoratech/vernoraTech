@@ -91,11 +91,11 @@ const PortfolioPage = (props) => {
 
           {/* Header Section */}
           <div className="flex flex-col items-center text-center">
-            <BackButton fallbackToHome={Boolean(props.onBackToHome)} />
-
+            {/* <BackButton fallbackToHome={Boolean(props.onBackToHome)} /> */}
+{/* 
             <div className="mt-10 inline-flex items-center gap-2 rounded-full border border-[#2DA3DB]/20 bg-[#2DA3DB]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.15em] text-[#1A3A6F]">
               <span>Strategic Portfolio</span>
-            </div>
+            </div> */}
 
             <h1 className="mt-6 max-w-4xl text-4xl font-extrabold leading-tight text-[#1C1F26] sm:text-5xl lg:text-6xl tracking-tight">
               Domains We Power <span className="text-[#2DA3DB]">End-to-End</span>
@@ -135,13 +135,13 @@ const PortfolioPage = (props) => {
                   <span className="text-4xl font-bold text-[#D9E4F2] transition-colors group-hover:text-[#2DA3DB]/20">
                     {String(index + 1).padStart(2, '0')}
                   </span>
-                  <div className="rounded-full bg-[#FAFAFA] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#1A3A6F] border border-[#D9E4F2]">
+                  {/* <div className="rounded-full bg-[#FAFAFA] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#1A3A6F] border border-[#D9E4F2]">
                     {domain.name}
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* Image Area */}
-                <div className="mt-6 aspect-[4/3] w-full overflow-hidden rounded-2xl border border-[#D9E4F2]/50 bg-[#FAFAFA]">
+                <div className="mt-6 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-[#D9E4F2]/50 bg-[#FAFAFA]">
                   <ScreenshotPlaceholder
                     label={domain.name}
                     className="h-full w-full transition-transform duration-500 group-hover:scale-105"

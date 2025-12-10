@@ -10,7 +10,7 @@ export const domains = [
       'Contact/WhatsApp CTA'
     ],
     results: 'Helped creators get more project inquiries quickly.',
-    imageSrc: 'https://w3layouts.b-cdn.net//wp-content/uploads/2023/10/Biodata-Personal-Website-Template-scaled-1.jpg'
+    imageSrc: 'https://res.cloudinary.com/ddo1qupzg/image/upload/v1765347943/1_qh0jyv.jpg'
   },
   {
     name: 'Developer Portfolio',
@@ -22,7 +22,7 @@ export const domains = [
       'Fast-loading sections'
     ],
     results: 'Increased interview callbacks and recruiter interest.',
-    imageSrc: 'https://themewagon.com/wp-content/uploads/2020/08/Clyde.png'
+    imageSrc: 'https://res.cloudinary.com/ddo1qupzg/image/upload/v1765347944/2_lo8snx.jpg'
   },
   {
     name: 'Photography Portfolio',
@@ -34,7 +34,7 @@ export const domains = [
       'Quick contact options'
     ],
     results: 'Generated more bookings for photography clients.',
-    imageSrc: 'https://www.creative-tim.com/blog/content/images/wordpress/2019/03/Rubik-Presentation-Page-Premium-One-Page-Template.png'
+    imageSrc: 'https://res.cloudinary.com/ddo1qupzg/image/upload/v1765347944/4_b7fitu.jpg'
   },
 
   // ------------------- LANDING PAGES -------------------
@@ -48,7 +48,7 @@ export const domains = [
       'WhatsApp lead button'
     ],
     results: 'Boosted class registrations within the first week.',
-    imageSrc: 'https://img.freepik.com/free-vector/flat-landing-page-template-gym-exercise_23-2149557500.jpg'
+    imageSrc: 'https://res.cloudinary.com/ddo1qupzg/image/upload/v1765347944/3_jvytvq.jpg'
   },
   {
     name: 'App Launch Landing Page',
@@ -60,7 +60,7 @@ export const domains = [
       'Pricing & FAQs'
     ],
     results: 'Helped early-stage startups get their first users.',
-    imageSrc: 'https://www.shutterstock.com/image-vector/website-template-websites-apps-600nw-1019269555.jpg'
+    imageSrc: 'https://res.cloudinary.com/ddo1qupzg/image/upload/v1765347944/6_vebgox.jpg'
   },
   {
     name: 'Service Business Landing Page',
@@ -72,7 +72,7 @@ export const domains = [
       'Quick lead form'
     ],
     results: 'Increased quality leads for small businesses.',
-    imageSrc: 'https://s3-figma-hubfile-images-production.figma.com/hub/file/carousel/img/cd4bf53a78ebde90128c851951ca0f6bbbed03a2'
+    imageSrc: 'https://res.cloudinary.com/ddo1qupzg/image/upload/v1765347944/8_z44qtv.jpg'
   },
 
   // ------------------- E-COMMERCE -------------------
@@ -86,7 +86,7 @@ export const domains = [
       'Razorpay checkout'
     ],
     results: 'Helped brands generate sales without marketplaces.',
-    imageSrc: 'https://themewagon.com/wp-content/uploads/2024/10/Kaira.webp'
+    imageSrc: 'https://res.cloudinary.com/ddo1qupzg/image/upload/v1765352627/9_xnh74y.jpg'
   },
   {
     name: 'Single Product Store',
@@ -98,7 +98,7 @@ export const domains = [
       'Simple checkout'
     ],
     results: 'Achieved strong conversion rates for trending products.',
-    imageSrc: 'https://cdn.dribbble.com/userupload/4058878/file/original-87daae31fb2b541441fef5d03f37e9cd.jpg?format=webp&resize=400x300&vertical=center'
+    imageSrc: 'https://res.cloudinary.com/ddo1qupzg/image/upload/v1765347944/5_qligcj.jpg'
   },
   {
     name: 'Digital Products Store',
