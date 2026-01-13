@@ -121,12 +121,12 @@ const Header = () => {
       type: 'mega', // New type for Mega Menu
       megaData: {
         featured: {
-          title: "Build Your First Website — 100% FREE",
+          title: "Build Your First Website",
           description:
-            "Launch your first website for free. Fast, responsive, and professionally designed.",
+            "Launch your first website. Fast, responsive, and professionally designed.",
           image:
-            "/offer_img_2.png",
-          ctaText: "Claim Your Free Slot",
+            "https://cdn.prod.website-files.com/6243c3bb3b5a1852803d0c7f/6243c3bb3b5a18f1113d13c3_best-website-builder-for-small-business.jpg",
+          ctaText: "Book Your Slot",
           ctaLink: "/contact"
         }
         ,
@@ -325,7 +325,7 @@ const Header = () => {
             <div className="w-[260px] bg-[#F7FAFF] border-l border-[#E5EAF3] py-6 px-4">
               {services.featured && (
                 <>
-                  <h3 className="text-xs font-semibold text-[#6E7787] tracking-wide mb-4 px-2">LIMITED OFFER - CLICK TO VIEW</h3>
+                  <h3 className="text-xs font-semibold text-[#6E7787] tracking-wide mb-4 px-2 flex items-center">CONTACT US NOW</h3>
 
                   <div
                     className="w-full h-32 rounded-lg overflow-hidden mb-4 cursor-pointer hover:opacity-90 transition-opacity"
@@ -394,10 +394,10 @@ const Header = () => {
               {/* Logo */}
               <div className="flex-shrink-0 flex items-center gap-2">
                 <a href="/" className="flex items-center gap-2 group">
-                  <div className="h-8 w-8 sm:h-10 sm:w-10 bg-[#1A3A6F] text-white rounded-lg flex items-center justify-center font-bold text-xl">
+                  {/* <div className="h-8 w-8 sm:h-10 sm:w-10 bg-[#1A3A6F] text-white rounded-lg flex items-center justify-center font-bold text-xl">
                     V
-                  </div>
-                  <span className="font-bold text-xl tracking-tight text-[#1C1F26] group-hover:text-[#1A3A6F] transition-colors">
+                  </div> */}
+                  <span className="font-bold md:text-2xl text-xl tracking-tight text-[#1C1F26] group-hover:text-[#1A3A6F] transition-colors">
                     Vernora<span className="text-[#2DA3DB]">Tech</span>
                   </span>
                 </a>

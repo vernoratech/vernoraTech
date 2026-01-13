@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from '../assets/logo2.png';
 
 const LoadingOverlay = ({ isVisible }) => {
   return (
@@ -9,7 +10,7 @@ const LoadingOverlay = ({ isVisible }) => {
       aria-hidden={!isVisible}
     >
       <div className="flex flex-col items-center gap-6">
-        <img src="https://res.cloudinary.com/ddo1qupzg/image/upload/v1764732809/VernoraTech_ccfhem.png" alt="VernoraTech" className="h-14 w-auto" />
+        <img src={logo} alt="VernoraTech" className="h-14 w-auto" />
         <div className="w-40 h-2 rounded-full bg-slate-200 overflow-hidden">
           <div className="h-full w-full origin-left animate-[loadingSteps_2s_infinite] bg-gradient-to-r from-primary/40 via-primary to-primary/60" />
         </div>

@@ -24,10 +24,10 @@ const Hero = ({ isInitialLoading }) => {
   const navigate = useNavigate();
 
   const videoSources = [
-    'https://res.cloudinary.com/ddo1qupzg/video/upload/v1764908256/Tech_Company_Promotional_Video_Generation_krvf5p.mp4',
-    'https://res.cloudinary.com/ddo1qupzg/video/upload/v1764908256/Premium_Tech_Promo_Video_Generation_plwgrb.mp4',
-    'https://res.cloudinary.com/ddo1qupzg/video/upload/v1763360505/AI_Video_of_Future_Technologies_ojhxwi.mp4',
-    'https://res.cloudinary.com/ddo1qupzg/video/upload/v1763360505/Tech_Website_Background_Video_Creation_vwvdye.mp4',
+    // 'https://res.cloudinary.com/ddo1qupzg/video/upload/v1764908256/Tech_Company_Promotional_Video_Generation_krvf5p.mp4',
+    // 'https://res.cloudinary.com/ddo1qupzg/video/upload/v1764908256/Premium_Tech_Promo_Video_Generation_plwgrb.mp4',
+    // 'https://res.cloudinary.com/ddo1qupzg/video/upload/v1763360505/AI_Video_of_Future_Technologies_ojhxwi.mp4',
+    // 'https://res.cloudinary.com/ddo1qupzg/video/upload/v1763360505/Tech_Website_Background_Video_Creation_vwvdye.mp4',
 
   ];
   const videoRef = useRef(null);
@@ -186,15 +186,14 @@ const Hero = ({ isInitialLoading }) => {
         </div>
 
         {/* --- Countdown & Feature Section --- */}
-        <div
+        {/* <div
           className={`mt-20 lg:mt-32 transform-gpu transition-all duration-700 ease-out ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           style={{ transitionDelay: '200ms' }}
         >
           <div className="rounded-3xl border border-[#D9E4F2] bg-white/80 backdrop-blur-md p-8 sm:p-10 lg:p-12 shadow-2xl shadow-[#1A3A6F]/5">
-            {/* <div className="grid gap-12 lg:grid-cols-[1fr_0.8fr] lg:items-center"> */}
             <div>
-              {/* Left Column: Text & Timer */}
+              
               <div className="flex flex-col gap-6">
                 <div className="inline-flex items-center gap-2 rounded-lg bg-[#2DA3DB]/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#1A3A6F] w-fit">
                   <Timer size={14} />
@@ -229,19 +228,9 @@ const Hero = ({ isInitialLoading }) => {
                 </div>
               </div>
 
-              {/* Right Column: Screenshot */}
-              {/* <div className="relative group perspective-1000">
-                <div className="absolute -inset-4 bg-gradient-to-r from-[#2DA3DB]/20 to-[#1A3A6F]/10 rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition-opacity" />
-                <ScreenshotPlaceholder
-                  label="Landing Page Flow"
-                  title="Upcoming project screenshot"
-                  className="relative shadow-lg transition-transform duration-500 group-hover:rotate-y-2 group-hover:scale-[1.02]"
-                  imageSrc="https://www.digitalconcepts.in/wp-content/uploads/2020/08/dc_portfolio_ssglass.png"
-                />
-              </div> */}
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* --- "Why Trust Us" Cards --- */}
         <div
